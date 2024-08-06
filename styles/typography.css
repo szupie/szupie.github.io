@@ -1,0 +1,52 @@
+@font-face {
+	font-family: "Fanwood Text";
+	src: local("Fanwood Text"),
+		 local("Fanwood"),
+		 url("../assets/fonts/fanwood_text-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Fanwood Text Italic";
+	src: local("Fanwood Text Italic"),
+		 url("../assets/fonts/fanwood_text_italic-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: italic;
+}
+
+:root {
+	--font-size-display: 60px;
+	--line-height-display: 60px;
+	--font-size-body: 16px;
+	--line-height-body: 20px;
+	--font-size-label: 14px;
+	--line-height-label: 20px;
+}
+
+html {
+	font-family: "Fanwood Text";
+	font-size: var(--font-size-body);
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+}
+i, em {
+	font-family: "Fanwood Text Italic", "Fanwood Text";
+}
+strong {
+	font-variant-caps: small-caps;
+	font-weight: normal;
+}
+
+h1 {
+	font-size: var(--font-size-display);
+	line-height: var(--line-height-display);
+}
+
+a {
+	color: inherit;
+}
+a:hover {
+	color: var(--red);
+}
