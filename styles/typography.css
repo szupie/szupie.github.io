@@ -17,6 +17,10 @@
 :root {
 	--font-size-display: 60px;
 	--line-height-display: 60px;
+	--font-size-display_list_title: 48px;
+	--line-height-display_list_title: 50px;
+	--font-size-section_title: 24px;
+	--line-height-section_title: 30px;
 	--font-size-body: 16px;
 	--line-height-body: 20px;
 	--font-size-label: 14px;
@@ -28,9 +32,6 @@ html {
 	font-size: var(--font-size-body);
 }
 
-h1, h2, h3, h4, h5 {
-	font-weight: normal;
-}
 i, em {
 	font-family: "Fanwood Text Italic", "Fanwood Text";
 }
@@ -39,9 +40,21 @@ strong {
 	font-weight: normal;
 }
 
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+}
 h1 {
 	font-size: var(--font-size-display);
 	line-height: var(--line-height-display);
+	margin-top: 80px;
+}
+h4, h5 {
+	font-variant: all-small-caps;
+	margin: 0;
+}
+p, ul {
+	font-size: var(--font-size-body);
+	line-height: var(--line-height-body);
 }
 
 a {

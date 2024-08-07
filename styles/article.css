@@ -1,0 +1,218 @@
+article {
+	--figure-margin-bottom: 200px;
+	--line-height-body: 30px;
+
+	display: contents;
+}
+article > * {
+	grid-column: 1 / -1;
+}
+
+/* article cover */
+article > header {
+	grid-column: content-left / content-right;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-bottom: var(--figure-margin-bottom);
+}
+article > header h1,
+article > header p {
+	max-width: 32rem;
+}
+article > header h1 {
+	margin-bottom: var(--line-height-display);
+}
+article > header p {
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+	margin-top: 20px;
+}
+article > header img {
+	width: 100%;
+	background-color: var(--paper-yellow-shade);
+}
+
+/* roles section */
+article #roles {
+	display: flex;
+	align-items: baseline;
+	gap: var(--column-gap);
+	margin-top: 30px;
+	padding: 10px 0;
+	border-top: 1px solid var(--black);
+}
+article #roles ul {
+	display: flex;
+}
+article #roles li {
+	font-family: "Fanwood Text Italic", "Fanwood Text";
+	line-height: var(--line-height-body);
+}
+article #roles li::before {
+	/* override global list style */
+	content: '';
+}
+article #roles li:not(:first-child)::before {
+	content: '·';
+	position: static;
+	margin: 0 8px;
+}
+
+/* article body */
+article > * {
+	grid-column: article-left / article-right;
+	margin: 0;
+}
+article > * + * {
+	margin-top: var(--line-height-body);
+}
+article > header + * {
+	margin-top: 0; /* collapse margin of first element after cover */
+}
+article h2 {
+	font-family: "Fanwood Text Italic", "Fanwood Text";
+	font-size: var(--font-size-display_list_title);
+	line-height: var(--line-height-display_list_title);
+	text-align: center;
+	--min-vmargin: calc(3 * var(--line-height-display_list_title));
+	--max-vmargin: 240px;
+	margin: clamp(var(--min-vmargin), 25vh, var(--max-vmargin)) 0;
+}
+article h2::before {
+	content: "§";
+	display: block;
+	font-size: var(--font-size-display);
+	line-height: var(--line-height-display);
+	margin-bottom: 40px;
+}
+article h2 + h3 {
+	margin-top: 0; /* collapse h3 margin if immediately after h2 */
+}
+article h3 {
+	font-family: "Fanwood Text Italic", "Fanwood Text";
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+	justify-self: start;
+	border-top: 1px solid var(--black);
+	margin-top: 200px;
+	padding-top: 20px;
+}
+article h3 + * {
+	margin-top: 100px;
+}
+article ul {
+	list-style-type: none;
+}
+article li {
+	position: relative;
+}
+article li::before {
+	content: '•';
+	position: absolute;
+	right: 100%;
+	margin-right: 1ch;
+}
+
+/* figures */
+article figure {
+	display: grid;
+	grid-template-columns: var(--grid-columns);
+	gap: var(--column-gap);
+	grid-column: 1 / -1;
+	align-items: end;
+	margin-top: 150px;
+}
+article figure + *:not(h2, h3) {
+	margin-top: var(--figure-margin-bottom);
+}
+article figure img, 
+article figure video {
+	max-width: 100%;
+}
+article > figure > img,
+article > figure > video,
+article figure figcaption {
+	grid-column: content-left / content-right;
+}
+article figure figcaption {
+	font-size: var(--font-size-label);
+	line-height: var(--line-height-label);
+}
+article figure figcaption::before {
+	font-variant: all-small-caps;
+	margin-right: var(--column-gap);
+	width: 2.25rem;
+	display: inline-block;
+	position: absolute;
+	left: 0;
+}
+article figure.multi-caption > figure {
+	display: contents;
+}
+article figure.multi-caption img {
+	order: 1;
+}
+article figure.multi-caption figcaption {
+	order: 2;
+	position: relative;
+	padding-left: 3.25rem;
+}
+article figure.narrow figcaption {
+	grid-column: article-left / article-right;
+}
+article figure.narrow figure:first-of-type img {
+	grid-column-start: article-left;
+}
+article figure.multi-caption figure:not(:last-of-type) figcaption {
+	margin-bottom: calc(-1 * var(--column-gap));
+}
+article figure.multi-caption figure:first-of-type figcaption::before {
+	content: 'Left';
+}
+article figure.multi-caption figure:last-of-type figcaption::before {
+	content: 'Right';
+}
+article figure img.size-3 {
+	grid-column-end: span 3;
+}
+article figure img.size-4 {
+	grid-column-end: span 4;
+}
+
+/* end mark decoration */
+article::after {
+	content: "*";
+	display: block;
+	font-size: 40px;
+	line-height: 1;
+	grid-column: 1 / -1;
+	margin: 200px auto;
+}
+
+/* angled background accents */
+article * {
+	position: relative;
+}
+article > header::before,
+article > h2 ~ figure::before {
+	content: '';
+	display: block;
+	position: absolute;
+	background-color: var(--paper-yellow-shade);
+	z-index: -1;
+	width: 100vw;
+	margin-left: calc(max(100vw - 100%, 0px) * -0.5);
+}
+article > header::before {
+	transform: skewY(-15deg);
+	top: calc(5 * var(--line-height-display));
+	bottom: calc(-0.5 * var(--figure-margin-bottom));
+}
+/* add background for figures only after first section break */
+article > h2 ~ figure::before {
+	transform: skewY(15deg);
+	top: 0;
+	bottom: calc(-0.75 * var(--figure-margin-bottom));
+}

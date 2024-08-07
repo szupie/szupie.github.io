@@ -19,13 +19,18 @@ body {
 	margin: 0 auto;
 	overflow-x: hidden;
 }
+p, h1, h2, h3, h4, h5,
+ul, ol {
+	margin: 0;
+	padding: 0;
+}
 
 /* global grid */
 nav, main {
 	display: grid;
 	grid-template-columns: var(--grid-columns);
 	column-gap: var(--column-gap);
-	row-gap: 30px;
+	row-gap: 0;
 	padding: 0 calc((100vw - var(--max-width))/2);
 	background-color: var(--paper-yellow);
 }
@@ -40,8 +45,6 @@ nav {
 #nav-menu {
 	grid-column: content-left / content-right;
 	border-bottom: 1px solid var(--red);
-	margin: 0;
-	padding: 0;
 	display: flex;
 	justify-content: flex-end;
 	gap: 80px;
@@ -76,7 +79,8 @@ nav {
 footer {
 	--bottom-padding: 80px;
 	background-color: var(--paper-white);
-	min-height: 90vh;
+	height: 90vh;
+	max-height: calc(12 * var(--line-height-display));
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
@@ -110,8 +114,6 @@ footer #contact-links {
 	display: flex;
 	gap: 16px;
 	list-style: none;
-	margin: 0;
-	padding: 0;
 }
 footer #contact-links a {
 	font-size: var(--font-size-body);
