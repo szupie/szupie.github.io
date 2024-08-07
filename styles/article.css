@@ -120,7 +120,7 @@ article figure {
 	display: grid;
 	grid-template-columns: var(--grid-columns);
 	gap: var(--column-gap);
-	grid-column: 1 / -1;
+	grid-column: content-left / content-right;
 	align-items: end;
 	margin-top: 150px;
 }
