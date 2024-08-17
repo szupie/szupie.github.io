@@ -34,6 +34,9 @@ ul, ol {
 	margin: 0;
 	padding: 0;
 }
+h1 {
+	margin-top: calc(var(--line-height-display) + 20px);
+}
 
 /* global grid */
 nav, main, footer {
@@ -45,6 +48,9 @@ nav, main, footer {
 }
 nav, main {
 	background-color: var(--paper-yellow);
+}
+main > * {
+	grid-column: content-left / content-right;
 }
 
 @media (width < 1000px) {

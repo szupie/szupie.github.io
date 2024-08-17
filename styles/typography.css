@@ -26,6 +26,12 @@
 	--font-size-label: 14px;
 	--line-height-label: 20px;
 }
+@media (width < 850px) {
+	:root {
+		--font-size-display: 40px;
+		--line-height-display: 40px;
+	}
+}
 
 html {
 	font-family: "Fanwood Text";
@@ -46,7 +52,6 @@ h1, h2, h3, h4, h5 {
 h1 {
 	font-size: var(--font-size-display);
 	line-height: var(--line-height-display);
-	margin-top: 80px;
 }
 h4, h5 {
 	font-variant: all-small-caps;

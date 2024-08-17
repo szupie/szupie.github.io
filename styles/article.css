@@ -4,6 +4,11 @@ article {
 
 	display: contents;
 }
+@media (width < 850px) {
+	article {
+		--figure-margin-bottom: 80px;
+	}
+}
 article > * {
 	grid-column: 1 / -1;
 }
@@ -24,10 +29,16 @@ article > header p {
 article > header h1 {
 	margin-bottom: var(--line-height-display);
 }
+@media (width < 850px) {
+	article > header h1 {
+		margin-bottom: 30px;
+	}
+}
 article > header p {
 	font-size: var(--font-size-section_title);
 	line-height: var(--line-height-section_title);
 	margin-top: 20px;
+	margin-bottom: 50px;
 }
 article > header img {
 	width: 100%;
@@ -249,6 +260,13 @@ article * {
 article > header::before,
 article > h2 ~ figure::before {
 	--tan15deg: 0.2679;
+	--article-intersect-offset: calc(
+		(
+			var(--grid-width) * 0.5 - 
+			(var(--column-width) + var(--column-gap)) * 
+			var(--article-column-offset)
+		) * var(--tan15deg)
+	);
 	content: '';
 	display: block;
 	position: absolute;
@@ -260,19 +278,14 @@ article > h2 ~ figure::before {
 article > header::before {
 	transform: skewY(-15deg);
 	top: calc(5 * var(--line-height-display));
-	bottom: calc(-0.5 * var(--figure-margin-bottom));
+	/* intersect with 1 line height above article body */
+	bottom: calc(var(--article-intersect-offset) + var(--line-height-body) - var(--figure-margin-bottom));
 }
 /* add background for figures only after first section break */
 article > h2 ~ figure::before {
 	transform: skewY(15deg);
 	/* intersect with first article column */
-	top: calc(
-		(
-			var(--grid-width) * 0.5 - 
-			(var(--column-width) + var(--column-gap)) * 
-			var(--article-column-offset)
-		) * var(--tan15deg)
-	);
+	top: var(--article-intersect-offset);
 	/* intersect with 1 gap width below left edge of figure */
 	bottom: calc(
 		(
