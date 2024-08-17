@@ -13,6 +13,11 @@
 	--grid-columns: [content-left] repeat(var(--article-column-offset), [flexible-left] minmax(0, 1fr)) [article-left flexible-left] var(--article-template-columns) [flexible-right article-right] repeat(var(--article-column-offset), minmax(0, 1fr) [flexible-right]) [content-right];
 	--column-count: calc(2 * var(--article-column-offset) + var(--article-column-count));
 	--column-gap: 16px;
+	--grid-width: calc(100vw - (var(--wide-page-margin) + var(--column-gap)) * 2);
+	--column-width: calc(
+		(var(--grid-width) - (var(--column-count) - 1) * var(--column-gap)) / 
+		var(--column-count)
+	);
 }
 
 html {

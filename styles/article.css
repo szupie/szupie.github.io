@@ -122,9 +122,9 @@ article > figure {
 	/* make narrower only when available columns are fewer than ideal */
 	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
 
-	--figure-column-offset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
-	grid-column-start: flexible-left calc(-1 - var(--figure-column-offset));
-	grid-column-end: flexible-right calc(1 + var(--figure-column-offset));
+	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
+	grid-column-start: flexible-left calc(-1 - var(--figure-column-outset));
+	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
 
 	display: grid;
 	grid-template-columns: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
@@ -248,6 +248,7 @@ article * {
 }
 article > header::before,
 article > h2 ~ figure::before {
+	--tan15deg: 0.2679;
 	content: '';
 	display: block;
 	position: absolute;
@@ -264,6 +265,20 @@ article > header::before {
 /* add background for figures only after first section break */
 article > h2 ~ figure::before {
 	transform: skewY(15deg);
-	top: 0;
-	bottom: calc(-0.75 * var(--figure-margin-bottom));
+	/* intersect with first article column */
+	top: calc(
+		(
+			var(--grid-width) * 0.5 - 
+			(var(--column-width) + var(--column-gap)) * 
+			var(--article-column-offset)
+		) * var(--tan15deg)
+	);
+	/* intersect with 1 gap width below left edge of figure */
+	bottom: calc(
+		(
+			var(--grid-width) * 0.5 - 
+			(var(--column-width) + var(--column-gap)) * 
+			(var(--article-column-offset) - var(--figure-column-outset))
+		) * var(--tan15deg) * -1 - var(--column-gap)
+	);
 }
