@@ -116,11 +116,19 @@ article li::before {
 }
 
 /* figures */
-article figure {
+article > figure {
+	/* default width if not specified inline */
+	--ideal-figure-column-count: 6;
+	/* make narrower only when available columns are fewer than ideal */
+	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
+
+	--figure-column-offset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
+	grid-column-start: flexible-left calc(-1 - var(--figure-column-offset));
+	grid-column-end: flexible-right calc(1 + var(--figure-column-offset));
+
 	display: grid;
-	grid-template-columns: var(--grid-columns);
+	grid-template-columns: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
 	gap: var(--column-gap);
-	grid-column: content-left / content-right;
 	align-items: end;
 	margin-top: 150px;
 }
@@ -129,16 +137,35 @@ article figure + *:not(h2, h3) {
 }
 article figure img, 
 article figure video {
+	--min-column-span: 2;
+	--column-deficit: calc(
+		var(--ideal-figure-column-count) - 
+		min(var(--ideal-figure-column-count), var(--column-count))
+	);
+	/* figures w/ ideal span shrink by 1 column as figure area narrows by 2 */
+	--column-span: max(
+		calc(var(--ideal-span) - var(--column-deficit) / 2),
+		var(--min-column-span)
+	);
+	/* if ideal span is not given, default to all columns available */
+	grid-column-end: span var(--column-span, var(--figure-column-count));
 	max-width: 100%;
 }
-article > figure > img,
-article > figure > video,
-article figure figcaption {
-	grid-column: content-left / content-right;
+article figure .key-figure {
+	--min-column-span: 3;
 }
+@media (width < 600px) {
+	article figure .key-figure {
+		grid-column-end: span min(4, var(--ideal-span));
+	}
+}
+
+/* captions */
 article figure figcaption {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
+	grid-column: bound-left / bound-right;
+	max-width: 48em;
 }
 article figure figcaption::before {
 	font-variant: all-small-caps;
@@ -159,12 +186,6 @@ article figure.multi-caption figcaption {
 	position: relative;
 	padding-left: 3.25rem;
 }
-article figure.narrow figcaption {
-	grid-column: article-left / article-right;
-}
-article figure.narrow figure:first-of-type img {
-	grid-column-start: article-left;
-}
 article figure.multi-caption figure:not(:last-of-type) figcaption {
 	margin-bottom: calc(-1 * var(--column-gap));
 }
@@ -174,11 +195,41 @@ article figure.multi-caption figure:first-of-type figcaption::before {
 article figure.multi-caption figure:last-of-type figcaption::before {
 	content: 'Right';
 }
-article figure img.size-3 {
-	grid-column-end: span 3;
+
+/* special layouts */
+article figure.two-one {
+	--ideal-figure-column-count: 12;
+	/* extend figure grid to accommodate full bleed image */
+	grid-column: 1 / -1;
+	grid-template-columns: var(--wide-page-margin) [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right] var(--wide-page-margin);
+	grid-auto-flow: column;
 }
-article figure img.size-4 {
-	grid-column-end: span 4;
+article figure.two-one img {
+	grid-column-start: bound-left;
+	/* crop image edges for alignment */
+	align-self: stretch;
+	object-fit: cover;
+}
+article figure.two-one img:nth-of-type(3) {
+	grid-column-start: calc(var(--figure-column-count) / 2 + 2);
+	grid-column-end: -1; /* full bleed */
+	grid-row-end: span 2;
+	width: auto;
+}
+@media (width < 600px) {
+	article figure.two-one img:nth-of-type(3) {
+		grid-column: bound-left / bound-right;
+	}
+}
+
+article figure.caption-side figcaption {
+	grid-column: auto / span 3;
+	min-width: 14em;
+}
+@media (width < 850px) {
+	article figure.caption-side figcaption {
+		grid-column: bound-left / bound-right;
+	}
 }
 
 /* end mark decoration */

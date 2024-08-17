@@ -8,7 +8,10 @@
 	--max-width: 65rem;
 	--wide-page-margin: max(calc((100vw - var(--max-width))/2), 60px);
 	--article-column-offset: 3;
-	--grid-columns: [content-left] repeat(var(--article-column-offset), minmax(0, 1fr)) [article-left] repeat(6, minmax(0, 1fr)) [article-right] repeat(var(--article-column-offset), minmax(0, 1fr)) [content-right];
+	--article-column-count: 6;
+	--article-template-columns: repeat(var(--article-column-count), minmax(0, 1fr));
+	--grid-columns: [content-left] repeat(var(--article-column-offset), [flexible-left] minmax(0, 1fr)) [article-left flexible-left] var(--article-template-columns) [flexible-right article-right] repeat(var(--article-column-offset), minmax(0, 1fr) [flexible-right]) [content-right];
+	--column-count: calc(2 * var(--article-column-offset) + var(--article-column-count));
 	--column-gap: 16px;
 }
 
@@ -51,12 +54,14 @@ nav, main {
 }
 @media (width < 700px) {
 	:root {
-		--grid-columns: [content-left article-left] repeat(4, minmax(0, 1fr)) [article-right content-right];
+		--article-column-offset: 0;
+		--grid-columns: [content-left flexible-left article-left] var(--article-template-columns) [article-right flexible-right content-right];
 	}
 }
 @media (width < 600px) {
 	:root {
 		--wide-page-margin: 0px;
+		--article-column-count: 4;
 	}
 }
 
