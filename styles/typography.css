@@ -30,6 +30,8 @@
 	:root {
 		--font-size-display: 40px;
 		--line-height-display: 40px;
+		--font-size-display_list_title: 40px;
+		--line-height-display_list_title: 40px;
 	}
 }
 

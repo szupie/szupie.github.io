@@ -56,6 +56,7 @@ article #roles {
 }
 article #roles ul {
 	display: flex;
+	padding: 0;
 }
 article #roles li {
 	font-family: "Fanwood Text Italic", "Fanwood Text";
@@ -113,8 +114,21 @@ article h3 {
 article h3 + * {
 	margin-top: 100px;
 }
+@media (width < 850px) {
+	article h3 {
+		margin-top: 120px;
+	}
+	article h3 + * {
+		margin-top: 40px;
+	}
+}
 article ul {
 	list-style-type: none;
+}
+@media (width < 600px) {
+	article ul {
+		padding-left: 1em;
+	}
 }
 article li {
 	position: relative;
@@ -141,7 +155,7 @@ article > figure {
 	grid-template-columns: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
 	gap: var(--column-gap);
 	align-items: end;
-	margin-top: 150px;
+	margin-top: min(150px, var(--figure-margin-bottom));
 }
 article figure + *:not(h2, h3) {
 	margin-top: var(--figure-margin-bottom);
