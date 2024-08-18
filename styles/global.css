@@ -101,7 +101,7 @@ nav {
 	display: block;
 	padding: var(--vertical-padding) 0;
 }
-#nav-menu [aria-current="page"],
+#nav-menu [aria-current="page"]:not(#home-button),
 #nav-menu [aria-current="true"] {
 	color: var(--red);
 	border-bottom: 4px solid var(--red);
@@ -110,7 +110,19 @@ nav {
 #nav-menu #home-button {
 	position: absolute;
 	left: 0;
-	font-size: 24px; /* temp */
+	padding: 0.5em 0.4em 0.1em;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+
+	/* replace with svg and hide text */
+	font-size: clamp(12px, 12px + (7vw - 25px), 22px);
+	line-height: 1;
+	letter-spacing: 0.12em;
+	color: transparent;
+	background: no-repeat url("/assets/logo.svg");
+	background-position: center top;
+	background-size: contain;
 }
 @media (width < 850px) {
 	#nav-menu a {
