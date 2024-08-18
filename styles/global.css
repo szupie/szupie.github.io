@@ -123,13 +123,15 @@ nav {
 
 /* footer */
 footer {
-	--bottom-padding: 80px;
+	--decoration-size: 15px;
+	--decoration-margin: 30px;
+	--bottom-line-padding: 20px;
 	background-color: var(--paper-white);
 	height: 90vh;
 	max-height: calc(12 * var(--line-height-display));
 	box-sizing: border-box;
 	align-items: end;
-	padding-bottom: var(--bottom-padding);
+	padding-bottom: calc(var(--decoration-margin) * 2 + var(--decoration-size));
 }
 footer > * {
 	grid-column: content-left / content-right;
@@ -139,12 +141,6 @@ footer h2 {
 	line-height: var(--line-height-display);
 	text-align: center;
 	margin: 0;
-
-	/* center vertically */
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 }
 footer #footer-links {
 	display: flex;
@@ -153,12 +149,12 @@ footer #footer-links {
 	justify-content: space-between;
 	align-items: baseline;
 
-	padding-bottom: 20px;
+	padding-bottom: var(--bottom-line-padding);
 	border-bottom: 1px solid var(--black);
 }
 footer #contact-links {
 	display: flex;
-	gap: 16px;
+	gap: 30px;
 	list-style: none;
 }
 footer #contact-links a {
@@ -168,6 +164,23 @@ footer #contact-links a {
 footer small {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
+}
+@media (width < 850px) {
+	footer {
+		--decoration-margin: 20px;
+		--bottom-line-padding: 10px;
+		align-content: end;
+		row-gap: 60px;
+		max-height: calc(20 * var(--line-height-display));
+	}
+	footer #footer-links,
+	footer #contact-links {
+		flex-direction: column;
+		align-items: center;
+	}
+	footer #footer-links {
+		gap: 60px;
+	}
 }
 
 /* curtain rise effect */
@@ -191,8 +204,8 @@ footer small::after, footer::after, footer::before {
 	content: '';
 	display: block;
 	position: absolute;
-	bottom: calc((var(--bottom-padding) - 15px) / 2);
-	height: 15px;
+	bottom: var(--decoration-margin);
+	height: var(--decoration-size);
 }
 footer small::after {
 	--colour-1: #01B2F0;
@@ -201,16 +214,23 @@ footer small::after {
 	--colour-4: #0C0C0B;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 60px;
+	width: calc(4 * var(--decoration-size));
+	z-index: -1;
 	background: linear-gradient(to right, var(--colour-1) 25%, var(--colour-2) 25%, var(--colour-2) 50%, var(--colour-3) 50%, var(--colour-3) 75%, var(--colour-4) 75%);
 }
 footer::after, footer::before {
-	width: 15px;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='none'%3E%3Ccircle cx='7.5' cy='7.5' r='5' stroke='%23464646'/%3E%3Cpath stroke='%23464646' d='M0 7.5h15M7.5 15V0'/%3E%3C/svg%3E");
+	--offset: 25px;
+	width: var(--decoration-size);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Ccircle cx='7.5' cy='7.5' r='5' stroke='%23464646' fill='none'/%3E%3Cpath stroke='%23464646' d='M0 7.5h15M7.5 15V0'/%3E%3C/svg%3E");
 }
 footer::before {
-	left: 25px;
+	left: var(--offset);
 }
 footer::after {
-	right: 25px;
+	right: var(--offset);
+}
+@media (width < 600px) {
+	footer::after, footer::before {
+		--offset: var(--column-gap);
+	}
 }
