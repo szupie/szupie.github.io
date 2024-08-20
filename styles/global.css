@@ -34,8 +34,55 @@ ul, ol {
 	margin: 0;
 	padding: 0;
 }
-h1 {
-	margin-top: calc(var(--line-height-display) + 20px);
+nav, main {
+	background-color: var(--paper-yellow);
+}
+main {
+	padding-bottom: 240px;
+}
+
+/* use custom bullets style */
+main ul {
+	list-style-type: none;
+}
+main li {
+	position: relative;
+}
+main li::before {
+	content: '•';
+	position: absolute;
+	right: 100%;
+	margin-right: 1ch;
+}
+
+/* inline list */
+.inline-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	padding: 0;
+	font-family: "Fanwood Text Italic", "Fanwood Text";
+}
+.inline-list li::before {
+	/* override global list style */
+	content: '';
+}
+.inline-list li:not(:last-child)::after {
+	content: '·';
+	position: static;
+	margin: 0 0.5em;
+}
+
+/* section divider decoration */
+main > hr {
+	border: none;
+	margin: 200px auto;
+	color: var(--black);
+}
+main > hr::before {
+	content: '§';
+	font-size: var(--font-size-display);
+	line-height: var(--line-height-display);
 }
 
 /* global grid */
@@ -45,9 +92,6 @@ nav, main, footer {
 	column-gap: var(--column-gap);
 	row-gap: 0;
 	padding: 0;
-}
-nav, main {
-	background-color: var(--paper-yellow);
 }
 main > * {
 	grid-column: content-left / content-right;

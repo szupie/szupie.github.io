@@ -55,9 +55,12 @@ h1 {
 	font-size: var(--font-size-display);
 	line-height: var(--line-height-display);
 }
+h2 {
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+}
 h4, h5 {
 	font-variant: all-small-caps;
-	margin: 0;
 }
 p, ul {
 	font-size: var(--font-size-body);
