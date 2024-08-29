@@ -1,6 +1,7 @@
 /* page header */
 h1 {
 	margin-top: calc(var(--line-height-display) + 20px);
+	grid-column: content-left / content-right;
 }
 header {
 	margin-bottom: 100px;
@@ -9,12 +10,14 @@ header {
 	gap: var(--line-height-body) var(--column-gap);
 }
 header p {
-	grid-column: 1 / span min(6, var(--column-count));
+	grid-column: content-left / span min(6, var(--column-count));
+}
+header.sentence {
+	margin-bottom: var(--line-height-display);
 }
 
 /* main page sections */
-main > section,
-#projects > li {
+.major-thing {
 	display: grid;
 	grid-template-columns: var(--grid-columns);
 	column-gap: var(--column-gap);
@@ -22,28 +25,92 @@ main > section,
 	border-top: 1px solid var(--red);
 	padding-top: 40px;
 }
-main > section + section,
-#projects > li + li {
+.major-thing + .major-thing {
 	margin-top: 60px;
 }
 
 /* left-right section layout */
-main > section h2 {
-	grid-column: content-left / span clamp(2, calc(var(--column-count) - 6), 3);
-	margin-bottom: var(--line-height-section_title);
+.hanging-title-layout {
+	--body-column-start: calc(var(--column-count) / 2);
+	--hanging-title-row-gap: var(--line-height-section_title);
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);	
+	row-gap: var(--hanging-title-row-gap);
+	align-items: baseline;
 }
-main > section h2 ~ * {
-	grid-column: span clamp(5, calc(var(--column-count) - 4), 7) / content-right;
+.hanging-title-layout + .hanging-title-layout {
+	margin-top: calc(4 * var(--line-height-section_title));	
+}
+.hanging-title-layout h2 {
+	grid-column: content-left / span clamp(2, calc(var(--column-count) - 6), 3);
+}
+.hanging-title-layout h2 ~ *,
+.hanging-title-layout div * {
+	grid-column: var(--body-column-start) / content-right;
+}
+.hanging-title-layout h3,
+.hanging-title-layout h4 {
+	font-size: var(--font-size-label);
+	line-height: var(--line-height-label);
+	font-variant: all-small-caps;
+}
+.hanging-title-layout h3 {
+	color: var(--red);
+	margin-bottom: calc(0.5 * var(--line-height-body));
+}
+.hanging-title-layout h4 {
+	color: var(--grey);
+	display: inline-block;
+}
+/* left-right with subsections */
+.hanging-title-layout div {
+	display: contents;
+	/* allow children to inherit grid properties */
+	grid-column: inherit;
+	gap: inherit;
+}
+.hanging-title-layout .detail-section {
+	--compact-column-end: calc(-1 - clamp(0, var(--column-count) - 11, 1));
+	grid-column: var(--body-column-start) / var(--compact-column-end);
+	font-size: var(--font-size-body);
+	line-height: var(--line-height-body);
+	/* override vertical rhythm of outer container */
+	padding-bottom: calc(2 * var(--line-height-body) - var(--hanging-title-row-gap));
+}
+/* section divider with pseudoelement for more flexibility in width */
+.hanging-title-layout .detail-section + .detail-section::before {
+	content: '';
+	display: block;
+	border-top: 1px solid var(--grey-decorative);
+	margin-bottom: var(--line-height-body);
 }
 @media (width < 700px) {
-	main > section h2,
-	main > section h2 ~ * {
+	.hanging-title-layout {
+		--body-column-start: 1; /* use number to allow offsets using calc */
+	}
+	.hanging-title-layout h2 {
+		grid-column-end: content-right;
+	}
+	.hanging-title-layout .detail-section {
 		grid-column: content-left / content-right;
 	}
 }
-main > section ul {
-	font-size: var(--font-size-section_title);
-	line-height: var(--line-height-section_title);	
+
+/* compact layout for multiple lists */
+.compact-list > * + * {
+	margin-top: calc(0.5 * var(--line-height-body));
+}
+.compact-list section {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: calc(0.5 * var(--line-height-body));
+}
+/* lay out list inline with previous label */
+.compact-list h4 + .inline-list {
+	display: contents;
+}
+.compact-list h4 + .inline-list :first-child {
+	margin-left: 0.5em;
 }
 
 /* portfolio page layout */
@@ -54,7 +121,7 @@ main > section ul {
 }
 #projects > li::before {
 	/* reset list style */
-	content: '';
+	display: none;
 }
 #projects > li > * {
 	grid-column: content-left / span calc(var(--column-count) / 2);

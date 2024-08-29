@@ -13,6 +13,13 @@
 	font-weight: normal;
 	font-style: italic;
 }
+@font-face {
+	font-family: "Fanwood";
+	src: local("Fanwood"),
+		 url("../assets/fonts/fanwood-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
 
 :root {
 	--font-size-display: 60px;
@@ -21,6 +28,8 @@
 	--line-height-display_list_title: 50px;
 	--font-size-section_title: 24px;
 	--line-height-section_title: 30px;
+	--font-size-large_body: 24px;
+	--line-height-large_body: 30px;
 	--font-size-body: 16px;
 	--line-height-body: 20px;
 	--font-size-label: 14px;
@@ -30,6 +39,8 @@
 	:root {
 		--font-size-display: 40px;
 		--line-height-display: 40px;
+		--font-size-large_body: 16px;
+		--line-height-large_body: 20px;
 		--font-size-display_list_title: 40px;
 		--line-height-display_list_title: 40px;
 	}
@@ -38,6 +49,9 @@
 html {
 	font-family: "Fanwood Text";
 	font-size: var(--font-size-body);
+}
+body {
+	line-height: var(--line-height-body);
 }
 
 i, em {
@@ -52,6 +66,7 @@ h1, h2, h3, h4, h5 {
 	font-weight: normal;
 }
 h1 {
+	font-family: "Fanwood", "Fanwood Text";
 	font-size: var(--font-size-display);
 	line-height: var(--line-height-display);
 }
@@ -61,10 +76,6 @@ h2 {
 }
 h4, h5 {
 	font-variant: all-small-caps;
-}
-p, ul {
-	font-size: var(--font-size-body);
-	line-height: var(--line-height-body);
 }
 
 a {

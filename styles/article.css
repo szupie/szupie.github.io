@@ -3,6 +3,7 @@ article {
 	--line-height-body: 30px;
 
 	display: contents;
+	line-height: var(--line-height-body);
 }
 @media (width < 850px) {
 	article {
