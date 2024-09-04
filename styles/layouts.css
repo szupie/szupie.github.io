@@ -28,6 +28,11 @@ header.sentence {
 .major-thing + .major-thing {
 	margin-top: 60px;
 }
+@media (width < 700px) {
+	.major-thing {
+		padding-top: 20px;
+	}
+}
 
 /* left-right section layout */
 .hanging-title-layout {
