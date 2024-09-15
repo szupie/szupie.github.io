@@ -131,7 +131,7 @@ nav {
 	justify-content: flex-end;
 	gap: 80px;
 	position: relative;
-	--vertical-padding: 30px;
+	--vertical-padding: var(--line-height-section_title);
 }
 #nav-menu li {
 	list-style: none;
@@ -169,11 +169,17 @@ nav {
 	background-size: contain;
 }
 @media (width < 850px) {
+	#nav-menu {
+		gap: var(--line-height-display);
+	}
 	#nav-menu a {
 		font-size: 12px;
 	}
+}
+@media (width < 600px) {
 	#nav-menu {
-		gap: 20px;
+		gap: var(--line-height-large_body);
+		--vertical-padding: var(--line-height-large_body);
 	}
 }
 
@@ -228,15 +234,21 @@ footer small {
 		--bottom-line-padding: 10px;
 		align-content: end;
 		row-gap: 60px;
-		max-height: calc(20 * var(--line-height-display));
+		max-height: calc(15 * var(--line-height-display));
 	}
 	footer #footer-links,
 	footer #contact-links {
-		flex-direction: column;
-		align-items: center;
+		justify-content: center;
 	}
 	footer #footer-links {
 		gap: 60px;
+	}
+}
+@media (width < 850px) and (height > 550px) {
+	footer #footer-links,
+	footer #contact-links {
+		align-items: center;
+		flex-direction: column;
 	}
 }
 
