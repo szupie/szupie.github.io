@@ -45,7 +45,7 @@ main > section + section {
 	padding-top: 40px;
 }
 .major-thing h2 {
-	font-family: "Fanwood Text";
+	font-style: normal;
 }
 .major-thing:not(.project) h2 {
 	font-size: var(--font-size-section_title);
@@ -160,9 +160,9 @@ main > section + section {
 	margin-bottom: calc(0.5 * var(--line-height-body));
 }
 .project .links {
-	font-family: "Fanwood Text Italic", "Fanwood Text";
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
+	font-style: italic;
 }
 .project .primary-link {
 	color: var(--red);
@@ -219,6 +219,7 @@ main > section + section {
 }
 .featured-landing .project .roles,
 .featured-landing .project .primary-link {
+	font-style: normal;
 	font-variant: all-small-caps;
 }
 .featured-landing .project .primary-link {
@@ -258,7 +259,6 @@ main > section + section {
 	transform: translateX(4px);
 }
 .featured-landing .project .roles {
-	font-family: "Fanwood Text";
 	opacity: 0.7;
 	order: -1;
 	margin-bottom: calc(-0.5 * var(--line-height-body));

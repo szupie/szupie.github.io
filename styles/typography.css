@@ -7,7 +7,7 @@
 	font-style: normal;
 }
 @font-face {
-	font-family: "Fanwood Text Italic";
+	font-family: "Fanwood Text";
 	src: local("Fanwood Text Italic"),
 		 url("../assets/fonts/fanwood_text_italic-webfont.woff") format("woff");
 	font-weight: normal;
@@ -54,9 +54,6 @@ body {
 	line-height: var(--line-height-body);
 }
 
-i, em {
-	font-family: "Fanwood Text Italic", "Fanwood Text";
-}
 strong {
 	font-variant-caps: small-caps;
 	font-weight: normal;
@@ -71,9 +68,9 @@ h1 {
 	line-height: var(--line-height-display);
 }
 h2 {
-	font-family: "Fanwood Text Italic", "Fanwood Text";
 	font-size: var(--font-size-display_list_title);
 	line-height: var(--line-height-display_list_title);
+	font-style: italic;
 }
 h3 {
 	font-size: var(--font-size-section_title);

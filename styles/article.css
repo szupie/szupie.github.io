@@ -69,7 +69,7 @@ article > header + * {
 	margin-top: 0; /* collapse margin of first element after cover */
 }
 article h2, article h3 {
-	font-family: "Fanwood Text Italic", "Fanwood Text";
+	font-style: italic;
 }
 article h2 {
 	text-align: center;

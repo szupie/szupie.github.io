@@ -24,9 +24,9 @@
 	box-shadow: -5px -5px 10px -5px #FDFBF7, 5px 5px 10px -5px #E4DCCD;
 }
 #contact h2 {
-	font-family: "Fanwood Text";
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
+	font-style: normal;
 	font-variant: all-small-caps;
 	color: var(--grey);
 	padding-bottom: calc(0.5 * var(--line-height-label));
@@ -49,9 +49,9 @@
 }
 
 p.detail {
-	font-family: "Fanwood Text Italic", "Fanwood Text";
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
+	font-style: italic;
 	color: var(--grey);
 }
 .hanging-title-layout .dates {
@@ -109,9 +109,9 @@ p.detail {
 }
 #education .inline-list {
 	row-gap: 0;
-	font-family: "Fanwood Text";
 	font-size: var(--font-size-large_body);
 	line-height: var(--line-height-large_body);
+	font-style: normal;
 	margin-bottom: var(--line-height-body);
 }
 #education .inline-list li:not(:last-child)::after {

@@ -66,7 +66,7 @@ main {
 	align-content: flex-start;
 	row-gap: calc(0.5 * var(--line-height-body));
 	padding: 0;
-	font-family: "Fanwood Text Italic", "Fanwood Text";
+	font-style: italic;
 }
 .inline-list li:not(:last-child)::after {
 	content: '·';
@@ -193,9 +193,9 @@ footer > * {
 	grid-column: content-left / content-right;
 }
 footer h2 {
-	font-family: "Fanwood", "Fanwood Text";
 	font-size: var(--font-size-display);
 	line-height: var(--line-height-display);
+	font-style: normal;
 	text-align: center;
 	margin: 0;
 }
