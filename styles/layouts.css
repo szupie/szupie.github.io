@@ -24,6 +24,11 @@ header p {
 header.sentence {
 	margin-bottom: var(--line-height-display);
 }
+@media (width < 850px) {
+	header {
+		margin-bottom: calc(2 * var(--line-height-section_title));
+	}
+}
 
 /* main page sections */
 main > section + section {
@@ -34,7 +39,7 @@ main > section + section {
 	color: var(--grey);
 }
 .list-group > h2 + * {
-	margin-top: calc(2 * var(--line-height-body));
+	margin-top: calc(var(--line-height-display_list_title) - 10px);
 }
 .major-thing {
 	display: grid;
@@ -265,4 +270,5 @@ main > section + section {
 }
 .featured-landing .project .thumbnail-link {
 	max-width: none;
+	margin-bottom: calc(-0.5 * var(--line-height-body));
 }
