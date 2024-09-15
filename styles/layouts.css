@@ -1,3 +1,12 @@
+main {
+	--dominant-column-span: 6;
+}
+@media (width < 850px) {
+	main {
+		--dominant-column-span: min(6, var(--column-count));
+	}
+}
+
 /* page header */
 h1 {
 	margin-top: calc(var(--line-height-display) + 20px);
@@ -10,13 +19,23 @@ header {
 	gap: var(--line-height-body) var(--column-gap);
 }
 header p {
-	grid-column: content-left / span min(6, var(--column-count));
+	grid-column: content-left / span var(--dominant-column-span);
 }
 header.sentence {
 	margin-bottom: var(--line-height-display);
 }
 
 /* main page sections */
+main > section + section {
+	margin-top: calc(4 * var(--line-height-section_title));	
+}
+/* header labelling a list of titles */
+.list-group > h2 {
+	color: var(--grey);
+}
+.list-group > h2 + * {
+	margin-top: calc(2 * var(--line-height-body));
+}
 .major-thing {
 	display: grid;
 	grid-template-columns: var(--grid-columns);
@@ -25,7 +44,15 @@ header.sentence {
 	border-top: 1px solid var(--red);
 	padding-top: 40px;
 }
-.major-thing + .major-thing {
+.major-thing h2 {
+	font-family: "Fanwood Text";
+}
+.major-thing:not(.project) h2 {
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+}
+/* margin between major subsections */
+:not(main) > .major-thing + .major-thing {
 	margin-top: 60px;
 }
 @media (width < 700px) {
@@ -42,9 +69,6 @@ header.sentence {
 	line-height: var(--line-height-section_title);	
 	row-gap: var(--hanging-title-row-gap);
 	align-items: baseline;
-}
-.hanging-title-layout + .hanging-title-layout {
-	margin-top: calc(4 * var(--line-height-section_title));	
 }
 .hanging-title-layout h2 {
 	grid-column: content-left / span clamp(2, calc(var(--column-count) - 6), 3);
@@ -118,49 +142,94 @@ header.sentence {
 	margin-left: 0.5em;
 }
 
-/* portfolio page layout */
-#projects > li {
+/* layout for list of projects */
+.project {
+	--min-thumbnail-span: 3;
+}
+.major-thing.project {
 	padding-top: var(--line-height-body);
 	row-gap: var(--line-height-body);
 	justify-items: start;
 }
-#projects > li::before {
-	/* reset list style */
-	display: none;
+.project > * {
+	grid-column: content-left / span var(--dominant-column-span);
+	align-self: start; /* prevent items from stretching vertically */
 }
-#projects > li > * {
-	grid-column: content-left / span calc(var(--column-count) / 2);
+.project .description {
+	margin-top: calc(-0.5 * var(--line-height-body));
+	margin-bottom: calc(0.5 * var(--line-height-body));
 }
-#projects h2 {
-	font-size: var(--font-size-display_list_title);
-	line-height: var(--line-height-display_list_title);
-}
-#projects h2 a {
-	color: var(--black);
-	text-decoration: none;
-}
-#projects p,
-#projects .cta,
-#projects .roles {
+.project .links {
+	font-family: "Fanwood Text Italic", "Fanwood Text";
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 }
-#projects p {
-	max-width: 28em;
+.project .primary-link {
+	color: var(--red);
 }
-#projects .roles,
-#projects .cta {
+.project .links * + * {
+	margin-left: var(--line-height-body);
+}
+.project .thumbnail-link {
+	grid-column: span var(--min-thumbnail-span) / content-right;
+	justify-self: end;
+	grid-row: 1 / span 4;
+	max-width: 248px;
+}
+.project .thumbnail-link img {
+	max-width: 100%;
+	vertical-align: middle; /* remove tiny gap under img */
+}
+@media (width < 850px) {
+	.project .description {
+		margin-bottom: 0;
+	}
+	.project .thumbnail-link {
+		grid-column: content-left / content-right;
+		justify-self: start;
+		order: -2;
+	}
+}
+
+/* layout for landing page with minimal text (portfolio) */
+.featured-landing {
+	--dominant-column-span: calc(var(--column-count) / 2);
+}
+@media (width < 850px) {
+	.featured-landing {
+		--dominant-column-span: var(--column-count);
+	}
+}
+.featured-landing .project {
+	--min-thumbnail-span: calc(var(--column-count) - var(--dominant-column-span) - 1);
+}
+.featured-landing .project h2 a:link {
+	color: var(--black);
+	text-decoration: none;
+}
+.featured-landing .project .description {
+	max-width: 28em;
+	margin: 0;
+}
+.featured-landing .project .description,
+.featured-landing .project .primary-link,
+.featured-landing .project .roles {
+	font-size: var(--font-size-label);
+	line-height: var(--line-height-label);
+}
+.featured-landing .project .roles,
+.featured-landing .project .primary-link {
 	font-variant: all-small-caps;
 }
-#projects .cta {
-	color: var(--red);
+.featured-landing .project .primary-link {
 	text-decoration: none;
 	/* larger target area */
 	padding: calc(0.5 * var(--line-height-body)) 0;
 	padding-right: 6px;
 	margin: calc(-0.5 * var(--line-height-body)) 0;
 }
-#projects .cta::after {
+/* arrow after cta */
+.featured-landing .project .primary-link::after {
 	background-color: currentColor;
 	content: '';
 	display: inline-block;
@@ -171,42 +240,29 @@ header.sentence {
 	margin-left: 5px;
 	transition: transform ease-in-out 200ms;
 }
-#projects .cta:hover,
-#projects .cta:focus,
-#projects .thumbnail-link:hover ~ .cta,
-#projects .thumbnail-link:focus ~ .cta,
-#projects h2:hover ~ .cta,
-#projects h2:focus-within ~ .cta {
+/* hover state */
+.featured-landing .project .primary-link:hover,
+.featured-landing .project .primary-link:focus,
+.featured-landing .project .thumbnail-link:hover ~ .primary-link,
+.featured-landing .project .thumbnail-link:focus ~ .primary-link,
+.featured-landing .project h2:hover ~ .primary-link,
+.featured-landing .project h2:focus-within ~ .primary-link {
 	text-decoration: underline;
 }
-#projects .cta:hover::after,
-#projects .cta:focus::after,
-#projects .thumbnail-link:hover ~ .cta::after,
-#projects .thumbnail-link:focus ~ .cta::after,
-#projects h2:hover ~ .cta::after,
-#projects h2:focus-within ~ .cta::after {
+.featured-landing .project .primary-link:hover::after,
+.featured-landing .project .primary-link:focus::after,
+.featured-landing .project .thumbnail-link:hover ~ .primary-link::after,
+.featured-landing .project .thumbnail-link:focus ~ .primary-link::after,
+.featured-landing .project h2:hover ~ .primary-link::after,
+.featured-landing .project h2:focus-within ~ .primary-link::after {
 	transform: translateX(4px);
 }
-#projects .roles {
+.featured-landing .project .roles {
 	font-family: "Fanwood Text";
 	opacity: 0.7;
 	order: -1;
 	margin-bottom: calc(-0.5 * var(--line-height-body));
 }
-#projects .thumbnail-link {
-	grid-row-start: 1;
-	grid-column: span calc(var(--column-count) / 2 - 1) / content-right;
-	grid-row-end: span 4;
-}
-#projects .thumbnail-link img {
-	max-width: 100%;
-}
-@media (width < 850px) {
-	#projects > li > * {
-		grid-column-end: content-right;
-	}
-	#projects .thumbnail-link {
-		grid-column-start: content-left;
-		order: -2;
-	}
+.featured-landing .project .thumbnail-link {
+	max-width: none;
 }

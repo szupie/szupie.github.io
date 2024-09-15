@@ -44,13 +44,14 @@ main {
 }
 
 /* use custom bullets style */
-main ul {
+.body-list {
 	list-style-type: none;
+	padding-left: 1.25em;
 }
-main li {
+.body-list li {
 	position: relative;
 }
-main li::before {
+.body-list li::before {
 	content: '•';
 	position: absolute;
 	right: 100%;
@@ -59,16 +60,13 @@ main li::before {
 
 /* inline list */
 .inline-list {
+	list-style-type: none;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: flex-start;
 	row-gap: calc(0.5 * var(--line-height-body));
 	padding: 0;
 	font-family: "Fanwood Text Italic", "Fanwood Text";
-}
-.inline-list li::before {
-	/* override global list style */
-	content: '';
 }
 .inline-list li:not(:last-child)::after {
 	content: '·';
@@ -195,6 +193,7 @@ footer > * {
 	grid-column: content-left / content-right;
 }
 footer h2 {
+	font-family: "Fanwood", "Fanwood Text";
 	font-size: var(--font-size-display);
 	line-height: var(--line-height-display);
 	text-align: center;

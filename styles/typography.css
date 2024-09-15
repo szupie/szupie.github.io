@@ -71,10 +71,17 @@ h1 {
 	line-height: var(--line-height-display);
 }
 h2 {
+	font-family: "Fanwood Text Italic", "Fanwood Text";
+	font-size: var(--font-size-display_list_title);
+	line-height: var(--line-height-display_list_title);
+}
+h3 {
 	font-size: var(--font-size-section_title);
 	line-height: var(--line-height-section_title);
 }
 h4, h5 {
+	font-size: var(--font-size-label);
+	line-height: var(--line-height-label);
 	font-variant: all-small-caps;
 }
 

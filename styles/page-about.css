@@ -18,11 +18,13 @@
 	grid-column: span 3 / content-right;
 	align-self: start;
 	background-color: #fff;
+	margin: 0;
 	padding: var(--line-height-label);
 	padding-bottom: calc(1.5 * var(--line-height-label));
 	box-shadow: -5px -5px 10px -5px #FDFBF7, 5px 5px 10px -5px #E4DCCD;
 }
 #contact h2 {
+	font-family: "Fanwood Text";
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 	font-variant: all-small-caps;
@@ -31,11 +33,11 @@
 	border-bottom: 1px solid var(--red);
 	margin-bottom: var(--line-height-label);
 }
+#contact ul {
+	list-style-type: none;
+}
 #contact li ~ li {
 	margin-top: var(--line-height-label);
-}
-#contact li::before {
-	display: none;
 }
 #contact + * {
 	margin-top: calc(4 * var(--line-height-section_title));

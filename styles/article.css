@@ -68,10 +68,10 @@ article > * + * {
 article > header + * {
 	margin-top: 0; /* collapse margin of first element after cover */
 }
-article h2 {
+article h2, article h3 {
 	font-family: "Fanwood Text Italic", "Fanwood Text";
-	font-size: var(--font-size-display_list_title);
-	line-height: var(--line-height-display_list_title);
+}
+article h2 {
 	text-align: center;
 	--min-vmargin: calc(3 * var(--line-height-display_list_title));
 	--max-vmargin: 240px;
@@ -88,9 +88,6 @@ article h2 + h3 {
 	margin-top: 0; /* collapse h3 margin if immediately after h2 */
 }
 article h3 {
-	font-family: "Fanwood Text Italic", "Fanwood Text";
-	font-size: var(--font-size-section_title);
-	line-height: var(--line-height-section_title);
 	justify-self: start;
 	border-top: 1px solid var(--black);
 	margin-top: 200px;
@@ -107,9 +104,10 @@ article h3 + * {
 		margin-top: 40px;
 	}
 }
-@media (width < 600px) {
-	article ul {
-		padding-left: 1em;
+@media (width > 599px) {
+	/* hang bullets when margins are wide */
+	article .body-list {
+		padding-left: 0;
 	}
 }
 
