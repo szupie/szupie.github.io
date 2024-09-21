@@ -22,7 +22,7 @@ article > header {
 	justify-content: space-between;
 	align-items: baseline;
 	gap: 0;
-	margin-bottom: var(--figure-margin-bottom);
+	padding-bottom: var(--figure-margin-bottom);
 }
 article > header h1,
 article > header p {
@@ -239,44 +239,35 @@ article::after {
 }
 
 /* angled background accents */
-article * {
-	position: relative;
-}
-article > header::before,
-article > h2 ~ figure::before {
-	--tan15deg: 0.2679;
-	--article-intersect-offset: calc(
-		(
-			var(--grid-width) * 0.5 - 
-			(var(--column-width) + var(--column-gap)) * 
-			var(--article-column-offset)
-		) * var(--tan15deg)
+article header.cover::before,
+article > figure::before {
+	/* distance from center to article edge column */
+	--article-edge-intersect-offset: calc(
+		var(--content-edge-intersect-offset) - 
+		var(--offset-per-column) * var(--article-column-offset)
 	);
-	content: '';
-	display: block;
-	position: absolute;
-	background-color: var(--paper-yellow-shade);
-	z-index: -1;
-	width: 100vw;
-	margin-left: calc(max(100vw - 100%, 0px) * -0.5);
 }
-article > header::before {
-	transform: skewY(-15deg);
-	top: calc(5 * var(--line-height-display));
-	/* intersect with 1 line height above article body */
-	bottom: calc(var(--article-intersect-offset) + var(--line-height-body) - var(--figure-margin-bottom));
+article header.cover::before {
+	/* anchor to right, just below title */
+	--angled-decoration-ideal-top: calc(3 * var(--line-height-display) - var(--content-edge-intersect-offset));
+	/* intersect with 1 line height above article body left */
+	bottom: calc(var(--line-height-body) - var(--article-edge-intersect-offset));
 }
-/* add background for figures only after first section break */
-article > h2 ~ figure::before {
-	transform: skewY(15deg);
+article > figure::before {
+	--angle-direction: 1;
 	/* intersect with first article column */
-	top: var(--article-intersect-offset);
+	top: var(--article-edge-intersect-offset);
 	/* intersect with 1 gap width below left edge of figure */
-	bottom: calc(
-		(
-			var(--grid-width) * 0.5 - 
-			(var(--column-width) + var(--column-gap)) * 
-			(var(--article-column-offset) - var(--figure-column-outset))
-		) * var(--tan15deg) * -1 - var(--column-gap)
+	bottom: calc(-1 * (
+			var(--column-gap) +
+			var(--offset-per-column) * var(--figure-column-outset) +
+			var(--article-edge-intersect-offset)
+		)
 	);
+
+/* add background for figures only after first section break */
+	display: none;
+}
+article > h2 ~ figure::before {
+	display: block;
 }

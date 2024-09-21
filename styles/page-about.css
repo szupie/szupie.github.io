@@ -1,9 +1,13 @@
+main[typeof="Person"] header {
+	row-gap: 0;
+}
+
 #about-me {
 	grid-column-end: span 7;
 	font-size: var(--font-size-large_body);
 	line-height: var(--line-height-large_body);
 	font-family: "Fanwood", "Fanwood Text";
-	margin-bottom: calc(4 * var(--line-height-large_body));
+	margin-bottom: calc(4 * var(--line-height-body));
 }
 #about-me p + p {
 	margin-top: var(--line-height-large_body);
@@ -19,6 +23,7 @@
 	align-self: start;
 	background-color: #fff;
 	margin: 0;
+	margin-bottom: calc(2 * var(--line-height-section_title));
 	padding: var(--line-height-label);
 	padding-bottom: calc(1.5 * var(--line-height-label));
 	box-shadow: -5px -5px 10px -5px #FDFBF7, 5px 5px 10px -5px #E4DCCD;

@@ -13,20 +13,52 @@ h1 {
 	grid-column: content-left / content-right;
 }
 header {
-	margin-bottom: 100px;
+	padding-bottom: 120px;
 	display: grid;
 	grid-template-columns: var(--grid-columns);
 	gap: var(--line-height-body) var(--column-gap);
 }
+header h1.sentence {
+	margin-bottom: var(--line-height-display);
+}
 header p {
 	grid-column: content-left / span var(--dominant-column-span);
 }
-header.sentence {
-	margin-bottom: var(--line-height-display);
+/* angled background accent */
+header.cover::before,
+article > figure::before {
+	--angle-direction: -1;
+	--tan15deg: calc(var(--angle-direction) * 0.2679);
+	/* offset to intersect with top to left / bottom to right */
+	--content-edge-intersect-offset: calc(var(--grid-width) * 0.5 * var(--tan15deg));
+	--offset-per-column: calc((var(--column-width) + var(--column-gap)) * var(--tan15deg));
+	content: '';
+	display: block;
+	position: absolute;
+	background-color: var(--paper-yellow-shade);
+	z-index: -1;
+	width: 100vw;
+	margin-left: calc(max(100vw - 100%, 0px) * -0.5);
+	transform: skewY(calc(var(--angle-direction) * 15deg));
+}
+header.cover::before {
+	/* start a few lines into intro paragraph */
+	--angled-decoration-ideal-top: calc(6 * var(--line-height-display) + var(--content-edge-intersect-offset));
+	/* do not extend above nav bottom right corner */
+	top: max(var(--angled-decoration-ideal-top), calc(-50vw * var(--tan15deg)));
+	/* end slightly above left edge of next section */
+	bottom: calc(var(--line-height-display) - var(--content-edge-intersect-offset));
+}
+header.cover,
+article > figure {
+	position: relative;
 }
 @media (width < 850px) {
 	header {
-		margin-bottom: calc(2 * var(--line-height-section_title));
+		padding-bottom: calc(2 * var(--line-height-section_title));
+	}
+	header.cover::before {
+		--angled-decoration-ideal-top: calc(var(--content-edge-intersect-offset) + 4 * var(--line-height-display));
 	}
 }
 
