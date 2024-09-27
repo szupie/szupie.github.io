@@ -112,13 +112,19 @@ article h3 + * {
 }
 
 /* figures */
-article > figure {
+article .spotlight-figure {
 	/* default width if not specified inline */
 	--ideal-figure-column-count: 6;
 	/* make narrower only when available columns are fewer than ideal */
 	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
 
+	/* id of column where figure starts/ends */
 	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
+	/* number of columns removed compared to designed max */
+	--column-deficit: calc(
+		var(--ideal-figure-column-count) - 
+		min(var(--ideal-figure-column-count), var(--column-count))
+	);
 	grid-column-start: flexible-left calc(-1 - var(--figure-column-outset));
 	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
 
@@ -134,10 +140,6 @@ article figure + *:not(h2, h3) {
 article figure img, 
 article figure video {
 	--min-column-span: 2;
-	--column-deficit: calc(
-		var(--ideal-figure-column-count) - 
-		min(var(--ideal-figure-column-count), var(--column-count))
-	);
 	/* figures w/ ideal span shrink by 1 column as figure area narrows by 2 */
 	--column-span: max(
 		calc(var(--ideal-span) - var(--column-deficit) / 2),
@@ -228,6 +230,57 @@ article figure.caption-side figcaption {
 	}
 }
 
+article figure blockquote {
+	margin: 0;
+	margin-bottom: var(--line-height-large_body);
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+	font-style: italic;
+	position: relative;
+}
+article figure blockquote::before {
+	content: "“";
+	display: block;
+	position: absolute;
+	right: 100%;
+	margin-top: -32px;
+	padding-right: 0.1ch;
+	font-size: 60px;
+	line-height: 60px;
+	color: var(--red);
+}
+
+.multi-quote {	
+	display: initial;
+	grid-column: content-left / content-right;
+	margin-top: calc(5 * var(--line-height-section_title));
+	--quote-column-span: min(6, var(--column-count));
+}
+.multi-quote figure {
+	display: grid;
+	grid-template-columns: var(--grid-columns);
+	gap: 0 var(--column-gap);
+	align-items: start;
+	justify-items: start;
+}
+.multi-quote figure + figure {
+	margin-top: 150px;
+}
+/* alternate sides */
+.multi-quote figure > * {
+	grid-column: 1 / span var(--quote-column-span);
+}
+.multi-quote figure:nth-of-type(2n) > * {
+	grid-column-end: content-right;
+	grid-column-start: span var(--quote-column-span);
+}
+@media (width < 600px) {
+	/* when margin in minimal, do not hang quote mark */
+	article figure blockquote::before {
+		right: initial;
+	}
+}
+
 /* end mark decoration */
 article::after {
 	content: "*";
@@ -240,7 +293,7 @@ article::after {
 
 /* angled background accents */
 article header.cover::before,
-article > figure::before {
+article .spotlight-figure::before {
 	/* distance from center to article edge column */
 	--article-edge-intersect-offset: calc(
 		var(--content-edge-intersect-offset) - 
@@ -253,7 +306,7 @@ article header.cover::before {
 	/* intersect with 1 line height above article body left */
 	bottom: calc(var(--line-height-body) - var(--article-edge-intersect-offset));
 }
-article > figure::before {
+article .spotlight-figure::before {
 	--angle-direction: 1;
 	/* intersect with first article column */
 	top: var(--article-edge-intersect-offset);
@@ -268,6 +321,6 @@ article > figure::before {
 /* add background for figures only after first section break */
 	display: none;
 }
-article > h2 ~ figure::before {
+article > h2 ~ .spotlight-figure::before {
 	display: block;
 }

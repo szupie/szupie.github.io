@@ -32,7 +32,8 @@ body {
 	overflow-x: hidden;
 }
 p, h1, h2, h3, h4, h5,
-ul, ol {
+ul, ol,
+figure {
 	margin: 0;
 	padding: 0;
 }
@@ -44,18 +45,21 @@ main {
 }
 
 /* use custom bullets style */
-.body-list {
+ul.body-list {
 	list-style-type: none;
 	padding-left: 1.25em;
 }
-.body-list li {
+ul.body-list li {
 	position: relative;
 }
-.body-list li::before {
+ul.body-list li::before {
 	content: '•';
 	position: absolute;
 	right: 100%;
 	margin-right: 1ch;
+}
+ol.body-list {
+	list-style-position: inside;
 }
 
 /* inline list */
