@@ -220,9 +220,17 @@ article figure.two-one img:nth-of-type(3) {
 	}
 }
 
+article figure.caption-side {
+	grid-auto-flow: dense;
+}
 article figure.caption-side figcaption {
-	grid-column: auto / span 3;
-	min-width: 14em;
+	--ideal-span: 3;
+	--min-column-span: 3;
+	--column-span: max(
+		calc(var(--ideal-span) - var(--column-deficit) / 2),
+		var(--min-column-span)
+	);
+	grid-column: auto / span var(--column-span);
 }
 @media (width < 850px) {
 	article figure.caption-side figcaption {
