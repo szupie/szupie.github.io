@@ -111,12 +111,13 @@ article h3 + * {
 	}
 }
 
-/* figures */
-article .spotlight-figure {
+/* figure gallery styles */
+article .gallery {
 	/* default width if not specified inline */
 	--ideal-figure-column-count: 6;
 	/* make narrower only when available columns are fewer than ideal */
 	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
+	--figure-column-template: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
 
 	/* id of column where figure starts/ends */
 	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
@@ -129,43 +130,48 @@ article .spotlight-figure {
 	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
 
 	display: grid;
-	grid-template-columns: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
+	grid-template-columns: var(--figure-column-template);
 	gap: var(--column-gap);
 	align-items: end;
 	margin-top: min(150px, var(--figure-margin-bottom));
 }
-article figure + *:not(h2, h3) {
+article .gallery + *:not(h2, h3) {
 	margin-top: var(--figure-margin-bottom);
 }
-article figure img, 
-article figure video {
+article .gallery img, 
+article .gallery video,
+article .gallery figcaption {
 	--min-column-span: 2;
-	/* figures w/ ideal span shrink by 1 column as figure area narrows by 2 */
-	--column-span: max(
-		calc(var(--ideal-span) - var(--column-deficit) / 2),
-		var(--min-column-span)
-	);
 	/* if ideal span is not given, default to all columns available */
-	grid-column-end: span var(--column-span, var(--figure-column-count));
+	--ideal-span: var(--ideal-figure-column-count);
+	/* figures shrink by 1 column as figure area narrows by 2 */
+	--column-span: clamp(
+		var(--min-column-span),
+		calc(var(--ideal-span) - var(--column-deficit) / 2),
+		var(--figure-column-count)
+	);
+	grid-column-end: span var(--column-span);
 	max-width: 100%;
 }
-article figure .key-figure {
+article .gallery .key-figure {
 	--min-column-span: 3;
 }
 @media (width < 600px) {
-	article figure .key-figure {
+	article .gallery .key-figure {
+		/* do not shrink key figures as much on small screens */
 		grid-column-end: span min(4, var(--ideal-span));
 	}
 }
 
 /* captions */
-article figure figcaption {
+article .gallery figcaption {
+	--min-column-span: 3;
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
-	grid-column: bound-left / bound-right;
+	grid-column-start: bound-left;
 	max-width: 48em;
 }
-article figure figcaption::before {
+article .gallery figcaption::before {
 	font-variant: all-small-caps;
 	margin-right: var(--column-gap);
 	width: 2.25rem;
@@ -173,67 +179,121 @@ article figure figcaption::before {
 	position: absolute;
 	left: 0;
 }
-article figure.multi-caption > figure {
+article .multi-caption > figure {
 	display: contents;
 }
-article figure.multi-caption img {
+article .multi-caption img {
 	order: 1;
 }
-article figure.multi-caption figcaption {
+article .multi-caption figcaption {
 	order: 2;
 	position: relative;
 	padding-left: 3.25rem;
 }
-article figure.multi-caption figure:not(:last-of-type) figcaption {
+article .multi-caption figure:not(:last-of-type) figcaption {
 	margin-bottom: calc(-1 * var(--column-gap));
 }
-article figure.multi-caption figure:first-of-type figcaption::before {
+article .multi-caption figure:nth-last-of-type(3) figcaption::before {
+	content: 'Above';
+}
+article .multi-caption figure:nth-last-of-type(2) figcaption::before {
 	content: 'Left';
 }
-article figure.multi-caption figure:last-of-type figcaption::before {
+article .multi-caption figure:nth-last-of-type(1) figcaption::before {
 	content: 'Right';
 }
 
-/* special layouts */
-article figure.two-one {
+/* special gallery layouts */
+
+/* layouts where images fan out asymmetrically around an empty point */
+article .spiral {
 	--ideal-figure-column-count: 12;
+	--ideal-focus-column: 6; /* if not specified, default to center */
+	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit) / 2 + 2);
 	/* extend figure grid to accommodate full bleed image */
+	grid-template-columns: var(--wide-page-margin) var(--figure-column-template) var(--wide-page-margin);
 	grid-column: 1 / -1;
-	grid-template-columns: var(--wide-page-margin) [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right] var(--wide-page-margin);
-	grid-auto-flow: column;
 }
-article figure.two-one img {
-	grid-column-start: bound-left;
-	/* crop image edges for alignment */
-	align-self: stretch;
-	object-fit: cover;
+/* horizontal alignments */
+article .spiral [data-focus-quadrant~="left"] {
+	grid-column-end: var(--focus-column);	
+	grid-column-start: span var(--column-span);
+	justify-self: end;
 }
-article figure.two-one img:nth-of-type(3) {
-	grid-column-start: calc(var(--figure-column-count) / 2 + 2);
-	grid-column-end: -1; /* full bleed */
-	grid-row-end: span 2;
-	width: auto;
+article .spiral [data-focus-quadrant~="right"] {
+	grid-column-start: var(--focus-column);
+}
+article .spiral [data-focus-quadrant~="center"] {
+	/* horizontally center */
+	grid-column-start: calc(2 + (var(--figure-column-count) - var(--column-span)) / 2);
+}
+/* vertical alignments */
+article .spiral [data-focus-quadrant~="above"] {
+	align-self: end;
+}
+article .spiral [data-focus-quadrant~="below"] {
+	align-self: start;
+}
+article .spiral :not([data-focus-quadrant~="above"],[data-focus-quadrant~="below"]) {
+	align-self: center;
+}
+/* bleed to viewport edge */
+article .spiral [data-focus-quadrant*="left bleed"] {
+	grid-column-start: 1;
+	grid-column-end: var(--focus-column);
+}
+article .spiral [data-focus-quadrant*="right bleed"] {
+	grid-column-start: var(--focus-column);
+	grid-column-end: -1;
+}
+@media (width < 700px) {
+	article .spiral .key-figure[data-focus-quadrant~="center"] {
+		grid-column-start: bound-left;
+	}
+	article .spiral figcaption[data-focus-quadrant] {
+		grid-column: bound-left / bound-right;
+	}
 }
 @media (width < 600px) {
-	article figure.two-one img:nth-of-type(3) {
+	/* at small size, use regular gutters and tile images on simple grid */
+	article .spiral {
+		grid-template-columns: var(--figure-column-template);
+		grid-column: content-left / content-right;
+	}
+	article .spiral img,
+	article .spiral [data-focus-quadrant] {
+		grid-column-start: auto;
+		grid-column-end: span var(--column-span);
+		align-self: end;
+	}
+	article .spiral .key-figure {
 		grid-column: bound-left / bound-right;
 	}
 }
 
-article figure.caption-side {
+article .spiral.uniform-grid {
 	grid-auto-flow: dense;
 }
-article figure.caption-side figcaption {
+article .spiral.uniform-grid img {
+	/* crop image edges for alignment */
+	align-self: stretch;
+	object-fit: cover;
+}
+
+/* allow other media or caption to be positioned to the side */
+article .gallery img.float {
+	grid-row-end: span calc(2 + var(--caption-count, 0));
+}
+
+article .caption-side {
+	grid-auto-flow: dense;
+}
+article .caption-side figcaption {
 	--ideal-span: 3;
-	--min-column-span: 3;
-	--column-span: max(
-		calc(var(--ideal-span) - var(--column-deficit) / 2),
-		var(--min-column-span)
-	);
-	grid-column: auto / span var(--column-span);
+	grid-column: var(--focus-column, auto) / span var(--column-span);
 }
 @media (width < 850px) {
-	article figure.caption-side figcaption {
+	article .caption-side figcaption {
 		grid-column: bound-left / bound-right;
 	}
 }
@@ -301,7 +361,7 @@ article::after {
 
 /* angled background accents */
 article header.cover::before,
-article .spotlight-figure::before {
+article .gallery::before {
 	/* distance from center to article edge column */
 	--article-edge-intersect-offset: calc(
 		var(--content-edge-intersect-offset) - 
@@ -314,7 +374,7 @@ article header.cover::before {
 	/* intersect with 1 line height above article body left */
 	bottom: calc(var(--line-height-body) - var(--article-edge-intersect-offset));
 }
-article .spotlight-figure::before {
+article .gallery::before {
 	--angle-direction: 1;
 	/* intersect with first article column */
 	top: var(--article-edge-intersect-offset);
@@ -329,6 +389,6 @@ article .spotlight-figure::before {
 /* add background for figures only after first section break */
 	display: none;
 }
-article > h2 ~ .spotlight-figure::before {
+article > h2 ~ .gallery::before {
 	display: block;
 }

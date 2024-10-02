@@ -26,7 +26,7 @@ header p {
 }
 /* angled background accent */
 header.cover::before,
-.spotlight-figure::before {
+.gallery::before {
 	--angle-direction: -1;
 	--tan15deg: calc(var(--angle-direction) * 0.2679);
 	/* offset to intersect with top to left / bottom to right */
@@ -50,7 +50,7 @@ header.cover::before {
 	bottom: calc(var(--line-height-display) - var(--content-edge-intersect-offset));
 }
 header.cover,
-.spotlight-figure {
+.gallery {
 	position: relative;
 }
 @media (width < 850px) {
