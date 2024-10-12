@@ -53,12 +53,6 @@ main[typeof="Person"] header {
 	}
 }
 
-p.detail {
-	font-size: var(--font-size-label);
-	line-height: var(--line-height-label);
-	font-style: italic;
-	color: var(--grey);
-}
 .hanging-title-layout .dates {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
@@ -71,29 +65,16 @@ p.detail {
 #experience [property="worksFor"] * {
 	align-self: last baseline;
 }
-#experience .detail-section {
-	display: grid;
-	grid-column: inherit;
-	column-gap: inherit;
-	row-gap: var(--line-height-body);
-	grid-template-columns: var(--grid-columns);
-	border-top: none;
-	padding-top: 0;
-}
-#experience .detail-section + .detail-section::before {
-	grid-column-end: var(--compact-column-end);
-}
 #experience .detail-section p,
 #experience .detail-section::before {
 	grid-column-start: calc(var(--body-column-start) + 2);
-	grid-column-end: var(--compact-column-end);
 	/* move closer to date to reduce white space */
 	margin-left: calc(-0.5 * var(--column-width));
 }
 @media (width < 700px) {
 	#experience .detail-section p,
 	#experience .detail-section::before {
-		grid-column: content-left / content-right;
+		grid-column-start: var(--body-column-start);
 		margin-left: 0;
 	}
 	#experience [typeof="EmployeeRole"] {

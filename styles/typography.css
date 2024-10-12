@@ -82,6 +82,13 @@ h4, h5 {
 	font-variant: all-small-caps;
 }
 
+p.detail {
+	font-size: var(--font-size-label);
+	line-height: var(--line-height-label);
+	font-style: italic;
+	color: var(--grey);
+}
+
 a {
 	color: inherit;
 }

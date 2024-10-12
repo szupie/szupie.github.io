@@ -137,6 +137,7 @@ main > section + section {
 }
 .hanging-title-layout .detail-section {
 	--compact-column-end: calc(-1 - clamp(0, var(--column-count) - 11, 1));
+	--compact-column-span: calc(var(--column-count) - var(--body-column-start) + var(--compact-column-end) + 2);
 	grid-column: var(--body-column-start) / var(--compact-column-end);
 	font-size: var(--font-size-body);
 	line-height: var(--line-height-body);
@@ -177,6 +178,20 @@ main > section + section {
 }
 .compact-list h4 + .inline-list :first-child {
 	margin-left: 0.5em;
+}
+
+/* layout for list where each item fills a row */
+.row-list.detail-section {
+	display: grid;
+	grid-column: var(--body-column-start) / var(--compact-column-end);
+	grid-template-columns: repeat(var(--compact-column-span), minmax(0, 1fr));
+	column-gap: inherit;
+	row-gap: var(--line-height-body);
+}
+.row-list.detail-section *,
+.row-list.detail-section::before {
+	--body-column-start: 1;
+	grid-column: var(--body-column-start) / -1;
 }
 
 /* layout for list of projects */
