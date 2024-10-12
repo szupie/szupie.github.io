@@ -112,66 +112,22 @@ article h3 + * {
 }
 
 /* figure gallery styles */
-article .gallery {
-	/* default width if not specified inline */
-	--ideal-figure-column-count: 6;
-	/* make narrower only when available columns are fewer than ideal */
-	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
-	--figure-column-template: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
-
-	/* id of column where figure starts/ends */
-	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
-	/* number of columns removed compared to designed max */
-	--column-deficit: calc(
-		var(--ideal-figure-column-count) - 
-		min(var(--ideal-figure-column-count), var(--column-count))
-	);
-	grid-column-start: flexible-left calc(-1 - var(--figure-column-outset));
-	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
-
-	display: grid;
-	grid-template-columns: var(--figure-column-template);
-	gap: var(--column-gap);
-	align-items: end;
+.gallery {
 	margin-top: min(150px, var(--figure-margin-bottom));
 }
-article .gallery + *:not(h2, h3) {
+.gallery + *:not(h2, h3) {
 	margin-top: var(--figure-margin-bottom);
 }
-article .gallery img, 
-article .gallery video,
-article .gallery figcaption {
-	--min-column-span: 2;
-	/* if ideal span is not given, default to all columns available */
-	--ideal-span: var(--ideal-figure-column-count);
-	/* figures shrink by 1 column as figure area narrows by 2 */
-	--column-span: clamp(
-		var(--min-column-span),
-		calc(var(--ideal-span) - var(--column-deficit) / 2),
-		var(--figure-column-count)
-	);
-	grid-column-end: span var(--column-span);
-	max-width: 100%;
-}
-article .gallery .key-figure {
-	--min-column-span: 3;
-}
-@media (width < 600px) {
-	article .gallery .key-figure {
-		/* do not shrink key figures as much on small screens */
-		grid-column-end: span min(4, var(--ideal-span));
-	}
-}
 
-/* captions */
-article .gallery figcaption {
+/* gallery captions */
+.gallery figcaption {
 	--min-column-span: 3;
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 	grid-column-start: bound-left;
 	max-width: 48em;
 }
-article .gallery figcaption::before {
+.gallery figcaption::before {
 	font-variant: all-small-caps;
 	margin-right: var(--column-gap);
 	width: 2.25rem;
@@ -179,121 +135,39 @@ article .gallery figcaption::before {
 	position: absolute;
 	left: 0;
 }
-article .multi-caption > figure {
+.gallery.multi-caption > figure {
 	display: contents;
 }
-article .multi-caption img {
+.gallery.multi-caption img {
 	order: 1;
 }
-article .multi-caption figcaption {
+.gallery.multi-caption figcaption {
 	order: 2;
 	position: relative;
 	padding-left: 3.25rem;
 }
-article .multi-caption figure:not(:last-of-type) figcaption {
+.gallery.multi-caption figure:not(:last-of-type) figcaption {
 	margin-bottom: calc(-1 * var(--column-gap));
 }
-article .multi-caption figure:nth-last-of-type(3) figcaption::before {
+.gallery.multi-caption figure:nth-last-of-type(3) figcaption::before {
 	content: 'Above';
 }
-article .multi-caption figure:nth-last-of-type(2) figcaption::before {
+.gallery.multi-caption figure:nth-last-of-type(2) figcaption::before {
 	content: 'Left';
 }
-article .multi-caption figure:nth-last-of-type(1) figcaption::before {
+.gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
 	content: 'Right';
 }
 
-/* special gallery layouts */
-
-/* layouts where images fan out asymmetrically around an empty point */
-article .spiral {
-	--ideal-figure-column-count: 12;
-	--ideal-focus-column: 6; /* if not specified, default to center */
-	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit) / 2 + 2);
-	/* extend figure grid to accommodate full bleed image */
-	grid-template-columns: var(--wide-page-margin) var(--figure-column-template) var(--wide-page-margin);
-	grid-column: 1 / -1;
-}
-/* horizontal alignments */
-article .spiral [data-focus-quadrant~="left"] {
-	grid-column-end: var(--focus-column);	
-	grid-column-start: span var(--column-span);
-	justify-self: end;
-}
-article .spiral [data-focus-quadrant~="right"] {
-	grid-column-start: var(--focus-column);
-}
-article .spiral [data-focus-quadrant~="center"] {
-	/* horizontally center */
-	grid-column-start: calc(2 + (var(--figure-column-count) - var(--column-span)) / 2);
-}
-/* vertical alignments */
-article .spiral [data-focus-quadrant~="above"] {
-	align-self: end;
-}
-article .spiral [data-focus-quadrant~="below"] {
-	align-self: start;
-}
-article .spiral :not([data-focus-quadrant~="above"],[data-focus-quadrant~="below"]) {
-	align-self: center;
-}
-/* bleed to viewport edge */
-article .spiral [data-focus-quadrant*="left bleed"] {
-	grid-column-start: 1;
-	grid-column-end: var(--focus-column);
-}
-article .spiral [data-focus-quadrant*="right bleed"] {
-	grid-column-start: var(--focus-column);
-	grid-column-end: -1;
-}
-@media (width < 700px) {
-	article .spiral .key-figure[data-focus-quadrant~="center"] {
-		grid-column-start: bound-left;
-	}
-	article .spiral figcaption[data-focus-quadrant] {
-		grid-column: bound-left / bound-right;
-	}
-}
-@media (width < 600px) {
-	/* at small size, use regular gutters and tile images on simple grid */
-	article .spiral {
-		grid-template-columns: var(--figure-column-template);
-		grid-column: content-left / content-right;
-	}
-	article .spiral img,
-	article .spiral [data-focus-quadrant] {
-		grid-column-start: auto;
-		grid-column-end: span var(--column-span);
-		align-self: end;
-	}
-	article .spiral .key-figure {
-		grid-column: bound-left / bound-right;
-	}
-}
-
-article .spiral.uniform-grid {
+.gallery.caption-side {
 	grid-auto-flow: dense;
 }
-article .spiral.uniform-grid img {
-	/* crop image edges for alignment */
-	align-self: stretch;
-	object-fit: cover;
-}
-
-/* allow other media or caption to be positioned to the side */
-article .gallery img.float {
-	grid-row-end: span calc(2 + var(--caption-count, 0));
-}
-
-article .caption-side {
-	grid-auto-flow: dense;
-}
-article .caption-side figcaption {
+.gallery.caption-side figcaption {
 	--ideal-span: 3;
 	grid-column: var(--focus-column, auto) / span var(--column-span);
 }
 @media (width < 850px) {
-	article .caption-side figcaption {
+	.gallery.caption-side figcaption {
 		grid-column: bound-left / bound-right;
 	}
 }

@@ -97,6 +97,9 @@ nav, main, footer {
 	column-gap: var(--column-gap);
 	row-gap: 0;
 }
+main {
+	align-content: start;
+}
 main > * {
 	grid-column: content-left / content-right;
 }

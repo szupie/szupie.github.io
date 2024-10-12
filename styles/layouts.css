@@ -25,7 +25,7 @@ header p {
 	grid-column: content-left / span var(--dominant-column-span);
 }
 /* angled background accent */
-header.cover::before,
+.cover::before,
 .gallery::before {
 	--angle-direction: -1;
 	--tan15deg: calc(var(--angle-direction) * 0.2679);
@@ -41,7 +41,7 @@ header.cover::before,
 	margin-left: calc(max(100vw - 100%, 0px) * -0.5);
 	transform: skewY(calc(var(--angle-direction) * 15deg));
 }
-header.cover::before {
+.cover::before {
 	/* start a few lines into intro paragraph */
 	--angled-decoration-ideal-top: calc(6 * var(--line-height-display) + var(--content-edge-intersect-offset));
 	/* do not extend above nav bottom right corner */
@@ -49,7 +49,7 @@ header.cover::before {
 	/* end slightly above left edge of next section */
 	bottom: calc(var(--line-height-display) - var(--content-edge-intersect-offset));
 }
-header.cover,
+.cover,
 .gallery {
 	position: relative;
 }
@@ -57,7 +57,7 @@ header.cover,
 	header {
 		padding-bottom: calc(2 * var(--line-height-section_title));
 	}
-	header.cover::before {
+	.cover::before {
 		--angled-decoration-ideal-top: calc(var(--content-edge-intersect-offset) + 4 * var(--line-height-display));
 	}
 }
@@ -241,6 +241,136 @@ main > section + section {
 		justify-self: start;
 		order: -2;
 	}
+}
+
+/* figure gallery styles */
+.gallery {
+	/* default width if not specified inline */
+	--ideal-figure-column-count: 6;
+	/* make narrower only when available columns are fewer than ideal */
+	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
+	--figure-column-template: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
+
+	/* id of column where figure starts/ends */
+	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
+	/* number of columns removed compared to designed max */
+	--column-deficit: calc(
+		var(--ideal-figure-column-count) - 
+		min(var(--ideal-figure-column-count), var(--column-count))
+	);
+	grid-column-start: flexible-left calc(-1 - var(--figure-column-outset));
+	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
+
+	display: grid;
+	grid-template-columns: var(--figure-column-template);
+	gap: var(--column-gap);
+	align-items: end;
+}
+.gallery img, 
+.gallery video,
+.gallery figcaption {
+	--min-column-span: 2;
+	/* if ideal span is not given, default to all columns available */
+	--ideal-span: var(--ideal-figure-column-count);
+	/* figures shrink by 1 column as figure area narrows by 2 */
+	--column-span: clamp(
+		var(--min-column-span),
+		calc(var(--ideal-span) - var(--column-deficit) / 2),
+		var(--figure-column-count)
+	);
+	grid-column-end: span var(--column-span);
+	max-width: 100%;
+}
+.gallery .key-figure {
+	--min-column-span: 3;
+}
+@media (width < 600px) {
+	.gallery .key-figure {
+		/* do not shrink key figures as much on small screens */
+		grid-column-end: span min(4, var(--ideal-span));
+	}
+}
+
+/* special gallery layouts */
+
+/* layouts where images fan out asymmetrically around an empty point */
+.gallery.spiral {
+	--ideal-figure-column-count: 12;
+	--ideal-focus-column: 6; /* if not specified, default to center */
+	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit) / 2 + 2);
+	/* extend figure grid to accommodate full bleed image */
+	grid-template-columns: var(--wide-page-margin) var(--figure-column-template) var(--wide-page-margin);
+	grid-column: 1 / -1;
+}
+/* horizontal alignments */
+.gallery.spiral [data-focus-quadrant~="left"] {
+	grid-column-end: var(--focus-column);	
+	grid-column-start: span var(--column-span);
+	justify-self: end;
+}
+.gallery.spiral [data-focus-quadrant~="right"] {
+	grid-column-start: var(--focus-column);
+}
+.gallery.spiral [data-focus-quadrant~="center"] {
+	/* horizontally center */
+	grid-column-start: calc(2 + (var(--figure-column-count) - var(--column-span)) / 2);
+}
+/* vertical alignments */
+.gallery.spiral [data-focus-quadrant~="above"] {
+	align-self: end;
+}
+.gallery.spiral [data-focus-quadrant~="below"] {
+	align-self: start;
+}
+.gallery.spiral :not([data-focus-quadrant~="above"],[data-focus-quadrant~="below"]) {
+	align-self: center;
+}
+/* bleed to viewport edge */
+.gallery.spiral [data-focus-quadrant*="left bleed"] {
+	grid-column-start: 1;
+	grid-column-end: var(--focus-column);
+}
+.gallery.spiral [data-focus-quadrant*="right bleed"] {
+	grid-column-start: var(--focus-column);
+	grid-column-end: -1;
+}
+@media (width < 700px) {
+	.gallery.spiral .key-figure[data-focus-quadrant~="center"] {
+		grid-column-start: bound-left;
+	}
+	.gallery.spiral figcaption[data-focus-quadrant] {
+		grid-column: bound-left / bound-right;
+	}
+}
+@media (width < 600px) {
+	/* at small size, use regular gutters and tile images on simple grid */
+	.gallery.spiral {
+		grid-template-columns: var(--figure-column-template);
+		grid-column: content-left / content-right;
+	}
+	.gallery.spiral img,
+	.gallery.spiral [data-focus-quadrant] {
+		grid-column-start: auto;
+		grid-column-end: span var(--column-span);
+		align-self: end;
+	}
+	.spiral .key-figure {
+		grid-column: bound-left / bound-right;
+	}
+}
+
+.spiral.uniform-grid {
+	grid-auto-flow: dense;
+}
+.spiral.uniform-grid img {
+	/* crop image edges for alignment */
+	align-self: stretch;
+	object-fit: cover;
+}
+
+/* allow other media or caption to be positioned to the side */
+.gallery img.float {
+	grid-row-end: span calc(2 + var(--caption-count, 0));
 }
 
 /* layout for landing page with minimal text (portfolio) */
