@@ -18,6 +18,10 @@ header p {
 	--item-left-padding: var(--column-gap);
 	--item-column-span: calc(var(--column-count) / 2);
 	--item-width: calc(var(--item-column-span) * (var(--column-width) + var(--column-gap)));
+	--bottom-peek-height: calc(
+		var(--line-height-section_title) +
+		var(--line-height-body) * 2
+	);
 	display: grid;
 	grid-template-columns: var(--grid-columns);
 	column-gap: var(--column-gap);
@@ -56,36 +60,56 @@ header p {
 .sticky-cards p {
 	max-width: 18em;
 	margin-right: var(--item-left-padding);
+	opacity: calc(var(--scroll-grow-percentage) * var(--scroll-grow-percentage) * var(--scroll-grow-percentage));
 }
 
 /* card borders */
-.sticky-cards::before {
+.sticky-cards::before,
+.sticky-cards section::after {
 	content: "";
 	display: block;
 	position: absolute;
+	height: 100%;
+}
+.sticky-cards::before {
 	margin-left: calc(50% - var(--item-left-padding) / 2);
-	z-index: 1;
 	border-top: 1px solid var(--black);
 	width: calc(
 		100% + var(--item-left-padding) +
 		(100vw - 100%) * (1 - var(--scroll-grow-percentage))
 	);
 	transform: translateX(-50%);
+
+	/* bg on pseudoelement to cover full viewport width */
+	background-color: transparent;
+	transition: background-color 500ms;
 }
 .sticky-cards section + section {
 	border-left: 1px solid var(--black);
 }
 .sticky-cards section::after {
-	content: "";
-	display: block;
-	position: absolute;
 	top: 0;
-	height: 100%;
 	border-left: 1px solid var(--black);
+	transform: scaleY(var(--scroll-grow-percentage));
+	transform-origin: top;
 }
 .sticky-cards section:first-of-type::after {
 	left: 0;
 }
 .sticky-cards section:last-of-type::after {
 	right: 0;
+}
+
+/* scroll-based states */
+.sticky-cards.observing {
+	/* position sticky only if js initiated */
+	position: sticky;
+	bottom: calc(-1 * var(--computed-height));
+	transition: bottom 200ms ease-in-out;
+}
+.sticky-cards.peeking {
+	bottom: calc(var(--bottom-peek-height) - var(--computed-height));
+}
+.sticky-cards.observing:not(.growing)::before {
+	background-color: var(--paper-yellow-shade);
 }
