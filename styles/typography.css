@@ -95,3 +95,6 @@ a {
 a:hover {
 	color: var(--red);
 }
+::selection {
+	background-color: #F9EBD2;
+}

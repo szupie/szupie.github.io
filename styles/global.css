@@ -175,6 +175,9 @@ nav {
 	background-position: center top;
 	background-size: contain;
 }
+#nav-menu #home-button::selection {
+	color: var(--paper-white);
+}
 @media (width < 850px) {
 	#nav-menu {
 		gap: var(--line-height-display);
