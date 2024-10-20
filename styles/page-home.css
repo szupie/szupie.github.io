@@ -15,6 +15,7 @@ header p {
 
 .sticky-cards {
 	--scroll-grow-percentage: 1;
+	--staggered-card-percentage: var(--scroll-grow-percentage);
 	--item-left-padding: var(--column-gap);
 	--item-column-span: calc(var(--column-count) / 2);
 	--item-width: calc(var(--item-column-span) * (var(--column-width) + var(--column-gap)));
@@ -31,22 +32,32 @@ header p {
 	margin-top: 200px;
 }
 .sticky-cards section {
+	--staggerness: 0.3; /* from 0 to 1: simultaneous to no overlap */
 	grid-column: auto / span var(--item-column-span);
+	box-sizing: border-box;
 	min-height: calc(var(--item-width) / 1.618); /* golden ratio min height */
 	padding-left: var(--item-left-padding);
+	padding-bottom: var(--item-left-padding);
 	margin-left: calc(-1 * var(--item-left-padding));
 	position: relative; /* position side borders relative to this block */
+}
+.sticky-cards section:first-of-type {
+	--staggered-card-percentage: min(1, calc(var(--scroll-grow-percentage) * (1 + var(--staggerness))));
+}
+.sticky-cards section + section {
+	border-left: none;
+	--staggered-card-percentage: max(0, min(1, calc(var(--scroll-grow-percentage) * (1 + var(--staggerness)) - var(--staggerness))));
 }
 .sticky-cards h2 {
 	font-style: normal;
 	/* interpolate size from section title to display list title */
 	font-size: calc(
 		var(--font-size-section_title) + 
-		(var(--font-size-display_list_title) - var(--font-size-section_title)) * var(--scroll-grow-percentage)
+		(var(--font-size-display_list_title) - var(--font-size-section_title)) * var(--staggered-card-percentage)
 	);
 	line-height: calc(
 		var(--line-height-section_title) + 
-		(var(--line-height-display_list_title) - var(--line-height-section_title)) * var(--scroll-grow-percentage)
+		(var(--line-height-display_list_title) - var(--line-height-section_title)) * var(--staggered-card-percentage)
 	);
 }
 .sticky-cards h2 a {
@@ -60,7 +71,7 @@ header p {
 .sticky-cards p {
 	max-width: 18em;
 	margin-right: var(--item-left-padding);
-	opacity: calc(var(--scroll-grow-percentage) * var(--scroll-grow-percentage) * var(--scroll-grow-percentage));
+	opacity: calc(var(--staggered-card-percentage) * var(--staggered-card-percentage) * var(--staggered-card-percentage));
 }
 
 /* card borders */
@@ -90,7 +101,7 @@ header p {
 .sticky-cards section::after {
 	top: 0;
 	border-left: 1px solid var(--black);
-	transform: scaleY(var(--scroll-grow-percentage));
+	transform: scaleY(var(--staggered-card-percentage));
 	transform-origin: top;
 }
 .sticky-cards section:first-of-type::after {
@@ -112,4 +123,30 @@ header p {
 }
 .sticky-cards.observing:not(.growing)::before {
 	background-color: var(--paper-yellow-shade);
+}
+
+@media (width < 600px) {
+	.sticky-cards {
+		--item-column-span: var(--column-count);
+	}
+	.sticky-cards.peeking section {
+		--staggerness: 1; /* from 0 to 1: simultaneous to complete overlap */
+	}
+	.sticky-cards::before {
+		display: none;
+	}
+	.sticky-cards section + section {
+		border-left: none;
+	}
+	.sticky-cards section::after {
+		border-left: none;
+		border-top: 1px solid var(--black);
+		height: 0;
+		width: 100vw;
+		left: 0;
+		transform: none;
+	}
+	.sticky-cards.observing {
+		position: static;
+	}
 }

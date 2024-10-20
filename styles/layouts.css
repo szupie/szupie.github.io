@@ -287,7 +287,7 @@ main > section + section {
 @media (width < 600px) {
 	.gallery .key-figure {
 		/* do not shrink key figures as much on small screens */
-		grid-column-end: span min(4, var(--ideal-span));
+		--min-column-span: 4;
 	}
 }
 
@@ -301,6 +301,7 @@ main > section + section {
 	/* extend figure grid to accommodate full bleed image */
 	grid-template-columns: var(--wide-page-margin) var(--figure-column-template) var(--wide-page-margin);
 	grid-column: 1 / -1;
+	grid-auto-flow: dense;
 }
 /* horizontal alignments */
 .gallery.spiral [data-focus-quadrant~="left"] {
@@ -359,10 +360,10 @@ main > section + section {
 	}
 }
 
-.spiral.uniform-grid {
+.gallery.spiral.uniform-grid {
 	grid-auto-flow: dense;
 }
-.spiral.uniform-grid img {
+.gallery.spiral.uniform-grid img {
 	/* crop image edges for alignment */
 	align-self: stretch;
 	object-fit: cover;
