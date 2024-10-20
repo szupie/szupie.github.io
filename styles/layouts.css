@@ -414,13 +414,8 @@ main > section + section {
 }
 /* arrow after cta */
 .featured-landing .project .primary-link::after {
-	background-color: currentColor;
-	content: '';
+	content: ' »';
 	display: inline-block;
-	width: 13px;
-	height: 6px;
-	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 6'%3E%3Cpath stroke='%23000' d='M0 3h11.5M9.75 1l2 2-2 2' fill='none'/%3E%3C/svg%3E") no-repeat center;
-	margin-top: -1px;
 	margin-left: 5px;
 	transition: transform ease-in-out 200ms;
 }
@@ -439,7 +434,7 @@ main > section + section {
 .featured-landing .project .thumbnail-link:focus ~ .primary-link::after,
 .featured-landing .project h2:hover ~ .primary-link::after,
 .featured-landing .project h2:focus-within ~ .primary-link::after {
-	transform: translateX(4px);
+	transform: translateX(3px);
 }
 .featured-landing .project .roles {
 	opacity: 0.7;

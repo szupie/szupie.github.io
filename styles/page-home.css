@@ -67,6 +67,13 @@ header p {
 }
 .sticky-cards h2 a::after {
 	content: " »";
+	display: inline-block;
+	margin-left: 0.4ch;
+	transition: transform ease-in-out 200ms;
+}
+.sticky-cards h2 a:hover::after,
+.sticky-cards h2 a:focus::after {
+	transform: translateX(3px);
 }
 .sticky-cards p {
 	max-width: 18em;
