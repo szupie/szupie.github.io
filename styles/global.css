@@ -25,6 +25,7 @@
 html {
 	color: var(--black);
 	background-color: var(--paper-white);
+	scroll-behavior: smooth;
 }
 body {
 	background-color: inherit;
@@ -245,6 +246,7 @@ footer small {
 		align-content: end;
 		row-gap: 60px;
 		max-height: calc(15 * var(--line-height-display));
+		text-align: center;
 	}
 	footer #footer-links,
 	footer #contact-links {
