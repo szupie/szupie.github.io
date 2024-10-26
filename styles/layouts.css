@@ -281,10 +281,13 @@ main > section + section {
 	grid-column-end: span var(--column-span);
 	max-width: 100%;
 }
+.gallery video {
+	width: 100%;
+}
 .gallery .key-figure {
 	--min-column-span: 3;
 }
-@media (width < 600px) {
+@media (width < 450px) {
 	.gallery .key-figure {
 		/* do not shrink key figures as much on small screens */
 		--min-column-span: 4;
@@ -315,6 +318,9 @@ main > section + section {
 .gallery.spiral [data-focus-quadrant~="center"] {
 	/* horizontally center */
 	grid-column-start: calc(2 + (var(--figure-column-count) - var(--column-span)) / 2);
+}
+.gallery.spiral figcaption[data-focus-quadrant~="left"] {
+	justify-self: stretch;
 }
 /* vertical alignments */
 .gallery.spiral [data-focus-quadrant~="above"] {
@@ -370,7 +376,7 @@ main > section + section {
 }
 
 /* allow other media or caption to be positioned to the side */
-.gallery img.float {
+.gallery .float {
 	grid-row-end: span calc(2 + var(--caption-count, 0));
 }
 
