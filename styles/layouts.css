@@ -374,6 +374,11 @@ main > section + section {
 	align-self: stretch;
 	object-fit: cover;
 }
+@media (width < 600px) {
+	.gallery.spiral.uniform-grid img {
+		--column-span: var(--figure-column-count);
+	}
+}
 
 /* allow other media or caption to be positioned to the side */
 .gallery .float {
