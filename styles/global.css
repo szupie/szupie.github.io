@@ -159,19 +159,20 @@ nav {
 	border-bottom: 4px solid var(--red);
 	padding-bottom: calc(var(--vertical-padding) - 4px);
 }
+#nav-menu > li:first-child {
+	margin-right: auto;
+	display: flex;
+	align-items: center;
+}
 #nav-menu #home-button {
-	position: absolute;
-	left: 0;
-	padding: 0.5em 0.4em 0.1em;
-	top: 50%;
-	transform: translateY(-50%);
-	text-align: center;
-
 	/* replace with svg and hide text */
 	font-size: clamp(12px, 12px + (7vw - 25px), 22px);
 	line-height: 1;
 	letter-spacing: 0.12em;
 	color: transparent;
+	text-align: center;
+	text-wrap: nowrap;
+	padding: 0.5em 0.4em 0.1em;
 	background: no-repeat url("/assets/logo.svg");
 	background-position: center top;
 	background-size: contain;
@@ -289,10 +290,10 @@ footer small::after, footer::after, footer::before {
 	height: var(--decoration-size);
 }
 footer small::after {
-	--colour-1: #01B2F0;
-	--colour-2: #E00F46;
-	--colour-3: #F5D80C;
-	--colour-4: #0C0C0B;
+	--colour-1: #00AEEF;
+	--colour-2: #EC008C;
+	--colour-3: #FFF200;
+	--colour-4: var(--black);
 	left: 50%;
 	transform: translateX(-50%);
 	width: calc(4 * var(--decoration-size));
