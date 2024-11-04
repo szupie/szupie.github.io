@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Suspendisse lorem eu ullamcorper nibh</title>
+		<title>Pop-up story book in virtual reality | Angus Lo</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link href="/styles/style.css" rel="stylesheet">
@@ -26,107 +26,191 @@
 		<main>
 			<article>
 				<header class="cover">
-					<h1>Suspendisse lorem eu ullamcorper nibh</h1>
+					<h1>Pop-up story book in virtual reality</h1>
 					<img src="assets/cover.png"/>
-					<p>Etiam ultricies sapien et quam tincidunt, nec cursus felis fringilla. Cras congue iaculis aliquet. Donec</p>
+					<p>Creating a guided exploration of virtual worlds using established patterns in storytelling and game design</p>
 					<section id="roles">
 						<h4>Roles</h4>
 						<ul class="inline-list">
-							<li>Design</li>
-							<li>Coding</li>
+							<li>Interaction Design</li>
 						</ul>
 					</section>
 				</header>
 				
-				<p><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt</i></p>
-				<p>Pellentesque a elit imperdiet, varius lacus vitae, molestie arcu. Integer tellus risus, vestibulum in purus dictum, tincidunt interdum turpis. Curabitur urna nisl, semper sed bibendum et, dapibus ac nulla. Sed dignissim sem ut bibendum dapibus. Suspendisse elit felis, sagittis non rhoncus ac, porttitor id ligula. Sed tincidunt sem eu nunc accumsan maximus. Etiam <a href="#">Nullam a lorem imper</a>.</p>
+				<p><i>This work is from my role as an experience designer at an advertising agency</i></p>
 
-				<p>Cras molestie consectetur lorem, non volutpat mi pharetra non. Donec hendrerit tortor lacus, eget imperdiet dolor scelerisque pellentesque. Vivamus cursus eget lorem at sodales. In sodales ex sagittis erat suscipit sodales. Aenean interdum justo non varius auctor. Ut mattis</p>
+				<p>As part of a marketing campaign, a wine company commissioned artists to create illustrations imagining the world around the brand’s mascot stag. These illustrations were used in promotional videos that show the mascot leaping out of the bottle and running through the scenes. My role in this project was to concept and define a mobile AR or VR experience as an extension to these ads.</p>
+
+				<p>Rather than create a literal translation of the short videos in VR, I adapted the concept into an engaging story that works like a digital pop-up book. My understanding of game design, animation, and the VR medium were crucial to the success of this project.</p>
 
 				<figure class="gallery" style="--ideal-figure-column-count: 10">
 					<img src="assets/illustrations.png"/>
-					<figcaption>Ut ut eros quis elit sollicitudin interdum a nec nibh. Maecenas tellus odio, consequat sed feugiat <i>Etiam tristique justo vel sagittis efficitur. Proin faucibus, ipsum</i></figcaption>
+					<figcaption>Commissioned illustrations for the campaign, imagining different worlds for the mascot to explore. <i>By Joanna Lisowiez, Nico and Katwo Puertollano, and Nick Liefhebber.</i></figcaption>
 				</figure>
+
 
 				<h2 id="methods">Methods</h2>
 
-				<h3 id="Ut_ut_eros_quis_elit_sollicitudin_interdum">Ut ut eros quis elit sollicitudin interdum</h3>
+				<h3 id="Aligning_on_an_interaction_pattern">Aligning on an interaction pattern</h3>
 
-				<p>Fusce molestie, nisi vitae ornare sodales, elit augue egestas quam, vitae porta massa orci non tortor. Cras gravida ligula enim, eu accumsan nibh eleifend aliquam. Phasellus egestas sagittis tellus eu congue. Etiam lacinia id risus sit amet posuere. Nullam ultrices quam leo. Curabitur consequat augue et lacus posuere</p>
+				<p>The core concept of the running mascot can be adapted into AR/VR in a myriad of approaches. Since this was a project with many stakeholders and team members across disciplines, it was important to align on the direction before getting too far in the design process.</p>
 
-				<figure class="gallery spiral multi-caption" style="--ideal-focus-column: 7; --caption-count: 3">
+				<p>Mixed reality is still a relatively niche medium, so to help define the idea I presented rough mockups of several interaction patterns, each with their own pros and cons:</p>
+
+				<figure class="gallery figure-plaque-pair">
 					<figure>
-						<img src="assets/userflow.png" class="key-figure" style="--ideal-span: 8" data-focus-quadrant="above center"/>
-						<figcaption data-focus-quadrant="right bleed below">Phasellus egestas sagittis tellus eu congue</figcaption>
+						<img src="assets/pattern-side-scroller.png" class="key-figure"/>
+						<figcaption>
+							<h4>Side scroller</h4>
+							<p>A virtual screen is superimposed over the bottle label. The worlds scroll past as the mascot stays in the center of the screen, like in side-scrolling games (e.g. Mario).</p>
+							<h5>Pros</h5>
+							<ul class="body-list">
+								<li>Keeps the bottle in frame for shareable screen captures that build brand recognition</li>
+								<li>Accurate marker-based world tracking</li>
+								<li>Fits well in vertical format of mobile devices</li>
+								<li>Does not demand mobility from user</li>
+								<li>Stronger integration between reality and virtual elements</li>
+							</ul>
+							<h5>Cons</h5>
+							<ul class="body-list">
+								<li>Limited field of view and sense of freedom</li>
+							</ul>
+						</figcaption>
 					</figure>
 					<figure>
-						<img src="assets/interaction-points-annotations.png" class="key-figure float" data-focus-quadrant="left bleed below"/>
-						<figcaption data-focus-quadrant="right bleed below">Pellentesque lobortis hendrerit efficitur</figcaption>
+						<img src="assets/pattern-panorama.png"/>
+						<figcaption>
+							<h4>360° panorama</h4>
+							<p>The worlds appear as panoramas that wrap around the user.</p>
+							<h5>Pros</h5>
+							<ul class="body-list">
+								<li>Sense of immersion</li>
+							</ul>
+							<h5>Cons</h5>
+							<ul class="body-list">
+								<li>Less precise accelerometer-based tracking</li>
+								<li>Isolated from real world</li>
+								<li>Demands more mobility</li>
+							</ul>
+						</figcaption>
 					</figure>
 					<figure>
-						<img src="assets/stag-indicator-annotations.png" class="key-figure" data-focus-quadrant="right bleed below"/>
-						<figcaption data-focus-quadrant="right bleed below">Pellentesque lobortis hendrerit efficitur. Morbi dignissim semper</figcaption>
+						<img src="assets/pattern-immersive.png" class="key-figure"/>
+						<figcaption>
+							<h4>Immersive world</h4>
+							<p>The user creates a scene in their own physical space by dropping in elements from the illustrations.</p>
+							<h5>Pros</h5>
+							<ul class="body-list">
+								<li>Strong connection to reality</li>
+								<li>Unique user-generated dioramas are very shareable</li>
+							</ul>
+							<h5>Cons</h5>
+							<ul class="body-list">
+								<li>More technically challenging</li>
+							</ul>
+						</figcaption>
 					</figure>
 				</figure>
 
-				<p>Pellentesque a elit imperdiet, varius lacus vitae, molestie arcu. Integer tellus risus, vestibulum in purus dictum, tincidunt interdum turpis. Curabitur urna nisl, semper sed bibendum et, dapibus ac nulla. Sed dignissim sem ut bibendum dapibus:</p>
+				<p>In the end, the panorama option was selected as it aligned most closely with the sense of openness and freedom that was integral to the campaign’s creative direction.</p>
 
-				<figure class="gallery multi-caption">
+
+				<h3 id="Balancing_freedom_and_guidance">Balancing freedom and guidance</h3>
+
+				<p>In a 360˚ video, the sense of immersion and freedom gained can also be overwhelming. This is especially an issue on mobile devices because of the limited field of view, inaccurate world tracking, and lack of spatial audio cues – all factors that make it harder for users to orient themselves compared to immersive experiences on VR headsets.</p>
+
+				<p>To guide the user in exploring the panoramic worlds, I used the mascot as the focal point around which all the action unfolds. The mascot would run through worlds that wrap around the user, who can follow along with the camera. The user is still free to look around the world on their own, but an indicator will point back towards the mascot when it’s offscreen, nudging the user back to the center of the action.</p>
+
+				<p>This is an established user interface pattern in video games, especially open-world games where waypoint indicators guide players to a direction while still allowing them to explore at their own pace.</p>
+
+				<figure class="gallery multi-caption" data-stacks-below="600">
 					<figure>
 						<img src="assets/mascot-indicator.png" class="key-figure" style="--ideal-span: 3"/>
-						<figcaption>Pellentesque a elit imperdiet, varius lacus vitae, molestie arcu. Integer tellus risus, vestibulum in purus dictum, tincidunt interdum</figcaption>
+						<figcaption>Users are free to look around on their own, but an indicator nudges them back to the mascot, which serves as the focus of the experience</figcaption>
 					</figure>
 					<figure>
-						<img src="assets/indicator-saints-row.png" style="--ideal-span: 3"/>
-						<figcaption>Donec egestas felis in pretium luctus. Proin tincidunt lectus eget ante efficitur accumsan. Donec et quam <a href="#">Aliquam est lacus</a>.</figcaption>
+						<img src="assets/indicator-saints-row.jpg" style="--ideal-span: 3"/>
+						<figcaption>Waypoint indicators are a common pattern for guiding players in open-world games. <i>Screenshot from <i>Saints Row IV</i>, via <a href="https://gameuidatabase.com/">Game UI Database</a>.</i></figcaption>
 					</figure>
 				</figure>
 
-				<h3 id="xxxx">Sollicitudin interdum ut ut eros quis elit</h3>
 
-				<p>Cras molestie consectetur lorem, non volutpat mi pharetra non. Donec hendrerit tortor lacus, eget imperdiet dolor scelerisque pellentesque. Vivamus cursus eget lorem at sodales. In sodales ex sagittis erat suscipit sodales. Aenean interdum justo non varius auctor. Ut mattis at lorem id volutpat. Ut condimentum et purus vitae.</p>
+				<h3 id="Camera_framing">Camera framing</h3>
 
-				<figure class="gallery spiral" style="--ideal-focus-column: 4">
-					<img src="assets/camera.jpg" class="float" style="--ideal-span: 4" data-focus-quadrant="left"/>
-					<img src="assets/calculator.jpg" style="--ideal-span: 4" data-focus-quadrant="above"/>
-					<img src="assets/underwood-typewriter.jpg" style="--ideal-span: 4" data-focus-quadrant="above"/>
-					<img src="assets/fan.jpg" style="--ideal-span: 6" data-focus-quadrant="right below"/>
-					<figcaption data-focus-quadrant="right" style="--ideal-span: 6">Nullam consectetur arcu ante, ut hendrerit odio iaculis nec. Fusce lobortis nibh purus, sed pretium elit ornare non. Vivamus at feugiat dui, ut cursus dui praesent.</figcaption>
-				</figure>
+				<p>To keep users engaged throughout the experience, I decided on a structure where the scenes evolve over time, as opposed to animated but looping dioramas that can feel soulless. A changing world creates a continuous sense of progression and encourages users to keep going. However, using this approach in a VR experience presented some unique challenges.</p>
 
-				<p>Nullam consectetur arcu ante, ut hendrerit odio iaculis nec. Fusce lobortis nibh purus, sed pretium elit ornare non. Vivamus at feugiat dui, ut cursus dui. Praesent nec interdum purus, et faucibus urna. Aenean vitae ligula fringilla, malesuada tellus nec, posuere libero. Aenean quam odio, semper sed diam non:</p>
+				<p>In conventional films, filmmakers can frame the viewers’ attention shot after shot to build a narrative. In panoramic experiences where users can choose their own perspective at any moment, special considerations are needed to ensure one-time events do not occur offscreen. To direct users to look in the right direction, I adopted an interaction pattern where each animation is triggered at a checkpoint that requires user action.</p>
 
-				<ul class="body-list">
-					<li><strong>Praesent</strong>: In sodales ex sagittis erat suscipit sodales. Aenean interdum justo non varius auctor. Donec maximus purus ac ligula condimentum</li>
-					<li><strong>Nullam</strong>: Morbi vitae ante vulputate, consequat nibh non, congue orci. Vestibulum sagittis posuere</li>
-					<li><strong>Vestibulum</strong>: Sed dignissim sem ut bibendum dapibus</li>
-					<li><strong>Quisque nec</strong>: Vivamus cursus eget lorem at sodales. In sodales ex sagittis erat suscipit sodales.</li>
-				</ul>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, urna ultrices auctor elementum, enim eros molestie eros, in interdum neque nibh eget elit. Morbi sed tincidunt nibh. Etiam viverra sem at laoreet scelerisque. Morbi vitae ante vulputate, consequat nibh non, congue orci. Vestibulum sagittis posuere leo, ac molestie odio scelerisque.</p>
-
-				<figure class="gallery" style="--ideal-figure-column-count: 10">
-					<video src="assets/gold 514 offset.mp4" controls loop playsinline autoplay>
-						fallback goes here
-					</video>
-
-					<figcaption>Proin tincidunt lectus eget ante efficitur accumsan. Donec et quam non sem cursus dapibus.</figcaption>
-				</figure>
-
-				<h3 id="Sollicitudin_interdum_ut_ut_eros_quis_elit">Sollicitudin interdum ut ut eros quis elit</h3>
-
-				<p>Cras molestie consectetur lorem, non volutpat mi pharetra non. Donec hendrerit tortor lacus, eget imperdiet dolor scelerisque pellentesque. Vivamus cursus eget lorem at sodales. In sodales ex sagittis erat suscipit sodales. Aenean interdum justo non varius auctor. Ut mattis at lorem id volutpat. Ut condimentum et purus vitae.</p>
+				<p>The mascot indicator and interaction checkpoints work together to nudge users into specific vantage points, effectively framing the shots like in a film. The mascot leads the user to each checkpoint and waits for them to press a button, which triggers an animation in the scene. The buttons are strategically placed where the subsequent animation would unfold, implicitly forcing the user to look at the important part of the scene.</p>
 
 				<figure class="gallery multi-caption">
 					<figure>
-						<img src="assets/checkpoint.png" style="--ideal-span: 3"/>
-						<figcaption>Phasellus egestas sagittis tellus eu congue. Etiam lacinia id risus sit amet posuere</figcaption>
+						<video src="assets/checkpoint.webm" poster="assets/checkpoint-poster.png" controls loop playsinline autoplay muted style="--ideal-span: 3">
+						</video>
+						<figcaption>Mascot waits at checkpoints next to the button that triggers an animation, ensuring the user is looking in the right direction</figcaption>
 					</figure>
 					<figure>
 						<img src="assets/next-world.png" style="--ideal-span: 3"/>
-						<figcaption>Pellentesque lobortis hendrerit efficitur. Morbi dignissim semper mattis. Integer tellus risus, vestibulum in purus dictum, tincidunt interdum turpis.</figcaption>
+						<figcaption>An otherworldly bird serves as a motif that leads the user to each new world. Repeating elements like this help create a narrative structure.</figcaption>
 					</figure>
 				</figure>
+
+
+				<h3 id="Narrative_structure">Narrative structure</h3>
+
+				<p>With the mechanics of the experience defined, I identified parts of the illustrations that could be rearranged and animated to create a loose narrative. We were limited to using the existing static illustrations, so I looked for elements that could be animated using only 3D translations or rotations. Although the animations were simple, they created an effect delightfully similar to pulling a tab in a pop-up book.</p>
+
+				<p>In selecting the interaction points, I looked for patterns that can be repeated to create a narrative structure. The animations I proposed at each checkpoint follow a theme of encounters with other creatures – including a leaping whale, a fanning peacock, and a roaring bear. I placed an otherworldly bird at the end of each scene as a consistent motif for transporting the mascot to the next world. To culminate the story in a dramatic finish, I arranged the scenes to end at an encounter with a creature similar to the mascot.</p>
+
+				<p>Even though users don’t have real choices that would change the outcome of the story, the simple interactions give them a sense of agency as though they are helping the mascot. With more budget, this interaction pattern can easily scale up to multiple paths that depend on their choice at each checkpoint. This would elevate this on-rails experience to something more complex and replayable, like a choose-you-own-adventure story.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count: 8">
+					<video src="assets/whale.webm" poster="assets/whale-poster.png" controls loop playsinline autoplay muted style="--ideal-span: 4">
+					</video>
+					<video src="assets/peacock.webm" poster="assets/peacock-poster.png" controls loop playsinline autoplay muted style="--ideal-span: 4">
+					</video>
+					<figcaption>Screen captures of a few animations, which feel like the digital equivalent of pulling a tab in a pop-up book</figcaption>
+				</figure>
+
+				<h3 id="Annotations">Annotations</h3>
+
+				<p>I created wireframes for each screen in the experience. These served as a storyboard cataloguing all the parts of the UI for the visual designer to style. The documentation also included functional annotations detailing the user flow and interactions, which provided clear guidance for the developers to implement the experience.</p>
+
+				<figure class="gallery spiral multi-caption" style="--ideal-focus-column: 7; --caption-count: 3" data-stacks-below="600">
+					<figure>
+						<img src="assets/userflow.png" class="key-figure" style="--ideal-span: 8" data-focus-quadrant="above center"/>
+						<figcaption data-focus-quadrant="right bleed below">High-level user flow of entire experience</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/interaction-points-annotations.png" class="key-figure float" data-focus-quadrant="left bleed below"/>
+						<figcaption data-focus-quadrant="right bleed below">Annotating mascot’s path and mechanics of encounters</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/stag-indicator-annotations.png" class="key-figure" data-focus-quadrant="right bleed below"/>
+						<figcaption data-focus-quadrant="right bleed below">Specifications for calculating the waypoint indicator’s position</figcaption>
+					</figure>
+				</figure>
+
+
+				<h2 id="results">Results</h2>
+
+				<figure class="gallery spiral">
+					<video src="assets/leap.webm" poster="assets/leap-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="left">
+					</video>
+					<video src="assets/bear.webm" poster="assets/bear-poster.png" class="key-figure float" controls loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="right">
+					</video>
+					<video src="assets/rainbow-deer.webm" poster="assets/rainbow-deerposter.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="left">
+					</video>
+					<figcaption data-focus-quadrant="left" style="--ideal-span: 4">Screen captures of the finished product</figcaption>
+				</figure>
+
+
+				<h3 id="Accolades">Accolades</h3>
+
+				<ul class="body-list">
+					<li>Webby Awards 2022 – <a href="https://winners.webbyawards.com/2022/advertising-media-pr/individual/augmented-reality/222109/treasury-wine-estates--stags-leap--take-the-leap">Honoree in Advertising, Media & PR, Augmented Reality</a></li>
+					<li>14th Shorty Awards – <a href="https://shortyawards.com/14th/stags-leap">Audience Honor in Wine, Beer & Spirits, Augmented Reality, Immersive</a></li>
+				</ul>
 
 			</article>
 		</main>
