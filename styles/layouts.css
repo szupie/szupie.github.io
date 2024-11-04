@@ -216,6 +216,13 @@ main > section + section {
 	line-height: var(--line-height-label);
 	font-style: italic;
 }
+.project .links a {
+	--vertical-padding: 5px;
+	display: inline-block;
+	padding: var(--vertical-padding) 0;
+	margin-top: calc(-1 * var(--vertical-padding));
+	margin-bottom: calc(-1 * var(--vertical-padding));
+}
 .project .primary-link {
 	color: var(--red);
 }
