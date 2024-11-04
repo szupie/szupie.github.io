@@ -291,6 +291,9 @@ main > section + section {
 .gallery video {
 	width: 100%;
 }
+.gallery a.linked-figure {
+	display: contents;
+}
 .gallery .key-figure {
 	--min-column-span: 3;
 }
