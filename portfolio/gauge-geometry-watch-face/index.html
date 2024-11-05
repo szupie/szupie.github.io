@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Gauge Geometry: a watch face design | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Gauge Geometry: a watch face design</h1>
+					<img src="assets/cover.jpg"/>
+					<p>Designing an information-rich yet elegant e-paper watch face that takes inspiration from classic watches</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Design</li>
+							<li>Coding</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p>Pebble is a smartwatch with an always-on paper-like display. Its open development platform has enabled the community to create a huge library of custom watch faces. After getting a Pebble Round, I was finally able to achieve my dream of creating my own watch design.</p>
+
+				<p>In this personal project, I explored elegant solutions for visualising information in the small space of a watch. I was able to take advantage of Pebble’s unique display to create a design that looks physical but would not be achievable with traditional mechanical watches.</p>
+
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count: 8">
+					<figure>
+						<img src="assets/pebble-hardware.jpg" style="--ideal-span: 4"/>
+						<figcaption>Pebble Round’s hardware and default watchfaces. <i>From Pebble’s press materials</i></figcaption>
+					</figure>
+					<figure>
+						<img src="assets/pebble-app-store.png" style="--ideal-span: 3"/>
+						<figcaption>Watchfaces created by the community, showcasing the degree of customisations. <i>From Pebble app store</i></figcaption>
+					</figure>
+				</figure>
+
+
+				<h2 id="methods">Methods</h2>
+
+				<h3 id="Design_direction">Design direction</h3>
+
+				<p>I wanted a design with the simplicity of a dress watch so that it could go well with a variety of attires. I also wanted to include additional information besides time via subtle complications made possible by the digital display.</p>
+
+				<p>I have always preferred dual analogue-digital watches, since I like the benefits of both visualisations of time. In analogue clocks, the arrangement of hours and minutes along a circular timeline helps visualise the length between two points in time. On the other hand, digital clocks are great for their easy-to-read display of the precise time.</p>
+
+				<figure class="gallery">
+					<img src="assets/dress-watches.jpg"/>
+					<figcaption>Dress watches tend to have simple designs and limited complications</figcaption>
+				</figure>
+
+
+				<h3 id="Fitting_information_on_a_small_screen">Fitting information on a small screen</h3>
+
+				<p>The watch has a small 180×180 px display, so it was important to prioritise key information in order to minimise visual clutter. I found the following to be the most important to have on hand at all times:</p>
+
+				<ul class="body-list">
+					<li><strong>Time</strong>: the most important element. This must be legible at a quick glance, ideally without having to adjust the angle of your wrist.</li>
+					<li><strong>Day/date</strong>: this is also frequently referenced throughout the day, but is not as time sensitive</li>
+					<li><strong>Temperature</strong>: current and high/low of the day</li>
+					<li><strong>Battery level</strong>: Pebbles do not need to be charged every day, so it is useful to see when a charge is needed</li>
+				</ul>
+
+				<p>Pebble’s display suffers from poor contrast when viewed at more oblique angles, making it hard to read smaller numbers. To ensure legibility of the time in those more extreme conditions, I decided to make the hour and minute as large as possible and embrace it as the core design element.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count: 12">
+					<img src="assets/viewing-angle.jpg" class="key-figure" style="--ideal-span: 6"/>
+					<img src="assets/on-wrist.jpg" class="key-figure" style="--ideal-span: 5"/>
+					<figcaption>In the final design, the time is legible at a glance even from oblique viewing angles. The day/date and min/max/current temperatures are also subtly shown.</figcaption>
+				</figure>
+
+				<p>While traditional digital watches are limited to showing time via seven-segment displays, Pebble’s dot matrix display makes it possible to use beautiful, meticulously designed typefaces. To echo the shape of the Pebble Round, I chose a geometric typeface with circular letter forms.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count: 12">
+					<img src="assets/century-gothic-building.jpg" style="--ideal-span: 8"/>
+					<img src="assets/century-gothic-sign.jpg" style="--ideal-span: 3"/>
+					<figcaption>Century Gothic is a geometric typeface that combines near-perfect circular forms with interesting details that stand up to scrutiny at large sizes, making it a popular choice for display signage.</figcaption>
+				</figure>
+
+				<p>Diver-style watches commonly include the date of the month as the only complication. On mechanical watches, every element adds more physical moving parts, creating more edges and visual clutter. However, with a digital display I was able to additionally include the month and day of week cleanly in the same small space.</p>
+
+				<p>One unique feature of this watch face design is the readout of temperatures subtly integrated into the clock dial. I simply mapped degrees to the minute marks on the clock dial, such that a marker at the 20-minute position would indicate 20˚C. Since daily temperatures do not typically fluctuate more than 60˚C (in populated areas), this provided more than enough space to work as a temperature gauge.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count: 8">
+					<img src="assets/temperature-config-celsius.png" class="key-figure" style="--ideal-span: 4"/>
+					<img src="assets/temperature-config-fahrenheit.png" class="key-figure" style="--ideal-span: 4"/>
+					<figcaption>The temperature gauge configuration in the companion phone app doubles as instructions for reading in Celsius and Fahrenheit modes</figcaption>
+				</figure>
+
+				<p>Similarly, the battery level can be encoded in the form of a gauge along the perimeter of the watch face. By overloading the clock dial with both a temperature and battery scale, I was able to display both of these tertiary information graphically, without introducing too much visual clutter.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count: 10">
+					<video src="assets/charging-animation.webm" poster="assets/charging-animation-poster.jpg" controls loop playsinline autoplay>
+						fallback goes here
+					</video>
+
+					<figcaption>While the watch is plugged in, the battery level markers fill up to indicate charging.</figcaption>
+				</figure>
+
+
+				<h3 id="Development_and_iterative_design">Development & iterative design</h3>
+
+				<p>Code for the watch face was written in C. As this was my first time developing on Pebble, much of the design process involved tinkering with the code as I got to know the framework and its limitations. The watch’s lower-density e-paper display renders designs very differently from typical light-emitting displays, so it was important to test on the actual device.</p>
+
+				<p>To avoid waiting for compilation with every tweak, I implemented a debugging tool to adjust sizes and colours from the phone. This saved a lot of time between rounds of testing, making it possible to iteratively fine-tune the design for optimal legibility from different angles.</p>
+
+				<p>This watch face configuration feature laid the foundations for a highly customisable design. The debugging tool was eventually tweaked with preset themes and sensible parameters, turning it into a configuration screen that allows users to easily customise the watch face to suit their preferences and outfits.</p>
+
+				<figure style="--ideal-figure-column-count: 12" class="gallery caption-side">
+					<img src="assets/config.png" class="key-figure" style="--ideal-span: 4"/>
+					<img src="assets/preset-themes.png" class="key-figure" style="--ideal-span: 5"/>
+					<figcaption>Configuration screen allows users to effortlessly select a preset theme or create their own designs</figcaption>
+				</figure>
+
+
+				<h2 id="results">Results</h2>
+
+				<p>This started as a watch face for personal use. Eventually, I published it to the community to positive reviews.</p>
+
+				<p>If you have a Pebble, you can <a href="https://apps.rebble.io/en_US/application/5fd419293dd3100155d398b8?hardware=chalk">install Gauge Geometry</a> from the Rebble app store.</p>
+
+				<ul class="body-list">
+					<li><a href="https://github.com/szupie/gauge-geometry">Source code</a></li>
+					<li><a href="https://www.reddit.com/r/pebble/comments/kcbuyk/just_published_a_simple_watch_face_with/">Discussion on Reddit</a></li>
+				</ul>
+
+				<figure class="gallery spiral uniform-grid">
+					<img src="assets/rose-theme.jpg" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
+					<img src="assets/classic-theme.jpg" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
+					<img src="assets/nautical-theme.jpg" class="key-figure float" data-focus-quadrant="right bleed"/>
+					<figcaption>Different themes in action</figcaption>
+				</figure>
+
+			</article>
+		</main>
+		<footer>
+			<h2>Lor em ipsum</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="#">Github</a>
+					</li>
+					<li>
+						<a href="#">LinkedIn</a>
+					</li>
+					<li>
+						<a href="#">Email</a>
+					</li>
+					<li>
+						<a href="#">Resumé</a>
+					</li>
+				</ul>
+				<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href="#">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+</html>
