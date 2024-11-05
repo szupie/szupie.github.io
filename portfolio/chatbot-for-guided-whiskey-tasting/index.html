@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Chatbot for Guided Whiskey Tasting | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Chatbot for Guided Whiskey Tasting</h1>
+					<img src="assets/cover.jpg"/>
+					<p>Designing a natural language interface that provides tailored insights about a whiskey based on the user’s responses</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Interaction Design</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p><i>This work is from my role as an experience designer at an advertising agency. It was created in 2020, before the rise of Large Language Models (LLMs) that simplified natural language generation.</i></p>
+
+				<p>A major whiskey brand tasked us with creating an experience on voice-activated home assistants like Alexa and Google Assistant.</p>
+
+				<p>We ended up creating a virtual assistant that takes users through a customised, at-home guided tasting with tailored facts based on their description of the whiskey.</p>
+
+				<p>This project was unlike the typical web experiences I usually work on, because of the significantly different user needs in a non-graphical user interface. I drew on my experience in natural language processing and interactive fiction to design a personalised, engaging experience that could be engineered with minimal complexity.</p>
+
+				<figure class="multi-quote">
+					<figure>
+						<blockquote cite="#">
+							<p>I discovered nuances about each bottle that I wouldn't have noticed without taking the time to step through the tasting process for each one</p>
+						</blockquote>
+						<figcaption><cite><a href="https://www.forbes.com/sites/anthonykarcz/2021/05/01/have-the-distillery-come-to-you-with-a-virtual-wild-turkey-bourbon-tour/">Forbes</a></cite></figcaption>
+					</figure>
+					<figure>
+						<blockquote cite="#">
+							<p>It was a surprisingly warm and almost personal experience</p>
+						</blockquote>
+						<figcaption><cite><a href="https://www.inverse.com/input/guides/this-wild-turkey-tasting-is-a-for-whiskey-tasting-during-covid-19">Input Mag</a></cite></figcaption>
+					</figure>
+				</figure>
+
+				<h2 id="methods">Methods</h2>
+
+				<h3 id="Competitive_research_and_ideation">Competitive research & ideation</h3>
+
+				<p>I started with competitive research to get a sense of the existing alcohol-related voice experiences and find any opportunity for innovation. At the time, most experiences were related to cocktail recipes or food pairings.</p>
+
+				<p>After an internal brainstorming session with the team, I fleshed out the general mechanics of the best concepts and presented them to the clients. The guided tasting experience was chosen for its uniqueness while staying true to the brand.</p>
+
+				<h3 id="General_dialogue_structure">General dialogue structure</h3>
+
+				<p>After some research, I found that whiskey tastings are structured in a standard sequence of steps, which can conveniently be adapted to a simple, mostly linear dialogue flow. The 4 steps are:</p>
+
+				<ol class="body-list">
+					<li><strong>Sight</strong></li>
+					<li><strong>Nose</strong></li>
+					<li><strong>Palate</strong></li>
+					<li><strong>Finish</strong></li>
+				</ol>
+
+				<p>While the steps are always the same, I could still tailor the experience to each whiskey by asking the user to note properties about the drink, which identifies interesting facts about how the whiskey was made. For example, fruit scents tend to come from variations in the distillation process, while smokey scents are typically from charring of the cask.</p>
+
+				<p>With different responses depending on the properties of the whiskey, repeat uses can stay interesting without the need for complex, expornentially diverging dialogue trees. Simplicity was important, since this was meant to be a proof of concept on a limited budget.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count: 12">
+					<img src="assets/user-flow.png" class="key-figure"/>
+					<figcaption>Simplified state machine diagram of the entire experience, with an overview of the main tasting flow in the fourth column</figcaption>
+				</figure>
+
+				<h3 id="Challenges_specific_to_voice-based_user_interfaces">Challenges specific to voice-based user interfaces</h3>
+
+				<p>In a natural language user interface that understands only a small set of responses, it is important to guide users to the available options to avoid frustrations with unrecognised commands. With voice experiences in particular, there is also a need to keep these menus short to avoid users getting impatient or forgetting an option.</p>
+
+				<p>To mitigate these issues, I established the following principles when designing the dialogue trees:</p>
+
+				<ul class="body-list">
+					<li><strong>Clear prompts</strong>: Every virtual assistant response ends with a short, clear question to prompt the user</li>
+					<li><strong>Guiding questions</strong>: The prompting question is written to lead the user into the set of supported responses</li>
+					<li><strong>Listen more, talk less</strong>: Keep assistant responses short, unless the user explicitly asked for information</li>
+					<li><strong>Graceful fallbacks</strong>: In the tasting portion, each response should have a default that is general enough to make sense regardless of the user response. This reduces the need for numerous dialogue variations or frustrating “unrecognised” responses.</li>
+				</ul>
+
+				<figure class="gallery caption-side" style="--ideal-figure-column-count: 12">
+					<img src="assets/sight-dialogue-tree.png" class="key-figure" style="--ideal-span: 8"/>
+					<img src="assets/nose-dialogue-tree.png" class="key-figure" style="--ideal-span: 10"/>
+					<figcaption style="--ideal-span: 4">Branches in the dialogue do not extend to multiple levels, avoiding exponential growith in complexity</figcaption>
+				</figure>
+
+				<h3 id="Facilitating_collaboration">Facilitating collaboration</h3>
+
+				<p>To make sure every dialogue option is accounted for, I created a collaborative document that lays out the entire dialogue tree. I annotated each state with accepted responses and default paths so that the document can create a shared understanding of all the possible dialouge flows. After the writer filled in the dialogue, the developer referenced the document to implement all the states and connections.</p>
+
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count: 10" data-stacks-below="600">
+					<figure>
+						<img src="assets/collab-doc.png" class="key-figure" style="--ideal-span: 6"/>
+						<figcaption>Large text document laying out the entire dialogue flow, to facilitate writing and implementation</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/collab-doc-cell.png" style="--ideal-span: 3"/>
+						<figcaption>Example of a dialogue card in the document, structured to help make sure the writing will make sense in the experience</figcaption>
+					</figure>
+				</figure>
+
+				<h2 id="results">Results</h2>
+
+				<p>This project was conceived shortly before the COVID-19 pandemic. With pandemic restrictions limiting in-person distillery visits, a tailored virtual tasting at home became a much more timely concept. The scaleability of a virtual agent made whiskey tasting a more inclusive activity, giving everyone a taste of it for free.</p>
+
+				<p>The experience received the following accolades and mentions:</p>
+
+				<ul class="body-list">
+					<li>13th Shorty Awards – <a href="https://shortyawards.com/13th/wild-turkey-tasting-experience">Audience Honor in Branded Content</a></li>
+					<li>Featured on <a href="https://www.forbes.com/sites/anthonykarcz/2021/05/01/have-the-distillery-come-to-you-with-a-virtual-wild-turkey-bourbon-tour/">Forbes</a>, <a href="https://www.inverse.com/input/guides/this-wild-turkey-tasting-is-a-for-whiskey-tasting-during-covid-19">Input Mag</a>, and <a href="https://www.timeout.com/melbourne/things-to-do/take-part-in-a-virtual-whiskey-tasting-with-matthew-mcconaughey">TimeOut</a></li>
+				</ul>
+
+				<p>Try it out:</p>
+
+				<ul class="body-list">
+					<li><a href="https://www.amazon.com/dp/B08G4GB7G4">Alexa Skill</a></li>
+					<li><a href="https://assistant.google.com/services/a/uid/00000043935ca4e0">Google Assistant Action</a></li>
+				</ul>
+
+			</article>
+		</main>
+		<footer>
+			<h2>Lor em ipsum</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="#">Github</a>
+					</li>
+					<li>
+						<a href="#">LinkedIn</a>
+					</li>
+					<li>
+						<a href="#">Email</a>
+					</li>
+					<li>
+						<a href="#">Resumé</a>
+					</li>
+				</ul>
+				<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href="#">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+</html>
