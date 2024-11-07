@@ -181,6 +181,7 @@ article h3 + * {
 }
 .gallery.figure-plaque-pair img {
 	--ideal-span: 6;
+	box-shadow: var(--card-shadow);
 }
 .gallery.figure-plaque-pair figcaption {
 	grid-column: span 4 / calc(-2 + min(var(--column-deficit), 2) / 2);

@@ -20,6 +20,8 @@
 		(var(--grid-width) - (var(--column-count) - 1) * var(--column-gap)) / 
 		var(--column-count)
 	);
+
+	--card-shadow: -5px -5px 10px -5px #FDFBF7, 5px 5px 10px -5px #E4DCCD;
 }
 
 html {

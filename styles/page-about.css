@@ -26,7 +26,7 @@ main[typeof="Person"] header {
 	margin-bottom: calc(2 * var(--line-height-section_title));
 	padding: var(--line-height-label);
 	padding-bottom: calc(1.5 * var(--line-height-label));
-	box-shadow: -5px -5px 10px -5px #FDFBF7, 5px 5px 10px -5px #E4DCCD;
+	box-shadow: var(--card-shadow);
 }
 #contact h2 {
 	font-size: var(--font-size-label);
