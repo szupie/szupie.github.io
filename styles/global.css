@@ -259,7 +259,7 @@ footer small {
 		gap: 60px;
 	}
 }
-@media (width < 850px) and (height > 550px) {
+@media (width < 850px) and (height > 500px) {
 	footer #footer-links,
 	footer #contact-links {
 		align-items: center;
