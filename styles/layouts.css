@@ -67,6 +67,9 @@ main > section + section {
 	margin-top: calc(4 * var(--line-height-section_title));	
 }
 /* header labelling a list of titles */
+.list-group {
+	scroll-margin-top: var(--line-height-display_list_title);
+}
 .list-group > h2 {
 	color: var(--grey);
 }
