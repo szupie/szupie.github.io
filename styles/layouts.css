@@ -103,7 +103,7 @@ main > section + section {
 
 /* left-right section layout */
 .hanging-title-layout {
-	--body-column-start: calc(var(--column-count) / 2);
+	--body-column-start: var(--column-count-half);
 	--hanging-title-row-gap: var(--line-height-section_title);
 	font-size: var(--font-size-section_title);
 	line-height: var(--line-height-section_title);	
@@ -256,18 +256,25 @@ main > section + section {
 /* figure gallery styles */
 .gallery {
 	/* default width if not specified inline */
-	--ideal-figure-column-count: 6;
+	/*--ideal-figure-column-count: 6;*/
+	/* half value for compatibility with browsers that reject calc divisions when expecting integer */
+	--ideal-figure-column-count: calc(2 * var(--ideal-figure-column-count-half));
+	--ideal-figure-column-count-half: 3;
+
 	/* make narrower only when available columns are fewer than ideal */
 	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
 	--figure-column-template: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
 
 	/* id of column where figure starts/ends */
 	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
+
 	/* number of columns removed compared to designed max */
 	--column-deficit: calc(
 		var(--ideal-figure-column-count) - 
 		min(var(--ideal-figure-column-count), var(--column-count))
 	);
+	--column-deficit-half: calc(var(--column-deficit) / 2);
+
 	grid-column-start: flexible-left calc(-1 - var(--figure-column-outset));
 	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
 
@@ -276,6 +283,21 @@ main > section + section {
 	gap: var(--column-gap);
 	align-items: end;
 }
+/* compatibility with browsers that reject divisions when expecting integer */
+@supports not (grid-column-start: calc(1 / 1)) {
+	.gallery {
+		--figure-column-outset: calc(
+			min(
+				var(--ideal-figure-column-count-half), 
+				var(--column-count-half)
+			) - var(--article-column-count-half)
+		);
+		--column-deficit-half: calc(
+			var(--ideal-figure-column-count-half) - 
+			min(var(--ideal-figure-column-count-half), var(--column-count-half))
+		);
+	}
+}
 .gallery img, 
 .gallery video,
 .gallery figcaption {
@@ -283,9 +305,9 @@ main > section + section {
 	/* if ideal span is not given, default to all columns available */
 	--ideal-span: var(--ideal-figure-column-count);
 	/* figures shrink by 1 column as figure area narrows by 2 */
-	--column-span: clamp(
+	--column-span: min(max(
 		var(--min-column-span),
-		calc(var(--ideal-span) - var(--column-deficit) / 2),
+		calc(var(--ideal-span) - var(--column-deficit-half))),
 		var(--figure-column-count)
 	);
 	grid-column-end: span var(--column-span);
@@ -311,9 +333,10 @@ main > section + section {
 
 /* layouts where images fan out asymmetrically around an empty point */
 .gallery.spiral {
-	--ideal-figure-column-count: 12;
+	/*--ideal-figure-column-count: 12;*/
+	--ideal-figure-column-count-half: 6;
 	--ideal-focus-column: 6; /* if not specified, default to center */
-	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit) / 2 + 2);
+	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit-half) + 2);
 	/* extend figure grid to accommodate full bleed image */
 	grid-template-columns: var(--wide-page-margin) var(--figure-column-template) var(--wide-page-margin);
 	grid-column: 1 / -1;
@@ -331,6 +354,11 @@ main > section + section {
 .gallery.spiral [data-focus-quadrant~="center"] {
 	/* horizontally center */
 	grid-column-start: calc(2 + (var(--figure-column-count) - var(--column-span)) / 2);
+}
+@supports not (grid-column-start: calc(1 / 1)) {
+	.gallery.spiral [data-focus-quadrant~="center"] {
+		grid-column-start: calc(2 + var(--column-count-half) - var(--article-column-count-half));
+	}
 }
 .gallery.spiral figcaption[data-focus-quadrant~="left"] {
 	justify-self: stretch;

@@ -9,11 +9,21 @@
 
 	--max-width: calc(65rem + 2 * var(--column-gap));
 	--wide-page-margin: max(calc((100vw - var(--max-width))/2), 60px);
+
 	--article-column-offset: 3;
-	--article-column-count: 6;
+	/*--article-column-count: 6;*/
+	/* half value for compatibility with browsers that reject calc divisions when expecting integer */
+	--article-column-count: calc(2 * var(--article-column-count-half));
+	--article-column-count-half: 3;
+
 	--article-template-columns: repeat(var(--article-column-count), minmax(0, 1fr));
 	--grid-columns: [content-left] repeat(var(--article-column-offset), [flexible-left] minmax(0, 1fr)) [article-left flexible-left] var(--article-template-columns) [flexible-right article-right] repeat(var(--article-column-offset), minmax(0, 1fr) [flexible-right]) [content-right];
+
 	--column-count: calc(2 * var(--article-column-offset) + var(--article-column-count));
+	/* half value for compatibility with browsers that reject calc divisions when expecting integer */
+	/*--column-count-half: calc(var(--column-count) / 2);*/
+	--column-count-half: calc(var(--article-column-offset) + var(--article-column-count-half));
+
 	--column-gap: 16px;
 	--grid-width: calc(100vw - (var(--wide-page-margin) + var(--column-gap)) * 2);
 	--column-width: calc(
@@ -126,7 +136,7 @@ main > * {
 @media (max-width: 600px) {
 	:root {
 		--wide-page-margin: 0px;
-		--article-column-count: 4;
+		--article-column-count-half: 2;
 	}
 }
 

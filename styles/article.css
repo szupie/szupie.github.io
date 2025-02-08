@@ -177,7 +177,8 @@ article h3 + * {
 }
 
 .gallery.figure-plaque-pair {
-	--ideal-figure-column-count: 12;
+	/*--ideal-figure-column-count: 12;*/
+	--ideal-figure-column-count-half: 6;
 	line-height: 20px;
 	align-items: start;
 	row-gap: 150px;
@@ -190,7 +191,8 @@ article h3 + * {
 	box-shadow: var(--card-shadow);
 }
 .gallery.figure-plaque-pair figcaption {
-	grid-column: span 4 / calc(-2 + min(var(--column-deficit), 2) / 2);
+/*	grid-column: span 4 / calc(-2 + min(var(--column-deficit), 2) / 2);*/
+	grid-column: span 4 / calc(-2 + min(var(--column-deficit-half), 1));
 }
 .gallery.figure-plaque-pair figcaption p {
 	font-size: var(--font-size-body);
