@@ -107,23 +107,23 @@ main > * {
 	grid-column: content-left / content-right;
 }
 
-@media (width < 1000px) {
+@media (max-width: 1000px) {
 	:root {
 		--article-column-offset: 2;
 	}
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	:root {
 		--article-column-offset: 1;
 	}
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	:root {
 		--article-column-offset: 0;
 		--grid-columns: [content-left flexible-left article-left] var(--article-template-columns) [article-right flexible-right content-right];
 	}
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	:root {
 		--wide-page-margin: 0px;
 		--article-column-count: 4;
@@ -182,7 +182,7 @@ nav {
 #nav-menu #home-button::selection {
 	color: var(--paper-white);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	#nav-menu {
 		gap: var(--line-height-display);
 	}
@@ -190,7 +190,7 @@ nav {
 		font-size: 12px;
 	}
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	#nav-menu {
 		gap: var(--line-height-large_body);
 		--vertical-padding: var(--line-height-large_body);
@@ -242,7 +242,7 @@ footer small {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	footer {
 		--decoration-margin: 20px;
 		--bottom-line-padding: 10px;
@@ -259,7 +259,7 @@ footer small {
 		gap: 60px;
 	}
 }
-@media (width < 850px) and (height > 500px) {
+@media (max-width: 850px) and (min-height: 500px) {
 	footer #footer-links,
 	footer #contact-links {
 		align-items: center;
@@ -313,7 +313,7 @@ footer::before {
 footer::after {
 	right: var(--offset);
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	footer::after, footer::before {
 		--offset: var(--column-gap);
 	}

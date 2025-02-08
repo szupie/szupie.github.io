@@ -1,7 +1,7 @@
 main {
 	--dominant-column-span: 6;
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	main {
 		--dominant-column-span: min(6, var(--column-count));
 	}
@@ -53,7 +53,7 @@ header p {
 .gallery {
 	position: relative;
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	header {
 		padding-bottom: calc(2 * var(--line-height-section_title));
 	}
@@ -95,7 +95,7 @@ main > section + section {
 :not(main) > .major-thing + .major-thing {
 	margin-top: 60px;
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.major-thing {
 		padding-top: 20px;
 	}
@@ -154,7 +154,7 @@ main > section + section {
 	border-top: 1px solid var(--grey-decorative);
 	margin-bottom: var(--line-height-body);
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.hanging-title-layout {
 		--body-column-start: 1; /* use number to allow offsets using calc */
 	}
@@ -242,7 +242,7 @@ main > section + section {
 	max-width: 100%;
 	vertical-align: middle; /* remove tiny gap under img */
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	.project .description {
 		margin-bottom: 0;
 	}
@@ -300,7 +300,7 @@ main > section + section {
 .gallery .key-figure {
 	--min-column-span: 3;
 }
-@media (width < 450px) {
+@media (max-width: 450px) {
 	.gallery .key-figure {
 		/* do not shrink key figures as much on small screens */
 		--min-column-span: 4;
@@ -354,7 +354,7 @@ main > section + section {
 	grid-column-start: var(--focus-column);
 	grid-column-end: -1;
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.gallery.spiral .key-figure[data-focus-quadrant~="center"] {
 		grid-column-start: bound-left;
 	}
@@ -362,7 +362,7 @@ main > section + section {
 		grid-column: bound-left / bound-right;
 	}
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	/* at small size, use regular gutters and tile images on simple grid */
 	.gallery.spiral {
 		grid-template-columns: var(--figure-column-template);
@@ -387,7 +387,7 @@ main > section + section {
 	align-self: stretch;
 	object-fit: cover;
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	.gallery.spiral.uniform-grid img {
 		--column-span: var(--figure-column-count);
 	}
@@ -402,7 +402,7 @@ main > section + section {
 .featured-landing {
 	--dominant-column-span: calc(var(--column-count) / 2);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	.featured-landing {
 		--dominant-column-span: var(--column-count);
 	}

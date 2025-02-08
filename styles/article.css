@@ -5,7 +5,7 @@ article {
 	display: contents;
 	line-height: var(--line-height-body);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	article {
 		--figure-margin-bottom: 80px;
 	}
@@ -31,7 +31,7 @@ article > header p {
 article > header h1 {
 	margin-bottom: var(--line-height-display);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	article > header h1 {
 		margin-bottom: 30px;
 	}
@@ -96,7 +96,7 @@ article h3 {
 article h3 + * {
 	margin-top: 100px;
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	article h3 {
 		margin-top: 120px;
 	}
@@ -104,7 +104,7 @@ article h3 + * {
 		margin-top: 40px;
 	}
 }
-@media (width > 599px) {
+@media (min-width: 601px) {
 	/* hang bullets when margins are wide */
 	article > .body-list {
 		padding-left: 0;
@@ -158,7 +158,7 @@ article h3 + * {
 .gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
 	content: 'Right';
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	.gallery.multi-caption[data-stacks-below="600"] figure:nth-of-type(1) figcaption::before {
 		content: 'Top';
 	}
@@ -199,7 +199,7 @@ article h3 + * {
 .gallery.figure-plaque-pair h5 {
 	margin-top: var(--line-height-label);
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.gallery.figure-plaque-pair {
 		row-gap: var(--line-height-body);
 	}
@@ -219,7 +219,7 @@ article h3 + * {
 	--ideal-span: 3;
 	grid-column: var(--focus-column, auto) / span var(--column-span);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	.gallery.caption-side figcaption {
 		grid-column: bound-left / bound-right;
 	}
@@ -269,7 +269,7 @@ article figure blockquote::before {
 	grid-column-end: content-right;
 	grid-column-start: span var(--quote-column-span);
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	/* when margin in minimal, do not hang quote mark */
 	article figure blockquote::before {
 		right: initial;
