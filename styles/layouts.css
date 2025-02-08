@@ -111,7 +111,7 @@ main > section + section {
 	align-items: baseline;
 }
 .hanging-title-layout h2 {
-	grid-column: content-left / span clamp(2, calc(var(--column-count) - 6), 3);
+	grid-column: content-left / span min(max(2, calc(var(--column-count) - 6)), 3);
 }
 .hanging-title-layout h2 ~ *,
 .hanging-title-layout div * {
@@ -139,7 +139,7 @@ main > section + section {
 	gap: inherit;
 }
 .hanging-title-layout .detail-section {
-	--compact-column-end: calc(-1 - clamp(0, var(--column-count) - 11, 1));
+	--compact-column-end: calc(-1 - min(max(0, var(--column-count) - 11), 1));
 	--compact-column-span: calc(var(--column-count) - var(--body-column-start) + var(--compact-column-end) + 2);
 	grid-column: var(--body-column-start) / var(--compact-column-end);
 	font-size: var(--font-size-body);

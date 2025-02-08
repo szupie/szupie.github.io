@@ -75,7 +75,7 @@ article h2 {
 	text-align: center;
 	--min-vmargin: calc(3 * var(--line-height-display_list_title));
 	--max-vmargin: 240px;
-	margin: clamp(var(--min-vmargin), 25vh, var(--max-vmargin)) 0;
+	margin: min(max(var(--min-vmargin), 25vh), var(--max-vmargin)) 0;
 }
 article h2::before {
 	content: "§";

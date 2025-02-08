@@ -168,7 +168,7 @@ nav {
 }
 #nav-menu #home-button {
 	/* replace with svg and hide text */
-	font-size: clamp(12px, 12px + (7vw - 25px), 22px);
+	font-size: min(max(12px, 12px + (7vw - 25px)), 22px);
 	line-height: 1;
 	letter-spacing: 0.12em;
 	color: transparent;
