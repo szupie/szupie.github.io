@@ -49,12 +49,18 @@ article > header img {
 
 /* roles section */
 article #roles {
-	display: flex;
+	/*display: flex;*/
+	/* compatibility with browsers that do not support flexbox gap (e.g. ios 12) */
+	display: grid;
+	grid-template-columns: min-content auto;
 	align-items: baseline;
 	gap: var(--column-gap);
 	margin-top: 30px;
 	padding: 10px 0;
 	border-top: 1px solid var(--black);
+}
+article #roles h4 {
+	line-height: var(--line-height-body); /* ios 12 baseline alignment fix */
 }
 
 /* article body */
