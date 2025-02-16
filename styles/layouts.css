@@ -205,6 +205,8 @@ main > section + section {
 	padding-top: var(--line-height-body);
 	row-gap: var(--line-height-body);
 	justify-items: start;
+	grid-template-rows: repeat(5, min-content);
+	margin-bottom: calc(-1 * var(--line-height-body));
 }
 .project > * {
 	grid-column: content-left / span var(--dominant-column-span);
@@ -238,7 +240,7 @@ main > section + section {
 .project .thumbnail-link {
 	grid-column: span var(--min-thumbnail-span) / content-right;
 	justify-self: end;
-	grid-row: 1 / span 4;
+	grid-row: 1 / -1;
 	max-width: 248px;
 }
 .project .thumbnail-link img {
@@ -318,9 +320,6 @@ main > section + section {
 }
 .gallery video {
 	width: 100%;
-}
-.gallery a.linked-figure {
-	display: contents;
 }
 .gallery .key-figure {
 	--min-column-span: 3;
