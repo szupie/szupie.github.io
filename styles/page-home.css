@@ -27,8 +27,6 @@ header p {
 	grid-template-columns: var(--grid-columns);
 	column-gap: var(--column-gap);
 	position: relative; /* size top border relative to this block */
-}
-.gallery + .sticky-cards {
 	margin-top: 200px;
 }
 .sticky-cards section {
