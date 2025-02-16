@@ -26,7 +26,7 @@ article > header {
 }
 article > header h1,
 article > header p {
-	max-width: 32rem;
+	max-width: 35rem;
 }
 article > header h1 {
 	margin-bottom: var(--line-height-display);
@@ -131,7 +131,7 @@ article h3 + * {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 	grid-column-start: bound-left;
-	max-width: 48em;
+	max-width: 35em; /* around 80 chars */
 }
 .gallery figcaption::before {
 	font-variant: all-small-caps;
@@ -144,7 +144,10 @@ article h3 + * {
 .gallery.multi-caption > figure {
 	display: contents;
 }
-.gallery.multi-caption img {
+/* in multi-caption galleries, media and captions are grouped inside figures */
+/* override order to pull all media above captions */
+.gallery.multi-caption img,
+.gallery.multi-caption video {
 	order: 1;
 }
 .gallery.multi-caption figcaption {
