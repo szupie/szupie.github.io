@@ -210,6 +210,9 @@ main > section + section {
 	grid-column: content-left / span var(--dominant-column-span);
 	align-self: start; /* prevent items from stretching vertically */
 }
+.project h3 a {
+	text-decoration: none;
+}
 .project .description {
 	margin-top: calc(-0.5 * var(--line-height-body));
 	margin-bottom: calc(0.5 * var(--line-height-body));
