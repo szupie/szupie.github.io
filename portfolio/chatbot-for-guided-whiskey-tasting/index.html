@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Chatbot for Guided Whiskey Tasting | Angus Lo</title>
+		<title>Chatbot for guided whiskey tasting | Angus Lo</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link href="/styles/style.css" rel="stylesheet">
@@ -26,8 +26,8 @@
 		<main>
 			<article>
 				<header class="cover">
-					<h1>Chatbot for Guided Whiskey Tasting</h1>
-					<img src="assets/cover.jpg"/>
+					<h1>Chatbot for guided whiskey tasting</h1>
+					<img src="assets/cover.jpg" alt=""/>
 					<p>Designing a natural language interface that provides tailored insights about a whiskey based on the user’s responses</p>
 					<section id="roles">
 						<h4>Roles</h4>
@@ -83,8 +83,8 @@
 
 				<p>With different responses depending on the properties of the whiskey, repeat uses can stay interesting without the need for complex, expornentially diverging dialogue trees. Simplicity was important, since this was meant to be a proof of concept on a limited budget.</p>
 
-				<figure class="gallery" style="--ideal-figure-column-count: 12">
-					<img src="assets/user-flow.png" class="key-figure"/>
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/user-flow.png" alt="Diagram of the states in the dialogue tree and arrows indicating the flows depending on the response options" class="key-figure"/>
 					<figcaption>Simplified state machine diagram of the entire experience, with an overview of the main tasting flow in the fourth column</figcaption>
 				</figure>
 
@@ -101,9 +101,9 @@
 					<li><strong>Graceful fallbacks</strong>: In the tasting portion, each response should have a default that is general enough to make sense regardless of the user response. This reduces the need for numerous dialogue variations or frustrating “unrecognised” responses.</li>
 				</ul>
 
-				<figure class="gallery caption-side" style="--ideal-figure-column-count: 12">
-					<img src="assets/sight-dialogue-tree.png" class="key-figure" style="--ideal-span: 8"/>
-					<img src="assets/nose-dialogue-tree.png" class="key-figure" style="--ideal-span: 10"/>
+				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/sight-dialogue-tree.png" alt="Dialogue tree showing the different responses for the colour and viscosity steps, which do not depend on previous responses" class="key-figure" style="--ideal-span: 8"/>
+					<img src="assets/nose-dialogue-tree.png" alt="Dialogue tree for the possible responses for nose" class="key-figure" style="--ideal-span: 10"/>
 					<figcaption style="--ideal-span: 4">Branches in the dialogue do not extend to multiple levels, avoiding exponential growith in complexity</figcaption>
 				</figure>
 
@@ -111,13 +111,13 @@
 
 				<p>To make sure every dialogue option is accounted for, I created a collaborative document that lays out the entire dialogue tree. I annotated each state with accepted responses and default paths so that the document can create a shared understanding of all the possible dialouge flows. After the writer filled in the dialogue, the developer referenced the document to implement all the states and connections.</p>
 
-				<figure class="gallery multi-caption" style="--ideal-figure-column-count: 10" data-stacks-below="600">
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count-half: 5" data-stacks-below="600">
 					<figure>
-						<img src="assets/collab-doc.png" class="key-figure" style="--ideal-span: 6"/>
+						<img src="assets/collab-doc.png" alt="Zoomed out view of the entire dialogue tree, with sections labelled “Intro”, “FAQs”, and “Tasting Paths”" class="key-figure" style="--ideal-span: 6"/>
 						<figcaption>Large text document laying out the entire dialogue flow, to facilitate writing and implementation</figcaption>
 					</figure>
 					<figure>
-						<img src="assets/collab-doc-cell.png" class="key-figure" style="--ideal-span: 3"/>
+						<img src="assets/collab-doc-cell.png" alt="Close up of a dialogue state, structured as a form with fields for situation, example utterance, response, and prompt" class="key-figure" style="--ideal-span: 3"/>
 						<figcaption>Example of a dialogue card in the document, structured to help make sure the writing will make sense in the experience</figcaption>
 					</figure>
 				</figure>
@@ -159,7 +159,7 @@
 						<a href="/about/#experience">Resumé</a>
 					</li>
 				</ul>
-				<small>This site was designed and coded by hand. See the <a href="#">source code</a>.</small>
+				<small>This site was designed and coded by hand. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
 			</section>
 		</footer>
 	</body>
