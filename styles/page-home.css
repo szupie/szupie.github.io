@@ -17,7 +17,7 @@ header p {
 	--scroll-grow-percentage: 1;
 	--staggered-card-percentage: var(--scroll-grow-percentage);
 	--item-left-padding: var(--column-gap);
-	--item-column-span: calc(var(--column-count) / 2);
+	--item-column-span: var(--column-count-half);
 	--item-width: calc(var(--item-column-span) * (var(--column-width) + var(--column-gap)));
 	--bottom-peek-height: calc(
 		var(--line-height-section_title) +
