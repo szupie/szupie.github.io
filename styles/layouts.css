@@ -430,7 +430,7 @@ main > section + section {
 
 /* layout for landing page with minimal text (portfolio) */
 .featured-landing {
-	--dominant-column-span: calc(var(--column-count) / 2);
+	--dominant-column-span: var(--column-count-half);
 }
 @media (max-width: 850px) {
 	.featured-landing {
