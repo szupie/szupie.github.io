@@ -12,7 +12,7 @@ main[typeof="Person"] header {
 #about-me p + p {
 	margin-top: var(--line-height-large_body);
 }
-@media (width < 1000px) {
+@media (max-width: 1000px) {
 	#about-me {
 		grid-column-end: span min(6, var(--column-count));
 	}
@@ -47,7 +47,7 @@ main[typeof="Person"] header {
 #contact + * {
 	margin-top: calc(4 * var(--line-height-section_title));
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	#contact {
 		grid-column: content-left / span 3;
 	}
@@ -71,7 +71,7 @@ main[typeof="Person"] header {
 	/* move closer to date to reduce white space */
 	margin-left: calc(-0.5 * var(--column-width));
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	#experience .detail-section p,
 	#experience .detail-section::before {
 		grid-column-start: var(--body-column-start);
@@ -103,7 +103,7 @@ main[typeof="Person"] header {
 #education .inline-list li:not(:last-child)::after {
 	margin: 0.4em;
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	#education h3 {
 		margin-top: var(--hanging-title-row-gap);
 	}

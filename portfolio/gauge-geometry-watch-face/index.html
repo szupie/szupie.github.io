@@ -27,7 +27,7 @@
 			<article>
 				<header class="cover">
 					<h1>Gauge Geometry: a watch face design</h1>
-					<img src="assets/cover.jpg"/>
+					<img src="assets/cover.jpg" alt=""/>
 					<p>Designing an information-rich yet elegant e-paper watch face that takes inspiration from classic watches</p>
 					<section id="roles">
 						<h4>Roles</h4>
@@ -42,14 +42,19 @@
 
 				<p>In this personal project, I explored elegant solutions for visualising information in the small space of a watch. I was able to take advantage of Pebble’s unique display to create a design that looks physical but would not be achievable with traditional mechanical watches.</p>
 
-				<figure class="gallery multi-caption" style="--ideal-figure-column-count: 8">
+				<ul class="body-list">
+					<li><a href="https://apps.rebble.io/en_US/application/5fd419293dd3100155d398b8?hardware=chalk">Install watch face</a></li>
+					<li><a href="https://github.com/szupie/gauge-geometry">Gauge Geometry on GitHub</a></li>
+				</ul>
+
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count-half: 4">
 					<figure>
-						<img src="assets/pebble-hardware.jpg" style="--ideal-span: 4"/>
-						<figcaption>Pebble Round’s hardware and default watchfaces. <i>From Pebble’s press materials</i></figcaption>
+						<img src="assets/pebble-hardware.jpg" alt="Several Pebble Round watches, each with a different face on its circular screen" style="--ideal-span: 4"/>
+						<figcaption>Pebble Round’s hardware and default watch faces. <i>From Pebble’s press materials</i></figcaption>
 					</figure>
 					<figure>
-						<img src="assets/pebble-app-store.png" style="--ideal-span: 3"/>
-						<figcaption>Watchfaces created by the community, showcasing the degree of customisations. <i>From Pebble app store</i></figcaption>
+						<img src="assets/pebble-app-store.png" alt="App store listings of various watch faces, from traditional analogue and digital faces to more esoteric designs with additional information or decorative elements" style="--ideal-span: 3"/>
+						<figcaption>Watch faces created by the community, showcasing the degree of customisations. <i>From Pebble app store</i></figcaption>
 					</figure>
 				</figure>
 
@@ -63,7 +68,7 @@
 				<p>I have always preferred dual analogue-digital watches, since I like the benefits of both visualisations of time. In analogue clocks, the arrangement of hours and minutes along a circular timeline helps visualise the length between two points in time. On the other hand, digital clocks are great for their easy-to-read display of the precise time.</p>
 
 				<figure class="gallery">
-					<img src="assets/dress-watches.jpg"/>
+					<img src="assets/dress-watches.jpg" alt="Several watches with simple faces, mostly containing just the clock dial and hands"/>
 					<figcaption>Dress watches tend to have simple designs and limited complications</figcaption>
 				</figure>
 
@@ -81,17 +86,17 @@
 
 				<p>Pebble’s display suffers from poor contrast when viewed at more oblique angles, making it hard to read smaller numbers. To ensure legibility of the time in those more extreme conditions, I decided to make the hour and minute as large as possible and embrace it as the core design element.</p>
 
-				<figure class="gallery" style="--ideal-figure-column-count: 12">
-					<img src="assets/viewing-angle.jpg" class="key-figure" style="--ideal-span: 6"/>
-					<img src="assets/on-wrist.jpg" class="key-figure" style="--ideal-span: 5"/>
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/viewing-angle.jpg" alt="Watch viewed from an extreme angle, with the display elements at a lower contrast" class="key-figure" style="--ideal-span: 6"/>
+					<img src="assets/on-wrist.jpg" alt="Watch face showing the time prominently in both analogue and digital format, the date in a smaller font, and a gauge along the circumference" class="key-figure" style="--ideal-span: 5"/>
 					<figcaption>In the final design, the time is legible at a glance even from oblique viewing angles. The day/date and min/max/current temperatures are also subtly shown.</figcaption>
 				</figure>
 
 				<p>While traditional digital watches are limited to showing time via seven-segment displays, Pebble’s dot matrix display makes it possible to use beautiful, meticulously designed typefaces. To echo the shape of the Pebble Round, I chose a geometric typeface with circular letter forms.</p>
 
-				<figure class="gallery" style="--ideal-figure-column-count: 12">
-					<img src="assets/century-gothic-building.jpg" style="--ideal-span: 8"/>
-					<img src="assets/century-gothic-sign.jpg" style="--ideal-span: 3"/>
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/century-gothic-building.jpg" alt="Building with a large engraving of its address number" style="--ideal-span: 8"/>
+					<img src="assets/century-gothic-sign.jpg" alt="Window display showing discount rates in a large font" style="--ideal-span: 3"/>
 					<figcaption>Century Gothic is a geometric typeface that combines near-perfect circular forms with interesting details that stand up to scrutiny at large sizes, making it a popular choice for display signage.</figcaption>
 				</figure>
 
@@ -99,15 +104,15 @@
 
 				<p>One unique feature of this watch face design is the readout of temperatures subtly integrated into the clock dial. I simply mapped degrees to the minute marks on the clock dial, such that a marker at the 20-minute position would indicate 20˚C. Since daily temperatures do not typically fluctuate more than 60˚C (in populated areas), this provided more than enough space to work as a temperature gauge.</p>
 
-				<figure class="gallery" style="--ideal-figure-column-count: 8">
-					<img src="assets/temperature-config-celsius.png" class="key-figure" style="--ideal-span: 4"/>
-					<img src="assets/temperature-config-fahrenheit.png" class="key-figure" style="--ideal-span: 4"/>
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/temperature-config-celsius.png" alt="Diagram of a temperature gauge in Celsius and the corresponding readout values" class="key-figure" style="--ideal-span: 4"/>
+					<img src="assets/temperature-config-fahrenheit.png" alt="Diagram of the temperature gauge with values in Fahrenheit" class="key-figure" style="--ideal-span: 4"/>
 					<figcaption>The temperature gauge configuration in the companion phone app doubles as instructions for reading in Celsius and Fahrenheit modes</figcaption>
 				</figure>
 
 				<p>Similarly, the battery level can be encoded in the form of a gauge along the perimeter of the watch face. By overloading the clock dial with both a temperature and battery scale, I was able to display both of these tertiary information graphically, without introducing too much visual clutter.</p>
 
-				<figure class="gallery" style="--ideal-figure-column-count: 10">
+				<figure class="gallery" style="--ideal-figure-column-count-half: 5">
 					<video poster="assets/charging-animation-poster.jpg" controls loop playsinline autoplay>
 						<source src="assets/charging-animation.mp4" type="video/mp4"/>
 					</video>
@@ -124,9 +129,9 @@
 
 				<p>This watch face configuration feature laid the foundations for a highly customisable design. The debugging tool was eventually tweaked with preset themes and sensible parameters, turning it into a configuration screen that allows users to easily customise the watch face to suit their preferences and outfits.</p>
 
-				<figure style="--ideal-figure-column-count: 12" class="gallery caption-side">
-					<img src="assets/config.png" class="key-figure" style="--ideal-span: 4"/>
-					<img src="assets/preset-themes.png" class="key-figure" style="--ideal-span: 5"/>
+				<figure style="--ideal-figure-column-count-half: 6" class="gallery caption-side">
+					<img src="assets/config.png" alt="Controls for changing the colours of various elements of the watch face and the shape of the watch hands" class="key-figure" style="--ideal-span: 4"/>
+					<img src="assets/preset-themes.png" alt="The design in different colour schemes" class="key-figure" style="--ideal-span: 5"/>
 					<figcaption>Configuration screen allows users to effortlessly select a preset theme or create their own designs</figcaption>
 				</figure>
 
@@ -143,9 +148,9 @@
 				</ul>
 
 				<figure class="gallery spiral uniform-grid">
-					<img src="assets/rose-theme.jpg" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
-					<img src="assets/classic-theme.jpg" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
-					<img src="assets/nautical-theme.jpg" class="key-figure float" data-focus-quadrant="right bleed"/>
+					<img src="assets/rose-theme.jpg" alt="Watch face in rose and green colour scheme" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
+					<img src="assets/classic-theme.jpg" alt="Watch face with numbers in black, and hands in red and blue" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
+					<img src="assets/nautical-theme.jpg" alt="Watch face in tints of blue, accented by the hour hand in red" class="key-figure float" data-focus-quadrant="right bleed"/>
 					<figcaption>Different themes in action</figcaption>
 				</figure>
 
@@ -168,7 +173,7 @@
 						<a href="/about/#experience">Resumé</a>
 					</li>
 				</ul>
-				<small>This site was designed and coded by hand. See the <a href="#">source code</a>.</small>
+				<small>This site was designed and coded by hand. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
 			</section>
 		</footer>
 	</body>
