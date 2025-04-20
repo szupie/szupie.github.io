@@ -10,7 +10,14 @@ h1 {
 	margin-top: calc(var(--line-height-display) * 2);
 }
 header p {
-	grid-column-end: span min(4, var(--column-count));
+	grid-column-end: span min(5, var(--column-count));
+	max-width: 358px;
+}
+
+.project .thumbnail-link img {
+	aspect-ratio: 16 / 9;
+	width: 100%;
+	object-fit: cover;
 }
 
 .sticky-cards {
