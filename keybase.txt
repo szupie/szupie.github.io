@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/szupie
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://szupie.github.io
+  * I am szupie (https://keybase.io/szupie) on keybase.
+  * I have a public key with fingerprint EA3D 97B6 33C0 027A 66DD  3377 AA6E 96F1 CFEF B855
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120e0080b52373c4617cb7ddf069939c13de5ffc2832d7d886bfe698902cd37c9010a",
+      "fingerprint": "ea3d97b633c0027a66dd3377aa6e96f1cfefb855",
+      "host": "keybase.io",
+      "key_id": "aa6e96f1cfefb855",
+      "kid": "0101a42a0cdb9be930ae2e58eb288b5f340a87239f563228f54f1289060b0e6cdf4f0a",
+      "uid": "5bc79610bd1ce83ce87c672e2ccdee19",
+      "username": "szupie"
+    },
+    "service": {
+      "hostname": "szupie.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1745126439,
+  "expire_in": 157680000,
+  "prev": "98be2e6bc8af8ce1af8a2d0b7b5b71049fcb45e4a0121930fb6377a703f83d5a",
+  "seqno": 27,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMN2AnicbVJrTFRHGN21Li1LVx6GNi1Y4EqAhhXv+7GUlIKQKokoShGVLnfunbt7
+le4u+0CREmilD6PWRwUJWZVHaisxLUghFGgaiEEtpbqFGtCiwbYgspagRrKSpr2X
+1h9NOsnMZGbOd+Z85/suGp7R6LWttrr5q3Pd+dqh/gaPxrq8JrECAXaxHDFVILvh
+0gZLROhym3fLImJCUAxHIYqyKKBwgiEEksYYATCiKKE0xxGcgBEipCRJwFkCFxmR
+ZWkgQZpjORQXRIIROBRDecSISLLNAp0Op2xzK7SQJ0SOATRBCCiKMzxNiyJBMAzP
+05CjJUyQoARYilICrXaXGqGIA7wLpsh25U45mJfk/Q/+qW4U40mcRwURcAByBMpD
+HFIsBDjLAkoiSJRnGZzgJIomcJyVKFLCcEU1jQIU0oIokdKSbs8SHQUEhqMxFIiY
+AFlCmYxAMzjEBUGEEONUoAs6bfw7UEG79nkcMkQqjYhyVyYLULVVzeM/7ykW2W31
+gH8ycjjtbrtgL1FerW63w2VSo93lDhW+BwLzv0RmINtExUklogw6XbLdhpgwBSm4
+ZZUZY0gKw2mS4IwI3OuQndAsqwiKoVlUGeo/sEyh5Fig2EEDgeUlVoCYsvK4iAIG
+UIDBUJKTBEBSkOSV+mOKeZJSKqU6DEpILCFSqjEuWGqzIyacUXTyFjUr2WLj3R6n
+kvhA/87lGq1eE6RbpraYRh8c9rTxbiGhi7qx+mLjo9qEtLrSex/EXX9S0H4qZ2Wh
+tSqmtzlyQ8HqhItH8jI3Z33jdhAZER/FGsZzu+qMdycQXevxt2G2byHqIPJl6qZI
+EnvB569vGcDXdA4mxsxo80vH/b/MBrd5NUF5tdo/vWNDOu/pk2n1/bO+sP7o1Orv
+Rnqu9Sf1yPHFaz8MKbQeT41+sVG/fnNgzStlIeznZ89PB2+PnH+3kniQkRS2K9tz
+bfRR2temq/s1C5Yo6+OqEaqo+nbMYFznidxwQyLU/x6XPfew+YvJe7NhF37e9LrP
+H3FrdKXhxFAIGB5uCw0Pefzy1nMbKWIHk/nGofb7hvWNVb+mtDwgdLGcdlVrb3Ly
+Zx3riia8hxfu2JK7M/u2U/HW0ze8yX5L+ntjqY0Di01bLmdFLr66Iacr686TvrX1
+bxZNzh0xd4WmN684nx/86UsluW9duRk7UFJoIEM6Mg7cnYyd+en9MzXX25Mii6NP
+Th8Ke9g59P3WY/uqP5nKMJZ0hBfcbp8fGcz0T+Vu1Pvi49tqA56mltEbjX9FbEto
+CHLt2fbDa3mX7NSByhnf7Ff5bfH5Hw/b0599vjk8NMFVtqIp7UJNxUF2ZirmmPPb
+vsH7RztyJhqNN690PNfzW0A7p+NXB8pNl8Zrd+66vKqG9Bq6f5w+Gt1wKvQPf9SO
+w4HOM65zybHr9pN7lyUECkd6h/4G5Zi90Q==
+=5qeU
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/szupie
+
+==================================================================
