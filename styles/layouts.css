@@ -243,7 +243,7 @@ main > section + section {
 	grid-row: 1 / -1;
 	max-width: 248px;
 }
-.project .thumbnail-link img {
+.project .thumbnail-link > * {
 	max-width: 100%;
 	vertical-align: middle; /* remove tiny gap under img */
 }

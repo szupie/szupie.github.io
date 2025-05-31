@@ -42,7 +42,8 @@ article > header p {
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
-article > header img {
+article > header img,
+article > header video {
 	width: 100%;
 	background-color: var(--paper-yellow-shade);
 }
