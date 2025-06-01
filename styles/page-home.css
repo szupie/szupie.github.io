@@ -10,14 +10,21 @@ h1 {
 	margin-top: calc(var(--line-height-display) * 2);
 }
 header p {
-	grid-column-end: span min(4, var(--column-count));
+	grid-column-end: span min(5, var(--column-count));
+	max-width: 358px;
+}
+
+.project .thumbnail-link img {
+	aspect-ratio: 16 / 9;
+	width: 100%;
+	object-fit: cover;
 }
 
 .sticky-cards {
 	--scroll-grow-percentage: 1;
 	--staggered-card-percentage: var(--scroll-grow-percentage);
 	--item-left-padding: var(--column-gap);
-	--item-column-span: calc(var(--column-count) / 2);
+	--item-column-span: var(--column-count-half);
 	--item-width: calc(var(--item-column-span) * (var(--column-width) + var(--column-gap)));
 	--bottom-peek-height: calc(
 		var(--line-height-section_title) +
@@ -27,8 +34,6 @@ header p {
 	grid-template-columns: var(--grid-columns);
 	column-gap: var(--column-gap);
 	position: relative; /* size top border relative to this block */
-}
-.gallery + .sticky-cards {
 	margin-top: 200px;
 }
 .sticky-cards section {

@@ -1,7 +1,7 @@
 main {
 	--dominant-column-span: 6;
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	main {
 		--dominant-column-span: min(6, var(--column-count));
 	}
@@ -53,7 +53,7 @@ header p {
 .gallery {
 	position: relative;
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	header {
 		padding-bottom: calc(2 * var(--line-height-section_title));
 	}
@@ -67,6 +67,9 @@ main > section + section {
 	margin-top: calc(4 * var(--line-height-section_title));	
 }
 /* header labelling a list of titles */
+.list-group {
+	scroll-margin-top: var(--line-height-display_list_title);
+}
 .list-group > h2 {
 	color: var(--grey);
 }
@@ -92,7 +95,7 @@ main > section + section {
 :not(main) > .major-thing + .major-thing {
 	margin-top: 60px;
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.major-thing {
 		padding-top: 20px;
 	}
@@ -100,7 +103,7 @@ main > section + section {
 
 /* left-right section layout */
 .hanging-title-layout {
-	--body-column-start: calc(var(--column-count) / 2);
+	--body-column-start: var(--column-count-half);
 	--hanging-title-row-gap: var(--line-height-section_title);
 	font-size: var(--font-size-section_title);
 	line-height: var(--line-height-section_title);	
@@ -108,7 +111,7 @@ main > section + section {
 	align-items: baseline;
 }
 .hanging-title-layout h2 {
-	grid-column: content-left / span clamp(2, calc(var(--column-count) - 6), 3);
+	grid-column: content-left / span min(max(2, calc(var(--column-count) - 6)), 3);
 }
 .hanging-title-layout h2 ~ *,
 .hanging-title-layout div * {
@@ -136,7 +139,7 @@ main > section + section {
 	gap: inherit;
 }
 .hanging-title-layout .detail-section {
-	--compact-column-end: calc(-1 - clamp(0, var(--column-count) - 11, 1));
+	--compact-column-end: calc(-1 - min(max(0, var(--column-count) - 11), 1));
 	--compact-column-span: calc(var(--column-count) - var(--body-column-start) + var(--compact-column-end) + 2);
 	grid-column: var(--body-column-start) / var(--compact-column-end);
 	font-size: var(--font-size-body);
@@ -151,7 +154,7 @@ main > section + section {
 	border-top: 1px solid var(--grey-decorative);
 	margin-bottom: var(--line-height-body);
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.hanging-title-layout {
 		--body-column-start: 1; /* use number to allow offsets using calc */
 	}
@@ -202,10 +205,15 @@ main > section + section {
 	padding-top: var(--line-height-body);
 	row-gap: var(--line-height-body);
 	justify-items: start;
+	grid-template-rows: repeat(5, min-content);
+	margin-bottom: calc(-1 * var(--line-height-body));
 }
 .project > * {
 	grid-column: content-left / span var(--dominant-column-span);
 	align-self: start; /* prevent items from stretching vertically */
+}
+.project h3 a {
+	text-decoration: none;
 }
 .project .description {
 	margin-top: calc(-0.5 * var(--line-height-body));
@@ -232,14 +240,14 @@ main > section + section {
 .project .thumbnail-link {
 	grid-column: span var(--min-thumbnail-span) / content-right;
 	justify-self: end;
-	grid-row: 1 / span 4;
+	grid-row: 1 / -1;
 	max-width: 248px;
 }
-.project .thumbnail-link img {
+.project .thumbnail-link > * {
 	max-width: 100%;
 	vertical-align: middle; /* remove tiny gap under img */
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	.project .description {
 		margin-bottom: 0;
 	}
@@ -253,18 +261,25 @@ main > section + section {
 /* figure gallery styles */
 .gallery {
 	/* default width if not specified inline */
-	--ideal-figure-column-count: 6;
+	/*--ideal-figure-column-count: 6;*/
+	/* half value for compatibility with browsers that reject calc divisions when expecting integer */
+	--ideal-figure-column-count: calc(2 * var(--ideal-figure-column-count-half));
+	--ideal-figure-column-count-half: 3;
+
 	/* make narrower only when available columns are fewer than ideal */
 	--figure-column-count: min(var(--ideal-figure-column-count), var(--column-count));
 	--figure-column-template: [bound-left] repeat(var(--figure-column-count), minmax(0, 1fr)) [bound-right];
 
 	/* id of column where figure starts/ends */
 	--figure-column-outset: calc((var(--figure-column-count) - var(--article-column-count)) / 2);
+
 	/* number of columns removed compared to designed max */
 	--column-deficit: calc(
 		var(--ideal-figure-column-count) - 
 		min(var(--ideal-figure-column-count), var(--column-count))
 	);
+	--column-deficit-half: calc(var(--column-deficit) / 2);
+
 	grid-column-start: flexible-left calc(-1 - var(--figure-column-outset));
 	grid-column-end: flexible-right calc(1 + var(--figure-column-outset));
 
@@ -273,6 +288,21 @@ main > section + section {
 	gap: var(--column-gap);
 	align-items: end;
 }
+/* compatibility with browsers that reject divisions when expecting integer */
+@supports not (grid-column-start: calc(1 / 1)) {
+	.gallery {
+		--figure-column-outset: calc(
+			min(
+				var(--ideal-figure-column-count-half), 
+				var(--column-count-half)
+			) - var(--article-column-count-half)
+		);
+		--column-deficit-half: calc(
+			var(--ideal-figure-column-count-half) - 
+			min(var(--ideal-figure-column-count-half), var(--column-count-half))
+		);
+	}
+}
 .gallery img, 
 .gallery video,
 .gallery figcaption {
@@ -280,9 +310,9 @@ main > section + section {
 	/* if ideal span is not given, default to all columns available */
 	--ideal-span: var(--ideal-figure-column-count);
 	/* figures shrink by 1 column as figure area narrows by 2 */
-	--column-span: clamp(
+	--column-span: min(max(
 		var(--min-column-span),
-		calc(var(--ideal-span) - var(--column-deficit) / 2),
+		calc(var(--ideal-span) - var(--column-deficit-half))),
 		var(--figure-column-count)
 	);
 	grid-column-end: span var(--column-span);
@@ -291,13 +321,10 @@ main > section + section {
 .gallery video {
 	width: 100%;
 }
-.gallery a.linked-figure {
-	display: contents;
-}
 .gallery .key-figure {
 	--min-column-span: 3;
 }
-@media (width < 450px) {
+@media (max-width: 450px) {
 	.gallery .key-figure {
 		/* do not shrink key figures as much on small screens */
 		--min-column-span: 4;
@@ -308,9 +335,10 @@ main > section + section {
 
 /* layouts where images fan out asymmetrically around an empty point */
 .gallery.spiral {
-	--ideal-figure-column-count: 12;
+	/*--ideal-figure-column-count: 12;*/
+	--ideal-figure-column-count-half: 6;
 	--ideal-focus-column: 6; /* if not specified, default to center */
-	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit) / 2 + 2);
+	--focus-column: calc(var(--ideal-focus-column) - var(--column-deficit-half) + 2);
 	/* extend figure grid to accommodate full bleed image */
 	grid-template-columns: var(--wide-page-margin) var(--figure-column-template) var(--wide-page-margin);
 	grid-column: 1 / -1;
@@ -328,6 +356,11 @@ main > section + section {
 .gallery.spiral [data-focus-quadrant~="center"] {
 	/* horizontally center */
 	grid-column-start: calc(2 + (var(--figure-column-count) - var(--column-span)) / 2);
+}
+@supports not (grid-column-start: calc(1 / 1)) {
+	.gallery.spiral [data-focus-quadrant~="center"] {
+		grid-column-start: calc(2 + var(--column-count-half) - var(--article-column-count-half));
+	}
 }
 .gallery.spiral figcaption[data-focus-quadrant~="left"] {
 	justify-self: stretch;
@@ -351,7 +384,7 @@ main > section + section {
 	grid-column-start: var(--focus-column);
 	grid-column-end: -1;
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.gallery.spiral .key-figure[data-focus-quadrant~="center"] {
 		grid-column-start: bound-left;
 	}
@@ -359,7 +392,7 @@ main > section + section {
 		grid-column: bound-left / bound-right;
 	}
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	/* at small size, use regular gutters and tile images on simple grid */
 	.gallery.spiral {
 		grid-template-columns: var(--figure-column-template);
@@ -384,7 +417,7 @@ main > section + section {
 	align-self: stretch;
 	object-fit: cover;
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	.gallery.spiral.uniform-grid img {
 		--column-span: var(--figure-column-count);
 	}
@@ -397,9 +430,9 @@ main > section + section {
 
 /* layout for landing page with minimal text (portfolio) */
 .featured-landing {
-	--dominant-column-span: calc(var(--column-count) / 2);
+	--dominant-column-span: var(--column-count-half);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	.featured-landing {
 		--dominant-column-span: var(--column-count);
 	}
@@ -464,5 +497,6 @@ main > section + section {
 }
 .featured-landing .project .thumbnail-link {
 	max-width: none;
+	width: 100%;
 	margin-bottom: calc(-0.5 * var(--line-height-body));
 }

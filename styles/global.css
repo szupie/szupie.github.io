@@ -9,11 +9,21 @@
 
 	--max-width: calc(65rem + 2 * var(--column-gap));
 	--wide-page-margin: max(calc((100vw - var(--max-width))/2), 60px);
+
 	--article-column-offset: 3;
-	--article-column-count: 6;
+	/*--article-column-count: 6;*/
+	/* half value for compatibility with browsers that reject calc divisions when expecting integer */
+	--article-column-count: calc(2 * var(--article-column-count-half));
+	--article-column-count-half: 3;
+
 	--article-template-columns: repeat(var(--article-column-count), minmax(0, 1fr));
 	--grid-columns: [content-left] repeat(var(--article-column-offset), [flexible-left] minmax(0, 1fr)) [article-left flexible-left] var(--article-template-columns) [flexible-right article-right] repeat(var(--article-column-offset), minmax(0, 1fr) [flexible-right]) [content-right];
+
 	--column-count: calc(2 * var(--article-column-offset) + var(--article-column-count));
+	/* half value for compatibility with browsers that reject calc divisions when expecting integer */
+	/*--column-count-half: calc(var(--column-count) / 2);*/
+	--column-count-half: calc(var(--article-column-offset) + var(--article-column-count-half));
+
 	--column-gap: 16px;
 	--grid-width: calc(100vw - (var(--wide-page-margin) + var(--column-gap)) * 2);
 	--column-width: calc(
@@ -107,26 +117,26 @@ main > * {
 	grid-column: content-left / content-right;
 }
 
-@media (width < 1000px) {
+@media (max-width: 1000px) {
 	:root {
 		--article-column-offset: 2;
 	}
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	:root {
 		--article-column-offset: 1;
 	}
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	:root {
 		--article-column-offset: 0;
 		--grid-columns: [content-left flexible-left article-left] var(--article-template-columns) [article-right flexible-right content-right];
 	}
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	:root {
 		--wide-page-margin: 0px;
-		--article-column-count: 4;
+		--article-column-count-half: 2;
 	}
 }
 
@@ -139,12 +149,17 @@ nav {
 	border-bottom: 1px solid var(--red);
 	display: flex;
 	justify-content: flex-end;
-	gap: 80px;
 	position: relative;
 	--vertical-padding: var(--line-height-section_title);
+	/* ios 12 compatibility: gap not supported with flexbox and undetectable */
+	/* gap: 80px; */
+	--nav-items-gap: 80px;
 }
 #nav-menu li {
 	list-style: none;
+}
+#nav-menu > li:not(:first-child) {
+	margin-left: var(--nav-items-gap);
 }
 #nav-menu a {
 	font-size: var(--font-size-body);
@@ -168,7 +183,7 @@ nav {
 }
 #nav-menu #home-button {
 	/* replace with svg and hide text */
-	font-size: clamp(12px, 12px + (7vw - 25px), 22px);
+	font-size: min(max(12px, 12px + (7vw - 25px)), 22px);
 	line-height: 1;
 	letter-spacing: 0.12em;
 	color: transparent;
@@ -182,17 +197,17 @@ nav {
 #nav-menu #home-button::selection {
 	color: var(--paper-white);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	#nav-menu {
-		gap: var(--line-height-display);
+		--nav-items-gap: var(--line-height-display);
 	}
 	#nav-menu a {
 		font-size: 12px;
 	}
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	#nav-menu {
-		gap: var(--line-height-large_body);
+		--nav-items-gap: var(--line-height-large_body);
 		--vertical-padding: var(--line-height-large_body);
 	}
 }
@@ -207,7 +222,7 @@ footer {
 	max-height: calc(12 * var(--line-height-display));
 	box-sizing: border-box;
 	align-items: end;
-	padding-bottom: calc(var(--decoration-margin) * 2 + var(--decoration-size));
+	/* padding-bottom: calc(var(--decoration-margin) * 2 + var(--decoration-size)); */
 }
 footer > * {
 	grid-column: content-left / content-right;
@@ -228,11 +243,17 @@ footer #footer-links {
 
 	padding-bottom: var(--bottom-line-padding);
 	border-bottom: 1px solid var(--black);
+
+	/* for some reason this works on ios 12 but not padding-bottom on footer */
+	margin-bottom: calc(var(--decoration-margin) * 2 + var(--decoration-size));
 }
 footer #contact-links {
 	display: flex;
-	gap: 30px;
 	list-style: none;
+	/* gap: 30px; */
+}
+footer #contact-links > *:not(:first-child) {
+	margin-left: 30px;
 }
 footer #contact-links a {
 	font-size: var(--font-size-body);
@@ -242,7 +263,7 @@ footer small {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	footer {
 		--decoration-margin: 20px;
 		--bottom-line-padding: 10px;
@@ -256,14 +277,21 @@ footer small {
 		justify-content: center;
 	}
 	footer #footer-links {
-		gap: 60px;
+		/* gap: 60px; */
+	}
+	footer #footer-links > *:not(:first-child) {
+		margin-top: 60px;
 	}
 }
-@media (width < 850px) and (height > 500px) {
+@media (max-width: 850px) and (min-height: 500px) {
 	footer #footer-links,
 	footer #contact-links {
 		align-items: center;
 		flex-direction: column;
+	}
+	footer #contact-links > *:not(:first-child) {
+		margin-top: 30px;
+		margin-left: 0;
 	}
 }
 
@@ -274,6 +302,7 @@ main {
 	z-index: 1;
 }
 footer {
+	position: relative; /* fallback if sticky not supported (e.g. ios 12) */
 	position: sticky;
 	bottom: 0;
 }
@@ -299,7 +328,7 @@ footer small::after {
 	left: 50%;
 	transform: translateX(-50%);
 	width: calc(4 * var(--decoration-size));
-	z-index: -1;
+/*	z-index: -1;*/
 	background: linear-gradient(to right, var(--colour-1) 25%, var(--colour-2) 25%, var(--colour-2) 50%, var(--colour-3) 50%, var(--colour-3) 75%, var(--colour-4) 75%);
 }
 footer::after, footer::before {
@@ -313,7 +342,7 @@ footer::before {
 footer::after {
 	right: var(--offset);
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	footer::after, footer::before {
 		--offset: var(--column-gap);
 	}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Life & Supercontinents: an interactive atlas and visual essay | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Life & Supercontinents: an interactive atlas and visual essay</h1>
+					<video poster="assets/cover.png" loop playsinline autoplay muted controls>
+						<source src="assets/cover-698w.mp4" type="video/mp4" media="(max-width: 850px)"/>
+						<source src="assets/cover.mp4" type="video/mp4"/>
+					</video>
+					<p>Creating a timelapse of Earth’s supercontinents and evolutionary history in an educational tool that pairs an interactive globe with a timeline of key events</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Design</li>
+							<li>Coding</li>
+							<li>Writing</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p>As a dinosaur enthusiast since childhood, I had read a lot about the Earth’s history. I was familiar with the different geological periods, past supercontinents, and the evolution of different branches of life, but I had rarely seen them together in a timeline starting from the formation of Earth. I decided to build a tool to show the evolution of life and the continents together.</p>
+
+				<p><a href="https://dinosaurpictures.org/ancient-earth">Ancient Earth</a> is a similar tool, but I wanted to show a more complete view of paleomaps and evolutionary history, as well as make it easy to move around different points in time. I also wanted to provide more context on the significance of each event</p>
+
+				<p>This was a personal project that combined my skills in interaction design, UI design, coding, and many hours of research and writing.</p>
+
+				<ul class="body-list">
+					<li>Explore <a href="https://szupie.github.io/supercontinents">Life & Supercontinents</a></li>
+					<li><a href="https://github.com/szupie/supercontinents">Source code on GitHub</a></li>
+				</ul>
+
+
+				<h2 id="methods">Methods</h2>
+
+				<h3 id="Concept_sketches">Concept sketches</h3>
+
+				<p>The key features I wanted include were:</p>
+
+				<ul class="body-list">
+					<li>An interactive map of past continent positions</li>
+					<li>The ability to quickly scrub through different points in time</li>
+					<li>Timeline of major evolutionary and geological events shown in the same context</li>
+				</ul>
+
+				<p>I started with some sketches to get a sense of how much information can fit on the screen.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/sketch-mobile.jpg" alt="Sketch of UI in portrait format" class="key-figure" style="--ideal-span: 8"/>
+					<img src="assets/sketch-desktop.jpg" alt="Sketch of UI in landscape format with various inset charts" class="key-figure" style="--ideal-span: 4"/>
+					<figcaption>Early explorations of the UI’s information density at various screen sizes</figcaption>
+				</figure>
+
+
+				<h3 id="Design_direction">Design direction</h3>
+
+				<p>Since the main focus was visualising the movement of the continents, I went with a style that would pay homage to Alfred Wegener’s paper proposing the idea of continental drift. I gathered publications from the era and took inspiration from their treatment of type in different contexts, from body to display to labels.</p>
+
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count-half: 5" data-stacks-below="600">
+					<figure>
+						<img src="assets/wegener-excerpt.jpg" alt="Excerpts containing display type, body text, and labels" class="key-figure" style="--ideal-span: 5"/>
+						<figcaption>Excerpts from “The Origin of the Continents” by Alfred Wegener, a main source of inspiration for the design</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/typeface-selection.png" alt="Text set in Philibert and Computer Modern" class="key-figure" style="--ideal-span: 4"/>
+						<figcaption>Font selections: <a href="https://osp.kitchen/foundry/philibert/">Philibert</a>’s chunky and uneven forms resemble some display type of the era, but also call back to the ruggedness of the continents; <a href="https://en.wikipedia.org/wiki/Computer_Modern">Computer Modern</a> is a revival of the typeface style commonly used in scientific papers of the era. The nonhumanist vertical axis of the letterforms allude to the rejection of human qualities</figcaption>
+					</figure>
+				</figure>
+
+				<p>I also looked at contemporary industrial design to study their design elements. One major difference was the physicality of controls, which are often large levers or buttons with substantial travel distance. This was a necessity given the mechanical nature of products from the era, but it also had the benefit of clearly signifying to the user how they can interact with the interface.</p>
+
+				<figure class="gallery spiral" style="--ideal-focus-column: 4">
+					<img src="assets/camera-kodak-brownie-2a.jpg" alt="Camera with black body, silver levers, and trim and labels in gold" class="float" style="--ideal-span: 4" data-focus-quadrant="left"/>
+					<img src="assets/american-adding-machine-5.jpg" alt="Adding machine with various levers in black, silver, and red" style="--ideal-span: 4" data-focus-quadrant="above"/>
+					<img src="assets/underwood-typewriter.jpg" alt="Typewriter with black body and gold keys" style="--ideal-span: 4" data-focus-quadrant="above"/>
+					<img src="assets/fan.jpg" alt="Fan with black blades and gold grill" style="--ideal-span: 6" data-focus-quadrant="right below"/>
+					<figcaption data-focus-quadrant="right" style="--ideal-span: 6">Image search results of products from the era: Black and gold is a common colour scheme. Controls tend to be buttons with a lot of physical travel.</figcaption>
+				</figure>
+
+
+				<h3 id="Accessible_colour_palette">Accessible colour palette</h3>
+
+				<p>Products from the era often used a black and gold colour scheme. Black was a common base colour, which works well in this tool for representing the dark background of space. Gold was a popular accent colour, which I reserved for consistently indicating interactive elements. I also included brown in the colour palette, to be used only in association with geological elements. Gold is a difficult colour to emulate on screen, and works much better when used in contrast with the brown.</p>
+
+				<p>Given the complexity of the UI, it was helpful to have a large palette of colours to create visual separation as well as relationships between the different elements. To ensure sufficient contrast, I used <a href="https://huetone.ardov.me/">Huetone</a> to select a gamette of shades for each hue. The tool helps calculate contrast values between every swatch pairing. It supports the proposed ASPC specification, which is designed to fix some of the flaws in the current WCAG contrast algorithm.</p>
+
+				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/huetone-screenshot.png" alt="Huetone interface showing a colour palette’s contrast values and how they map along the hue, chroma, and luminance dimensions" style="--ideal-span: 8"/>
+					<img src="assets/ui-colours.png" alt="Screenshot from Life & Supercontinents, with interactive elements in shades of gold overlapping elements in various shades of grey and brown" style="--ideal-span: 12"/>
+					<figcaption><a href="https://huetone.ardov.me/">Huetone</a> visualises contrasts within a colour palette, which was important in designing a UI with many adjacent and overlapping elements.</figcaption>
+				</figure>
+
+
+				<h3 id="Map_design">Map design</h3>
+
+				<p>Books and research papers are usually limited to showing flat, static maps. Unfortunately, all 2D projections of the globe inherently suffer from distortions of sizes and distances, especially at the edges. For this interactive tool, I wanted to use a rotatable 3D globe, which is immensely more helpful for understanding unfamiliar landmasses.</p>
+
+				<p>One main disadvantage of a globe is the limited view to one hemisphere at a time. With so many continental plates drifting around in different directions in the vast oceans, users could easily get lost trying to figure out where to turn the globe. I implemented two ways to orient users to land: auto-rotating to each supercontinent, or tracking the movements of specific continents.</p>
+
+				<p>Scotese’s raster maps go as far back as 750 million years ago. For the older reconstructions, I had to create a custom map design to maintain a consistent look and feel between different sources. I generated the maps based on Euler rotations data published in the latest research papers. They specify the displacement of each continental plate, some in terms of nested rotations relative to other moving plates. To convert them into mappable data, I created a custom tool for calculating the chained rotations.</p>
+
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count-half: 6" data-stacks-below="600">
+					<figure>
+						<img src="assets/map-distortion.jpg" alt="Rectangular map primarily covered by water, with a landmass stretched along the bottom and sides" style="--ideal-span: 8"/>
+						<figcaption>Pannotia’s position by the south pole means it is distorted beyond recognition when presented in the standard equirectangular projection.</figcaption>
+					</figure>
+					<figure>
+						<video poster="assets/land-tracking-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4">
+							<source src="assets/land-tracking.mp4" type="video/mp4"/>
+						</video>
+						<figcaption>When viewed as a globe, only half of the Earth is visible at a time. To avoid the need to constantly rotate the globe, users can track a continent’s movements throughout time.</figcaption>
+					</figure>
+				</figure>
+
+
+				<h3 id="Globe_implementation">Globe implementation</h3>
+
+				<p>I implemented the globe using a combination of D3.js and WebGL. D3 is a well-established data visualisation library with a module for handling spherical geometry, but I needed to use a WebGL shader to render the roughly 100 raster maps efficiently, without slowing down the page scroll. To further improve performance, I implemented update throttling and low-resolution pre-renders.</p>
+
+				<p>I also developed custom globe rotation controls that have the tactility of spinning a real globe. Most globe implementations on the web translate user movements to rotations at a constant rate. This makes drags near the poles drift significantly from the contact point on the globe, due to the different tangential speeds at different distances from the rotational axis. For this implementation, I developed a custom algorithm to ensure the cursor stays at the same point on the globe while dragging.</p>
+
+				<figure class="gallery multi-caption" style="--ideal-figure-column-count-half: 4" data-stacks-below="600">
+					<figure>
+						<video poster="assets/google-globe-cursor-drift-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4">
+							<source src="assets/google-globe-cursor-drift.mp4" type="video/mp4"/>
+						</video>
+						<figcaption>In many implementations of interactive globes on the web, the point of contact drifts relative to the globe, especially near the poles.</figcaption>
+					</figure>
+					<figure>
+						<video poster="assets/tactile-globe-control-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4">
+							<source src="assets/tactile-globe-control.mp4" type="video/mp4"/>
+						</video>
+						<figcaption>This implementation emulates the physicality of rotating a globe in real life – with the cursor staying at the same point on the globe.</figcaption>
+					</figure>
+				</figure>
+
+
+				<h3 id="Research_data_visualisation_design">Research & data visualisation design</h3>
+
+				<p>The most time-consuming aspect of this project was the research and writing. Evidence for early events are harder to find, leading to inconsistent timelines between different interpretations of data. In order to construct a cohesive narrative, I had to read through many research papers and reference only a select few.</p>
+
+				<p>Showing all of Earth’s history in one timeline proved to be a design challenge. Evidence of complex multicellular life only dates back to the most recent fifth of Earth’s history, while fossil evidence of prior life is significantly scarcer. To avoid crowding the history of all plants and animals in a small sliver of the timeline, many textbooks use a logarithmic scale that compresses timespans the further back in time you go. However, I wanted to show time on a linear scale, since it is much easier for humans to comprehend. I decided to use a magnified timeline for the most recent events before zooming out to clearly show its scale relative to the entire history of Earth.</p>
+
+				<figure style="--ideal-figure-column-count-half: 6" class="gallery caption-side">
+					<video poster="assets/map-type-transition-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 9">
+						<source src="assets/map-type-transition.mp4" type="video/mp4"/>
+					</video>
+					<figcaption>The timeline transitions to a different magnification level for pre-Cambrian events, to accommodate the lower density of information available while preserving the intuitiveness of a linear scale.</figcaption>
+				</figure>
+
+
+				<h2 id="results">Results</h2>
+
+				<p>Try it out: <a href="https://szupie.github.io/supercontinents/">Life & Supercontinents</a></p>
+
+				<ul class="body-list">
+					<li><a href="https://github.com/szupie/supercontinents">Source code</a></li>
+					<li><a href="https://old.reddit.com/r/InternetIsBeautiful/comments/1jh7s0o/interactive_timelapse_of_earths_continents_and/">Discussion on Reddit</a></li>
+				</ul>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/devices.png" alt="Life & Supercontinents in desktop and mobile view" style="--ideal-span: 12"/>
+					<figcaption>Life & Supercontinents works in your browser, compatible with various devices.</figcaption>
+				</figure>
+
+			</article>
+		</main>
+		<footer>
+			<h2>Get in touch</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="https://github.com/szupie/">Github</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/angus-lo/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="mailto:szupie@gmail.com">Email</a>
+					</li>
+					<li>
+						<a href="/about/#experience">Resumé</a>
+					</li>
+				</ul>
+				<small>This site was designed and coded by hand. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+</html>
