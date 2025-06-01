@@ -27,7 +27,65 @@
 			<article>
 				<header class="cover">
 					<h1>Pop-up story book in virtual reality</h1>
-					<img src="assets/cover.png" alt=""/>
+					<svg viewBox="0 0 1040 585" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<defs>
+							<style>
+								:root {
+									--frame-width: 226px;
+									--frame-height: 413px;
+
+									--x-1: 123px;
+									--x-2: 407px;
+									--x-3: 691px;
+								}
+								#mobile-frame {
+									width: var(--frame-width);
+									height: var(--frame-height);
+								}
+								.frame-border {
+									fill: none;
+									stroke: #464646;
+									stroke-width: 2px;
+								}
+								.video {
+									y: 100px;
+									width: var(--frame-width);
+									height: 385px;
+								}
+							</style>
+							<rect id="mobile-frame" rx="16" ry="16" y="72"/>
+							<clipPath id="mobile-frames-clip">
+								<use xlink:href="#mobile-frame" style="x: var(--x-1)"/>
+								<use xlink:href="#mobile-frame" style="x: var(--x-2)"/>
+								<use xlink:href="#mobile-frame" style="x: var(--x-3)"/>
+							</clipPath>
+						</defs>
+
+						<!-- bg image -->
+						<image x="0" y="0" width="100%" height="100%" xlink:href="assets/cover.png" />
+						
+						<!-- videos -->
+						<foreignObject class="video" clip-path="url(#mobile-frames-clip)" style="x: var(--x-1)">
+							<video poster="assets/peacock-poster.png" controls loop playsinline autoplay muted width="100%">
+								<source src="assets/peacock.mp4" type="video/mp4"/>
+							</video>
+						</foreignObject>
+						<foreignObject class="video" clip-path="url(#mobile-frames-clip)" style="x: var(--x-2)">
+							<video poster="assets/leap-poster.png" controls loop playsinline autoplay muted width="100%">
+								<source src="assets/leap.mp4" type="video/mp4"/>
+							</video>
+						</foreignObject>
+						<foreignObject class="video" clip-path="url(#mobile-frames-clip)" style="x: var(--x-3)">
+							<video poster="assets/rainbow-deer-poster.png" controls loop playsinline autoplay muted width="100%">
+								<source src="assets/rainbow-deer.mp4" type="video/mp4"/>
+							</video>
+						</foreignObject>
+
+						<!-- frame borders -->
+						<use class="frame-border" xlink:href="#mobile-frame" style="x: var(--x-1)"/>
+						<use class="frame-border" xlink:href="#mobile-frame" style="x: var(--x-2)"/>
+						<use class="frame-border" xlink:href="#mobile-frame" style="x: var(--x-3)"/>
+					</svg>
 					<p>Creating a guided exploration of virtual worlds using established patterns in storytelling and game design</p>
 					<section id="roles">
 						<h4>Roles</h4>
@@ -51,7 +109,7 @@
 
 				<h2 id="methods">Methods</h2>
 
-				<h3 id="Aligning_on_an_interaction_pattern">Aligning on an interaction pattern</h3>
+				<h3 id="Exploring_interaction_patterns">Exploring interaction patterns</h3>
 
 				<p>The core concept of the running mascot can be adapted into AR/VR in a myriad of approaches. Since this was a project with many stakeholders and team members across disciplines, it was important to align on the direction before getting too far in the design process.</p>
 

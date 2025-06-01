@@ -497,5 +497,6 @@ main > section + section {
 }
 .featured-landing .project .thumbnail-link {
 	max-width: none;
+	width: 100%;
 	margin-bottom: calc(-0.5 * var(--line-height-body));
 }
