@@ -5,7 +5,7 @@ article {
 	display: contents;
 	line-height: var(--line-height-body);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	article {
 		--figure-margin-bottom: 80px;
 	}
@@ -26,12 +26,12 @@ article > header {
 }
 article > header h1,
 article > header p {
-	max-width: 32rem;
+	max-width: 35rem;
 }
 article > header h1 {
 	margin-bottom: var(--line-height-display);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	article > header h1 {
 		margin-bottom: 30px;
 	}
@@ -42,19 +42,26 @@ article > header p {
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
-article > header img {
+article > header img,
+article > header video {
 	width: 100%;
 	background-color: var(--paper-yellow-shade);
 }
 
 /* roles section */
 article #roles {
-	display: flex;
+	/*display: flex;*/
+	/* compatibility with browsers that do not support flexbox gap (e.g. ios 12) */
+	display: grid;
+	grid-template-columns: min-content auto;
 	align-items: baseline;
 	gap: var(--column-gap);
 	margin-top: 30px;
 	padding: 10px 0;
 	border-top: 1px solid var(--black);
+}
+article #roles h4 {
+	line-height: var(--line-height-body); /* ios 12 baseline alignment fix */
 }
 
 /* article body */
@@ -75,7 +82,7 @@ article h2 {
 	text-align: center;
 	--min-vmargin: calc(3 * var(--line-height-display_list_title));
 	--max-vmargin: 240px;
-	margin: clamp(var(--min-vmargin), 25vh, var(--max-vmargin)) 0;
+	margin: min(max(var(--min-vmargin), 25vh), var(--max-vmargin)) 0;
 }
 article h2::before {
 	content: "§";
@@ -96,7 +103,7 @@ article h3 {
 article h3 + * {
 	margin-top: 100px;
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	article h3 {
 		margin-top: 120px;
 	}
@@ -104,7 +111,7 @@ article h3 + * {
 		margin-top: 40px;
 	}
 }
-@media (width > 599px) {
+@media (min-width: 601px) {
 	/* hang bullets when margins are wide */
 	article > .body-list {
 		padding-left: 0;
@@ -125,7 +132,7 @@ article h3 + * {
 	font-size: var(--font-size-label);
 	line-height: var(--line-height-label);
 	grid-column-start: bound-left;
-	max-width: 48em;
+	max-width: 35em; /* around 80 chars */
 }
 .gallery figcaption::before {
 	font-variant: all-small-caps;
@@ -138,7 +145,10 @@ article h3 + * {
 .gallery.multi-caption > figure {
 	display: contents;
 }
-.gallery.multi-caption img {
+/* in multi-caption galleries, media and captions are grouped inside figures */
+/* override order to pull all media above captions */
+.gallery.multi-caption img,
+.gallery.multi-caption video {
 	order: 1;
 }
 .gallery.multi-caption figcaption {
@@ -158,7 +168,7 @@ article h3 + * {
 .gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
 	content: 'Right';
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	.gallery.multi-caption[data-stacks-below="600"] figure:nth-of-type(1) figcaption::before {
 		content: 'Top';
 	}
@@ -171,7 +181,8 @@ article h3 + * {
 }
 
 .gallery.figure-plaque-pair {
-	--ideal-figure-column-count: 12;
+	/*--ideal-figure-column-count: 12;*/
+	--ideal-figure-column-count-half: 6;
 	line-height: 20px;
 	align-items: start;
 	row-gap: 150px;
@@ -184,7 +195,8 @@ article h3 + * {
 	box-shadow: var(--card-shadow);
 }
 .gallery.figure-plaque-pair figcaption {
-	grid-column: span 4 / calc(-2 + min(var(--column-deficit), 2) / 2);
+/*	grid-column: span 4 / calc(-2 + min(var(--column-deficit), 2) / 2);*/
+	grid-column: span 4 / calc(-2 + min(var(--column-deficit-half), 1));
 }
 .gallery.figure-plaque-pair figcaption p {
 	font-size: var(--font-size-body);
@@ -199,7 +211,7 @@ article h3 + * {
 .gallery.figure-plaque-pair h5 {
 	margin-top: var(--line-height-label);
 }
-@media (width < 700px) {
+@media (max-width: 700px) {
 	.gallery.figure-plaque-pair {
 		row-gap: var(--line-height-body);
 	}
@@ -219,7 +231,7 @@ article h3 + * {
 	--ideal-span: 3;
 	grid-column: var(--focus-column, auto) / span var(--column-span);
 }
-@media (width < 850px) {
+@media (max-width: 850px) {
 	.gallery.caption-side figcaption {
 		grid-column: bound-left / bound-right;
 	}
@@ -269,7 +281,7 @@ article figure blockquote::before {
 	grid-column-end: content-right;
 	grid-column-start: span var(--quote-column-span);
 }
-@media (width < 600px) {
+@media (max-width: 600px) {
 	/* when margin in minimal, do not hang quote mark */
 	article figure blockquote::before {
 		right: initial;
