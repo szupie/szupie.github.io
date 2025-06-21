@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Experimental video player for technical presentations | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Experimental video player</h1>
+					<video poster="assets/transcript-on-video-seek.jpg" loop playsinline autoplay muted controls>
+						<source src="assets/transcript-on-video-seek-698w.mp4" type="video/mp4" media="(max-width: 850px)"/>
+						<source src="assets/transcript-on-video-seek.mp4" type="video/mp4"/>
+					</video>
+					<p>A concept player optimised for scanning through technical videos that are predominantly speech</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Interaction Design</li>
+							<li>Motion Design</li>
+							<li>Prototyping</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p><i>This work is from my role as an experience designer at an advertising agency</i></p>
+
+				<p>A major computing company with a large library of technical videos tasked us with concepting a central destination for video content discovery. The goal was to create an interactive video experience that can answer people’s questions.</p>
+
+
+				<h3 id="Considerations_for_technical_video_content">Considerations for technical video content</h3>
+
+				<p>Unlike other popular video platforms with more visually-driven content, the videos on this platform are dominated by voice-overs paired with static visuals. Since many of the videos were long and covered multiple topics, it would be especially helpful to provide quick access to a specific part in a video. To achieve that without manual tagging of the large library of existing content, I proposed using the company’s own speech-to-text service to automatically generate timecoded transcripts at scale, improving navigation within these videos, as well as discoverability of the content via search.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/example-video-screenshot-1.jpg" alt="A slide with high level bullet points" class="key-figure" style="--ideal-span: 6"/>
+					<img src="assets/example-video-screenshot-2.jpg" alt="Speakers sitting on stage" class="key-figure" style="--ideal-span: 6"/>
+					<figcaption>Many of the videos are composed of long static shots of narration over slides or talking heads, making it difficult to identify a place in a video using the seeker</figcaption>
+				</figure>
+
+
+				<h3 id="Video_transcript_prior_art">Video transcript prior art</h3>
+
+				<p>Educational video platforms commonly provide a way for users to browse through the full transcript of captioned videos. However, it is typically tucked away and kept separate from the video. For this platform’s narrative-driven, long-form videos, I saw an opportunity to improve navigation within a video by more closely integrating the transcript.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/tedx-transcript.jpg" alt="TEDx’s transcript view puts the video in a miniplayer" class="key-figure" style="--ideal-span: 6"/>
+					<img src="assets/khan-transcript.jpg" alt="Khan Academy puts the transcript in a smaller frame below the video" class="key-figure" style="--ideal-span: 6"/>
+					<figcaption>Educational video sites like TEDx and Khan Academy provide transcripts in a separate, secondary space from the main video</figcaption>
+				</figure>
+
+
+				<h3 id="Video_seeker_for_narration-focused_content">Video seeker for narration-focused content</h3>
+
+				<p>Since the videos are generally in the format of static slides accompanied by long narrations, the video frame-based seeking functionality of regular video players was less useful for identifying a specific portion in the videos.</p>
+
+				<p>Instead, I proposed making the transcript the main focus when seeking, allowing users to browse through a video as though scrolling and skimming through an article.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<video poster="assets/transcript-on-video-seek.jpg" controls loop playsinline autoplay>
+						<source src="assets/transcript-on-video-seek.mp4" type="video/mp4"/>
+					</video>
+					<figcaption>The full transcripts are shown while scrubbing through the timeline, making it easy to see where you are in video even when the visual portion itself is not informative</figcaption>
+				</figure>
+
+
+				<h3 id="Answering_questions">Answering questions</h3>
+
+				<p>Another natural language API available in the platform was an answering service that can take a natural language question as an input, and extract snippets from a corpus to answer the question. I proposed integrating this into the search functionality of the content hub, utilising automatically generated video transcripts as a corpus for answering questions. The search results would display answer snippets in text, and allow users to jump to the referenced portion of the videos.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/answer-extraction.png" alt="Video library search results page, with answer snippets for each result" class="key-figure"/>
+					<figcaption>Users can ask a question on the video library and get exactly the part of the video that answers their question</figcaption>
+				</figure>
+
+
+				<h3 id="Prototyping">Prototyping</h3>
+
+				<p>Due to the complex functionalities in this experience, it was essential to create an interactive prototype to validate the concept. The prototype was created in Principle, making extensive use of independent components with multiple states.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/componentisation-for-prototyping.png" alt="Screenshot of views and components broken out into separate pieces" class="key-figure"/>
+					<figcaption>Breaking the designs down into separate components for prototyping, which also allowed design changes to be incorporated later</figcaption>
+				</figure>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<video poster="assets/transcript-on-video-seek.jpg" controls playsinline>
+						<source src="assets/video-library-prototype.mp4" type="video/mp4"/>
+					</video>
+					<figcaption>Motion design and interaction prototyping done in Principle</figcaption>
+				</figure>
+
+			</article>
+		</main>
+		<footer>
+			<h2>Get in touch</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="https://github.com/szupie/">Github</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/angus-lo/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="mailto:szupie@gmail.com">Email</a>
+					</li>
+					<li>
+						<a href="/about/#experience">Resumé</a>
+					</li>
+				</ul>
+				<small>This site was designed and coded by hand. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+</html>

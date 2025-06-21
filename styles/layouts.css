@@ -197,6 +197,10 @@ main > section + section {
 	grid-column: var(--body-column-start) / -1;
 }
 
+.row-list.detail-section .title + .detail {
+	margin-top: calc(-1 * var(--line-height-body));
+}
+
 /* layout for list of projects */
 .project {
 	--min-thumbnail-span: 3;

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Survey analysis & visualisation dashboard | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Survey analysis & visualisation dashboard</h1>
+					<img src="assets/cover.jpg" alt=""/>
+					<p>Infusing data science expertise in a survey analysis dashboard</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Interaction Design</li>
+							<li>Data Visualisation</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p><i>This work is from my role as an experience designer at an advertising agency</i></p>
+
+				<p>The impact of a marketing campaign can be maximised with a good understanding of the target audience. Strategists regularly look through marketing research to uncover audience insights, which allows for more efficient spending on media and more relevant creative concepts.</p>
+
+				<p>In this project, we set out to design an audience data analysis tool that simplifies the process from market research to presentation-ready charts, and make it easy to use with minimal training.</p>
+
+
+				<h3 id="Automated_insights_based_on_statistical_tests">Automated insights based on statistical tests</h3>
+
+				<p>Services like Simmons Insights and Mintel capture detailed survey data on consumers, providing marketers access to ready-to-use data on demographics, behaviours, and attitudes. The most common use case is to find groups that index most closely with some product attitudes or behaviours, for example people with certain interests being more likely to use a certain product.</p>
+
+				<p>To facilitate strategists in combing through these massive data sets, I designed a dynamic, rule-based dashboard interface that recommends important findings to focus on based on statistical analyses performed in the background. I identified statistical tests for surfacing the most interesting features in a variety of data sets – for example, highlighting potentially correlated survey items based on chi-squared tests. The charts are accompanied by text that helps users interpret the significance of the data, making it accessible to those without prior knowledge of statistical analysis.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/statistical-tests-annotations.png" alt="Annotations of a UI with bar charts next to notes on the data" class="key-figure"/>
+					<figcaption>Annotated designs for the syndicated data dashboard, noting the rules for determining the most interesting features to surface from the data.</figcaption>
+				</figure>
+
+
+				<h3 id="Audience_segmentation_tool">Audience segmentation tool</h3>
+
+				<p>The preliminary findings from syndicated data may inform custom surveys that test more specific hypotheses. Strategists often need to use the data to visualise how different survey responses correlate with each other. I designed an interface that simplifies the process of creating custom audience segmentations and producing charts ready to be used in presentations and project briefs.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 5">
+					<img src="assets/segmentation-tool.png" alt="UI containing grouped bar charts of different survey questions, and a panel for controlling the segmentation" class="key-figure"/>
+					<figcaption>The filter panel allows users to create and examine any custom audience segmentation. This example data indicates that within the current filter combination, respondents from New York are more likely to shop from boutiques (middle bar) than those from other cities. Conversely, Chicagoans are more likely to buy from subscription box services (bottom bar).</figcaption>
+				</figure>
+
+
+				<h3 id="Visualising_key_features_of_the_data">Visualising key features of the data</h3>
+
+				<p>Data analysis is a process that can involve many steps, including:</p>
+				<ul class="body-list">
+					<li>An overview of the distributions in responses</li>
+					<li>Checking for biases or other issues in the sampled population</li>
+					<li>Identifying correlations and tendencies</li>
+					<li>Deeper dive for other interesting features in the data, like unusual distributions</li>
+				</ul>
+
+				<p>Different chart types are more suitable than others for illustrating different points. The bar chart is a versatile default, effective at showing not just differences in proportions, but also trends in ordered data and multi-select responses.</p>
+
+				<figure class="gallery spiral" style="--ideal-focus-column: 8">
+					<img src="assets/barcharts.png" alt="Bar charts showing the responses to different survey questions" style="--ideal-span: 8" class="key-figure" data-focus-quadrant="left above"/>
+					<img src="assets/barcharts-comparison.png" alt="Grouped bar charts segmented by response to a survey item" class="key-figure" style="--ideal-span: 4" data-focus-quadrant="right bleed above"/>
+					<figcaption>Bar charts can visualise distributions that pie charts cannot, such as multiselect responses (“I own a...”) and trends in ordered data (“Are you in the market to purchase” vs “When did you last purchase”)</figcaption>
+				</figure>
+
+
+				<p>One unique feature of this survey analysis dashboard is the automatic extraction of psychometric data based on the respondents’ survey responses. The free-form responses are fed to an API that returns scores along a continuous scale on various psychometric values, such the Big Five personality traits.</p>
+
+				<p>For these data types with values on a continuous spectrum, a histogram reveals nuances in the shape of the distribution, like skews – concentrations around certain values – and multimodal distributions – peaks at multiple values.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/psychographics-histograms.png" alt="Histograms comparing distributions of psychographic scores for different populations" class="key-figure"/>
+					<figcaption>The histograms for the extraversion trait reveal that the top population’s scores concentrate around multiple values, while the bottom population’s distribution has a negative skew.</figcaption>
+				</figure>
+
+
+				<p>The API also performs sentiment analysis on the responses. I proposed enhancing that functionality by identifying common keywords, which uncovers the most frequent, positive, and negative topics of interest to an audience segmentation.</p>
+
+				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 5">
+					<img src="assets/keywords-sentiment-histograms.png" alt="UI showing sentiment values and quote snippets for different keywords" style="--ideal-span: 10" class="key-figure"/>
+					<img src="assets/keywords-comparison.png" alt="Charts comparing keywords between different populations" style="--ideal-span: 6" class="key-figure float"/>
+					<figcaption>Keyword sentiments are shown in context with quote snippets, allowing users to validate the analysis and probe deeper. The comparison view can reveal how opinions differ between audience segments.</figcaption>
+				</figure>
+
+
+				<p>Some survey questions are designed to uncover sentiments throughout a consumer’s journey. The sentiment scores are calculated automatically based on the free-form responses. This is shown in a time series chart to show the changes throughout the stages.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/sentiment-time-series.png" alt="Time series chart" class="key-figure"/>
+					<figcaption>Time series chart mapping sentiment along the consumer journey</figcaption>
+				</figure>
+
+
+				<h3 id="Other_explorations">Other explorations</h3>
+
+				<figure class="gallery uniform-grid" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/sketch-1.jpg" alt="" style="--ideal-span: 4" class="key-figure"/>
+					<img src="assets/sketch-2.jpg" alt="" style="--ideal-span: 4" class="key-figure"/>
+					<img src="assets/sketch-3.jpg" alt="" style="--ideal-span: 8" class="key-figure"/>
+					<figcaption>Initial sketches of data visualisations in the dashboard</figcaption>
+				</figure>
+
+				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 5">
+					<img src="assets/personality-radar-chart.png" alt="Big Five personality traits of different audience segments plotted on a radar chart" style="--ideal-span: 6" class="key-figure"/>
+					<figcaption>Some chart types like box and whisker plots and radar charts were proposed but later abandoned due to unfamiliarity to the charts’ intended audience</figcaption>
+				</figure>
+
+			</article>
+		</main>
+		<footer>
+			<h2>Get in touch</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="https://github.com/szupie/">Github</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/angus-lo/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="mailto:szupie@gmail.com">Email</a>
+					</li>
+					<li>
+						<a href="/about/#experience">Resumé</a>
+					</li>
+				</ul>
+				<small>This site was designed and coded by hand. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+</html>
