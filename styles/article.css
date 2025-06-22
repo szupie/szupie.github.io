@@ -100,14 +100,16 @@ article h3 {
 	margin-top: 200px;
 	padding-top: 20px;
 }
-article h3 + * {
+article h3 + *,
+article h3 + .gallery {
 	margin-top: 100px;
 }
 @media (max-width: 850px) {
 	article h3 {
 		margin-top: 120px;
 	}
-	article h3 + * {
+	article h3 + *,
+	article h3 + .gallery {
 		margin-top: 40px;
 	}
 }
@@ -215,7 +217,7 @@ article h3 + * {
 	.gallery.figure-plaque-pair {
 		row-gap: var(--line-height-body);
 	}
-	.gallery.figure-plaque-pair img,
+	.gallery.figure-plaque-pair img:not(.vertical),
 	.gallery.figure-plaque-pair figcaption {
 		grid-column: bound-left / bound-right;
 	}
