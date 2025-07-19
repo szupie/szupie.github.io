@@ -1,9 +1,9 @@
 initScrollObserver();
 
 function initScrollObserver() {
-	const stickyElement = document.querySelector('.sticky-cards');
+	const stickyElement = document.querySelector('.growing-cards');
 	const postPeekElement = stickyElement.querySelector('.peeker').nextElementSibling;
-	const offscreenTriggerElement = document.querySelector('header');
+	const stickyInhibitorElement = document.querySelector('.sticky-inhibitor');
 
 	function updateSize() {
 		stickyElement.style.setProperty('--computed-height', `${stickyElement.getBoundingClientRect().height}px`);
@@ -20,7 +20,7 @@ function initScrollObserver() {
 
 	function onIntersect(entries) {
 		entries.forEach(entry => {
-			if (entry.target === offscreenTriggerElement) {
+			if (entry.target === stickyInhibitorElement) {
 				stickyElement.classList.toggle('peeking', !entry.isIntersecting);
 			}
 			if (entry.target === postPeekElement) {
@@ -40,7 +40,7 @@ function initScrollObserver() {
 	window.addEventListener('resize', updateSize);
 
 	const observer = new IntersectionObserver(onIntersect, { rootMargin: '-3px' });
-	observer.observe(offscreenTriggerElement);
+	if (stickyInhibitorElement) observer.observe(stickyInhibitorElement);
 	observer.observe(postPeekElement);
 	stickyElement.style.setProperty('--scroll-grow-percentage', 0);
 

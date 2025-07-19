@@ -564,3 +564,141 @@ main > section + section {
 	width: 100%;
 	margin-bottom: calc(-0.5 * var(--line-height-body));
 }
+
+/* cards that expand from bottom */
+.growing-cards {
+	--scroll-grow-percentage: 1;
+	--staggered-card-percentage: var(--scroll-grow-percentage);
+	--item-left-padding: var(--column-gap);
+	--item-column-span: var(--column-count-half);
+	--item-width: calc(var(--item-column-span) * (var(--column-width) + var(--column-gap)));
+	--bottom-peek-height: calc(
+		var(--line-height-section_title) +
+		var(--line-height-body) * 2
+	);
+	display: grid;
+	grid-template-columns: var(--grid-columns);
+	column-gap: var(--column-gap);
+	position: relative; /* size top border relative to this block */
+	margin-top: 200px;
+	margin-bottom: calc(-10 * var(--line-height-body)); /* counteract main padding-bottom */
+}
+.growing-cards section {
+	--staggerness: 0.3; /* from 0 to 1: simultaneous to no overlap */
+	grid-column: auto / span var(--item-column-span);
+	box-sizing: border-box;
+	min-height: calc(var(--item-width) / 1.618); /* golden ratio min height */
+	padding-left: var(--item-left-padding);
+	padding-bottom: var(--item-left-padding);
+	margin-left: calc(-1 * var(--item-left-padding));
+	position: relative; /* position side borders relative to this block */
+}
+.growing-cards section:first-of-type {
+	--staggered-card-percentage: min(1, calc(var(--scroll-grow-percentage) * (1 + var(--staggerness))));
+}
+.growing-cards section + section {
+	border-left: none;
+	--staggered-card-percentage: max(0, min(1, calc(var(--scroll-grow-percentage) * (1 + var(--staggerness)) - var(--staggerness))));
+}
+.growing-cards h2 {
+	font-style: normal;
+	/* interpolate size from section title to display list title */
+	font-size: calc(
+		var(--font-size-section_title) + 
+		(var(--font-size-display_list_title) - var(--font-size-section_title)) * var(--staggered-card-percentage)
+	);
+	line-height: calc(
+		var(--line-height-section_title) + 
+		(var(--line-height-display_list_title) - var(--line-height-section_title)) * var(--staggered-card-percentage)
+	);
+}
+.growing-cards h2 a {
+	text-decoration: none;
+	display: block;
+	padding: var(--line-height-body) 0;
+}
+.growing-cards h2 a::after {
+	content: " »";
+	display: inline-block;
+	margin-left: 0.4ch;
+	transition: transform ease-in-out 200ms;
+}
+.growing-cards h2 a:hover::after,
+.growing-cards h2 a:focus::after {
+	transform: translateX(3px);
+}
+.growing-cards p {
+	max-width: 18em;
+	margin-right: var(--item-left-padding);
+	opacity: calc(var(--staggered-card-percentage) * var(--staggered-card-percentage) * var(--staggered-card-percentage));
+}
+
+/* card borders */
+.growing-cards::before,
+.growing-cards section::after {
+	content: "";
+	display: block;
+	position: absolute;
+	height: 100%;
+}
+.growing-cards::before {
+	margin-left: calc(50% - var(--item-left-padding) / 2);
+	border-top: 1px solid var(--black);
+	width: calc(
+		100% + var(--item-left-padding) +
+		(100vw - 100%) * (1 - var(--scroll-grow-percentage))
+	);
+	transform: translateX(-50%);
+}
+.growing-cards section + section {
+	border-left: 1px solid var(--black);
+}
+.growing-cards section::after {
+	top: 0;
+	border-left: 1px solid var(--black);
+	transform: scaleY(var(--staggered-card-percentage));
+	transform-origin: top;
+}
+.growing-cards section:first-of-type::after {
+	left: 0;
+}
+.growing-cards section:last-of-type::after {
+	right: 0;
+}
+
+/* scroll-based states */
+.growing-cards.observing {
+	/* position sticky only if js initiated */
+	position: sticky;
+	bottom: calc(-1 * var(--computed-height));
+	transition: bottom 200ms ease-in-out;
+}
+.growing-cards.peeking {
+	bottom: calc(var(--bottom-peek-height) - var(--computed-height));
+}
+
+@media (width < 600px) {
+	.growing-cards {
+		--item-column-span: var(--column-count);
+	}
+	.growing-cards.peeking section {
+		--staggerness: 1; /* from 0 to 1: simultaneous to complete overlap */
+	}
+	.growing-cards::before {
+		display: none;
+	}
+	.growing-cards section + section {
+		border-left: none;
+	}
+	.growing-cards section::after {
+		border-left: none;
+		border-top: 1px solid var(--black);
+		height: 0;
+		width: 100vw;
+		left: 0;
+		transform: none;
+	}
+	.growing-cards.observing {
+		position: static;
+	}
+}
