@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>VR architectural rendering brochure | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>VR architectural rendering brochure</h1>
+					<svg viewBox="0 0 1040 585" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<defs>
+							<style>
+								:root {
+									--frame-width: 222px;
+									--frame-height: 405px;
+
+									--x-1: 155px;
+									--x-2: 409px;
+									--x-3: 663px;
+								}
+								#mobile-frame {
+									width: var(--frame-width);
+									height: var(--frame-height);
+								}
+								.frame-border {
+									fill: none;
+									stroke: #464646;
+									stroke-width: 2px;
+								}
+								.video {
+									y: 90px;
+									width: var(--frame-width);
+									height: 405px;
+								}
+							</style>
+							<rect id="mobile-frame" rx="16" ry="16" y="90"/>
+							<clipPath id="mobile-frames-clip">
+								<use xlink:href="#mobile-frame" style="x: var(--x-2)"/>
+							</clipPath>
+						</defs>
+
+						<!-- bg image -->
+						<image x="0" y="0" width="100%" height="100%" xlink:href="assets/cover.jpg" />
+						
+						<!-- video -->
+						<foreignObject class="video" clip-path="url(#mobile-frames-clip)" style="x: var(--x-2)">
+							<video poster="assets/360.png" controls loop playsinline autoplay muted width="100%">
+								<source src="assets/360.mp4" type="video/mp4"/>
+							</video>
+						</foreignObject>
+
+						<!-- frame borders -->
+						<use class="frame-border" xlink:href="#mobile-frame" style="x: var(--x-1)"/>
+						<use class="frame-border" xlink:href="#mobile-frame" style="x: var(--x-2)"/>
+						<use class="frame-border" xlink:href="#mobile-frame" style="x: var(--x-3)"/>
+					</svg>
+					<p>Simple VR experience for showcasing points of interest in a physical space</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Interaction Design</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p><i>This work is from my role as an experience designer at an advertising agency</i></p>
+
+				<p>A commercial real estate company was looking for ways to use their 3D architectural renderings to promote their properties under development. We were tasked with designing an experience that provides an overview of the neighbourhood, residential properties, amenities, and other developments. This simple education and sales tool would be targeted for residents, consumers, retailers, and investors in the area.</p>
+
+
+				<h3 id="Defining_the_interaction_pattern">Defining the interaction pattern</h3>
+
+				<p>I started by finding examples of storytelling in a 3D scene in order to help the clients visualise the different approaches and understand each direction’s strengths and weakness.</p>
+
+				<p>The examples covered a range of simple interaction paradigms for presenting immersive environments, including:</p>
+
+				<ul class="body-list">
+					<li><strong>AR overlays</strong>: virtual elements superimposed on camera view</li>
+					<li><strong>360 panorama</strong>: à la Google Street View</li>
+					<li><strong>on-rails experience</strong>: guide users through a scene along a predetermined path by scrolling up or down</li>
+				</ul>
+
+				<figure class="gallery spiral" style="--ideal-focus-column: 5">
+					<video poster="assets/example-ar-mural.jpg" class="float" loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="left">
+						<source src="assets/example-ar-mural.mp4" type="video/mp4"/>
+					</video>
+					<video poster="assets/example-statue-liberty-360.jpg" loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="above">
+						<source src="assets/example-statue-liberty-360.mp4" type="video/mp4"/>
+					</video>
+					<video poster="assets/example-nyt-3d-scene.jpg" loop playsinline autoplay muted style="--ideal-span: 6" data-focus-quadrant="right">
+						<source src="assets/example-nyt-3d-scene.mp4" type="video/mp4"/>
+					</video>
+					<figcaption data-focus-quadrant="right" style="--ideal-span: 6">Examples of different interaction patterns for exploring an immersive environment. Clockwise from left: <a href="https://augmentedislandstudios.com/work/the-journey-ar-murals/">“The Journey” AR mural</a>, <a href="https://www.nps.gov/hdp/exhibits/stli/stli_tour.html">Statue of Liberty Virtual Tour</a>, and <a href="https://rd.nytimes.com/projects/reconstructing-journalistic-scenes-in-3d/">Reconstructing Journalistic Scenes in 3D</a></figcaption>
+				</figure>
+
+				<p>In the end, we aligned on the 360° view approach for its balance of simplicity, richness of interactions, and technical feasibility. The experience would include panoramas of the architectural renderings at each development site, reacting to the device’s compass and accelerometer data. Those on location would be able to use their phone as a portal for peering into the future.</p>
+
+				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/user-flow.png" alt="" class="key-figure" style="--ideal-span: 5"/>
+					<figcaption style="--ideal-span: 3">High level view of the user flow, showing how information is organised into different views and how users can navigate through them</figcaption>
+				</figure>
+
+
+				<h3 id="Bite-sized_information_in_a_modular_design_system">Bite-sized information in a modular design system</h3>
+
+				<p>For the more detailed information about each point of interest, I recommended displaying the content in a view separate from the panoramic scenes. Rendering text and other media within the scenes would make the content less legible, forcing users to adjust their framing by pointing their phone at exactly the right direction.</p>
+
+				<p>Instead, I proposed tucking the detailed content into cards that can be revealed by tapping on icons within the panoramic scenes. Breaking up the content into multiple cards makes the information more digestible, so users can get bite-sized info only for the points that interest them.</p>
+
+				<p>Since there were many points of interest with varying types of information, I proposed a modular layout for the information cards that would still display the content in an organised, easily consumable format. The clients would be able to include information like nearby shops and transportation, sustainability ratings, and other specifications as available for each point of interest.</p>
+
+				<figure class="gallery spiral">
+					<img src="assets/wires-360-view.png" alt="" class="key-figure" style="--ideal-span: 12" data-focus-quadrant="center"/>
+					<img src="assets/wires-info-view.png" alt="" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="left"/>
+					<img src="assets/wires-map-view.png" alt="" class="key-figure" style="--ideal-span: 6" data-focus-quadrant="right"/>
+					<figcaption>Wireframes of the different views to align on the general interaction pattern</figcaption>
+				</figure>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/screens.png" alt="" class="key-figure"/>
+					<figcaption>Final visual designs of the experience</figcaption>
+				</figure>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/desktop-360.jpg" alt="" class="key-figure" style="--ideal-span: 6"/>
+					<img src="assets/desktop-map.jpg" alt="" class="key-figure" style="--ideal-span: 6"/>
+					<figcaption>Desktop usage was a lower priority, so I recommended ways to reuse as much from the mobile design as possible</figcaptionx>
+				</figure>
+
+
+				<h3 id="Deveopment_testing">Development & testing</h3>
+
+				<p>During development, I helped test and fine-tune the settings for the panoramic scenes. Determinining the field of view for the scenes required balancing showing more within the screen versus avoiding distortions introduced by wide angle lenses. I proposed starting at around 70˚ to match the familiar wide angle lens of an iPhone, and after some testing adjusted down to 60˚ to reduce the distortions.</p>
+
+				<figure class="gallery spiral">
+					<video poster="assets/map.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="left">
+						<source src="assets/map.mp4" type="video/mp4"/>
+					</video>
+					<video poster="assets/360.png" class="key-figure float" controls loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="right">
+						<source src="assets/360.mp4" type="video/mp4"/>
+					</video>
+					<video poster="assets/info-card.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" data-focus-quadrant="left">
+						<source src="assets/info-card.mp4" type="video/mp4"/>
+					</video>
+					<figcaption data-focus-quadrant="left" style="--ideal-span: 4">Screen captures of the finished product</figcaption>
+				</figure>
+
+
+				<h2 id="Installation_Design">Installation Design</h2>
+
+				<h3 id="Showroom_presentation_template_design">Showroom presentation template design</h3>
+
+				<p>In addition to the interactive experience, I also led the creation of a design system for the large wall-sized informational displays at their showroom. I provided guidance on how to scale the templates so that designers can see their designs at the correct size without being on location with the large screens.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/showroom-displays/screen-dimensions.png" alt="" class="key-figure" style="--ideal-span: 8"/>
+					<img src="assets/showroom-displays/template-modularity.png" alt="" class="key-figure" style="--ideal-span: 4"/>
+					<figcaption>To help designers create at the proper scale, I calculated the apparent size of the screens based on the expected viewing distance</figcaption>
+				</figure>
+
+				<p>I identified the set of most useful content types for the tours, and proposed a modular system of components that would allow easy creation of templated designs with endless variations.</p>
+
+				<figure class="gallery spiral" style="--ideal-focus-column: 8">
+					<img src="assets/showroom-displays/content-types.png" alt="" class="key-figure" style="--ideal-span: 8" data-focus-quadrant="left bleed above"/>
+					<img src="assets/showroom-displays/combinations.png" alt="" class="key-figure" style="--ideal-span: 4" data-focus-quadrant="right bleed above"/>
+					<figcaption>I guided the clients in narrowing down the list of content types we would design for, which defines a manageable scope of work and makes it easier for them to use the design system</figcaption>
+				</figure>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 5">
+					<img src="assets/showroom-displays/templates.png" alt="" class="key-figure"/>
+					<figcaption>Wireframes of example templates, to help clients put the design system into use</figcaption>
+				</figure>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/showroom-displays/presentation-screen-templates.png" alt="" class="key-figure"/>
+					<figcaption>Final design templates for the two sizes of video walls</figcaption>
+				</figure>
+
+			</article>
+		</main>
+		<footer>
+			<h2>Get in touch</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="https://github.com/szupie/">Github</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/angus-lo/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="mailto:szupie@gmail.com">Email</a>
+					</li>
+					<li>
+						<a href="/about/#experience">Resumé</a>
+					</li>
+				</ul>
+				<small>This site was designed and coded by hand. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+</html>
