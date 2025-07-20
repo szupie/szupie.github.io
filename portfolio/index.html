@@ -162,6 +162,63 @@
 						<a href="video-player/" class="primary-link" aria-hidden="true" tabindex="-1">Read case study</a>
 					</li>
 					<li class="project">
+						<h2><a href="vr-architectural-rendering/">VR architectural rendering brochure</a></h2>
+						<ul class="roles inline-list">
+							<li>Interaction Design</li>
+						</ul>
+						<a href="vr-architectural-rendering/" class="thumbnail-link" tabindex="-1">
+							<svg viewBox="0 0 1040 585" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="archi-cover">
+								<defs>
+									<style>
+										#archi-cover {
+											--frame-width: 222px;
+											--frame-height: 405px;
+
+											--x-1: 155px;
+											--x-2: 409px;
+											--x-3: 663px;
+										}
+										#archi-mobile-frame {
+											width: var(--frame-width);
+											height: var(--frame-height);
+										}
+										.frame-border {
+											fill: none;
+											stroke: #464646;
+											stroke-width: 2px;
+										}
+										.video {
+											y: 90px;
+											width: var(--frame-width);
+											height: 405px;
+										}
+									</style>
+									<rect id="archi-mobile-frame" rx="16" ry="16" y="90"/>
+									<clipPath id="archi-mobile-frames-clip">
+										<use xlink:href="#archi-mobile-frame" style="x: var(--x-2)"/>
+									</clipPath>
+								</defs>
+
+								<!-- bg image -->
+								<image x="0" y="0" width="100%" height="100%" xlink:href="vr-architectural-rendering/assets/cover.jpg" />
+								
+								<!-- video -->
+								<foreignObject class="video" clip-path="url(#archi-mobile-frames-clip)" style="x: var(--x-2)">
+									<video poster="vr-architectural-rendering/assets/360.png" controls loop playsinline autoplay muted width="100%">
+										<source src="vr-architectural-rendering/assets/360.mp4" type="video/mp4"/>
+									</video>
+								</foreignObject>
+
+								<!-- frame borders -->
+								<use class="frame-border" xlink:href="#archi-mobile-frame" style="x: var(--x-1)"/>
+								<use class="frame-border" xlink:href="#archi-mobile-frame" style="x: var(--x-2)"/>
+								<use class="frame-border" xlink:href="#archi-mobile-frame" style="x: var(--x-3)"/>
+							</svg>
+						</a>
+						<p class="description">Simple VR experience for showcasing points of interest in a physical space</p>
+						<a href="vr-architectural-rendering/" class="primary-link" aria-hidden="true" tabindex="-1">Read case study</a>
+					</li>
+					<li class="project">
 						<h2><a href="investment-account-dashboard/">Investment account dashboard</a></h2>
 						<ul class="roles inline-list">
 							<li>Interaction Design</li>

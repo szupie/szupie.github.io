@@ -131,10 +131,11 @@ main > section + section {
 }
 .secondary-list .project .thumbnail-link {
 	order: -2;
+	width: 100%;
 }
 .secondary-list .project .thumbnail-link > * {
 	width: 100%;
-	aspect-ratio: 16 / 10;
+	aspect-ratio: 16 / 9;
 	object-fit: cover;
 }
 @media (min-width: 851px) {
