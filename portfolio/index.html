@@ -26,7 +26,7 @@
 		<main class="featured-landing">
 			<header>
 				<h1>Portfolio</h1>
-				<p>Here is the process behind some of my personal projects and client work as a user&nbsp;experience designer</p>
+				<p>Here is the process behind some of my personal projects and client work as a user&nbsp;experience designer. I’ve also given <a href="#talks">talks on design and science</a>.</p>
 			</header>
 
 			<section id="projects">
@@ -162,6 +162,63 @@
 						<a href="video-player/" class="primary-link" aria-hidden="true" tabindex="-1">Read case study</a>
 					</li>
 					<li class="project">
+						<h2><a href="vr-architectural-rendering/">VR architectural rendering brochure</a></h2>
+						<ul class="roles inline-list">
+							<li>Interaction Design</li>
+						</ul>
+						<a href="vr-architectural-rendering/" class="thumbnail-link" tabindex="-1">
+							<svg viewBox="0 0 1040 585" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="archi-cover">
+								<defs>
+									<style>
+										#archi-cover {
+											--frame-width: 222px;
+											--frame-height: 405px;
+
+											--x-1: 155px;
+											--x-2: 409px;
+											--x-3: 663px;
+										}
+										#archi-mobile-frame {
+											width: var(--frame-width);
+											height: var(--frame-height);
+										}
+										.frame-border {
+											fill: none;
+											stroke: #464646;
+											stroke-width: 2px;
+										}
+										.video {
+											y: 90px;
+											width: var(--frame-width);
+											height: 405px;
+										}
+									</style>
+									<rect id="archi-mobile-frame" rx="16" ry="16" y="90"/>
+									<clipPath id="archi-mobile-frames-clip">
+										<use xlink:href="#archi-mobile-frame" style="x: var(--x-2)"/>
+									</clipPath>
+								</defs>
+
+								<!-- bg image -->
+								<image x="0" y="0" width="100%" height="100%" xlink:href="vr-architectural-rendering/assets/cover.jpg" />
+								
+								<!-- video -->
+								<foreignObject class="video" clip-path="url(#archi-mobile-frames-clip)" style="x: var(--x-2)">
+									<video poster="vr-architectural-rendering/assets/360.png" controls loop playsinline autoplay muted width="100%">
+										<source src="vr-architectural-rendering/assets/360.mp4" type="video/mp4"/>
+									</video>
+								</foreignObject>
+
+								<!-- frame borders -->
+								<use class="frame-border" xlink:href="#archi-mobile-frame" style="x: var(--x-1)"/>
+								<use class="frame-border" xlink:href="#archi-mobile-frame" style="x: var(--x-2)"/>
+								<use class="frame-border" xlink:href="#archi-mobile-frame" style="x: var(--x-3)"/>
+							</svg>
+						</a>
+						<p class="description">Simple VR experience for showcasing points of interest in a physical space</p>
+						<a href="vr-architectural-rendering/" class="primary-link" aria-hidden="true" tabindex="-1">Read case study</a>
+					</li>
+					<li class="project">
 						<h2><a href="investment-account-dashboard/">Investment account dashboard</a></h2>
 						<ul class="roles inline-list">
 							<li>Interaction Design</li>
@@ -173,23 +230,39 @@
 				</ul>
 			</section>
 
+			<section id="talks" class="hanging-title-layout major-thing">
+				<h2>Talks I’ve given</h2>
+				<section class="row-list detail-section">
+					<p><a href="https://www.figma.com/slides/IR4Hhv0ittLFeOkpb34aFk/Accessibility-for-Everyone">Accessibility for Everyone</a></p>
+					<p class="detail">An introduction to web accessibility with examples that relate to everyone</p>
+				</section>
+				<section class="row-list detail-section">
+					<p><a href="https://www.figma.com/slides/ZJGEG1B0jAvolVaf503qt0/A-Primer-on-Colour">A Primer on Colour</a></p>
+					<p class="detail">The physics and physiology behind colour, the systematic approach to describe it, and practical tips on how to work with it</p>
+				</section>
+				<section class="row-list detail-section">
+					<p><a href="https://www.figma.com/slides/gKlblyZp5r2dRePBN4QJdN/Principles-of-Typography">Principles of Typography</a></p>
+					<p class="detail">Basic typographic rules for working with text</p>
+				</section>
+			</section>
+
 			<hr/>
 
 			<section id="awards" class="hanging-title-layout major-thing">
 				<h2>Awards</h2>
 				<section class="row-list detail-section">
-					<p class="title">Staybl</p>
-					<p class="detail">Experimental browser designed for people with hand tremours</p>
+					<p class="title"><i>Staybl</i></p>
+					<p class="detail">Experimental browser designed for people with hand tremors</p>
 					<p>D&AD Awards 2023 – <a href="https://www.dandad.org/annual/2023/entry/professional/237687">Wood Pencil in Digital Design / Inclusive</a></p>
 				</section>
 				<section class="row-list detail-section">
-					<p class="title">Stags’ Leap – Take the Leap</p>
+					<p class="title"><i>Stags’ Leap – Take the Leap</i></p>
 					<p class="detail">Interactive media in VR</p>
 					<p>Webby Awards 2022 – <a href="https://winners.webbyawards.com/2022/advertising-media-pr/individual/augmented-reality/222109/treasury-wine-estates--stags-leap--take-the-leap">Honoree in Advertising, Media & PR, Augmented Reality</a></p>
 					<p>14th Shorty Awards – <a href="https://shortyawards.com/14th/stags-leap">Audience Honor in Wine, Beer & Spirits, Augmented Reality, Immersive</a></p>
 				</section>
 				<section class="row-list detail-section">
-					<p class="title">Wild Turkey Guided Tasting Experience</p>
+					<p class="title"><i>Wild Turkey Guided Tasting Experience</i></p>
 					<p class="detail">Interactive whiskey tasting experience for digital voice assistants</p>
 					<p>13th Shorty Awards – <a href="https://shortyawards.com/13th/wild-turkey-tasting-experience">Audience Honor in Branded Content</a></p>
 				</section>
@@ -212,6 +285,16 @@
 				</ul>
 			</section>
 			
+			<section class="growing-cards">
+				<section>
+					<h2 class="peeker"><a href="/tools/">Tools I’ve made</a></h2>
+					<p>I’ve also made lots of other web tools, browser extensions, and scripts.</p>
+				</section>
+				<section>
+					<h2 class="peeker"><a href="/about/">About me</a></h2>
+					<p>My expertise covers a wide variety of fields from design to sciences.</p>
+				</section>
+			</section>
 		</main>
 		<footer>
 			<h2>Get in touch</h2>
@@ -234,4 +317,5 @@
 			</section>
 		</footer>
 	</body>
+	<script src="/js/scroll-observer.js"></script>
 </html>
