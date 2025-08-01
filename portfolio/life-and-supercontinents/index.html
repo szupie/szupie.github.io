@@ -27,7 +27,7 @@
 			<article>
 				<header class="cover">
 					<h1>Life & Supercontinents: an interactive atlas and visual essay</h1>
-					<video poster="assets/cover.png" loop playsinline autoplay muted controls>
+					<video poster="assets/cover.png" loop playsinline autoplay muted controls aria-label="Continents drifting around on Earth as a history of evolution scrolls past on the side">
 						<source src="assets/cover-698w.mp4" type="video/mp4" media="(max-width: 850px)"/>
 						<source src="assets/cover.mp4" type="video/mp4"/>
 					</video>
@@ -128,7 +128,7 @@
 						<figcaption>Pannotia’s position by the south pole means it is distorted beyond recognition when presented in the standard equirectangular projection.</figcaption>
 					</figure>
 					<figure>
-						<video poster="assets/land-tracking-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4">
+						<video poster="assets/land-tracking-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" aria-label="Globe continuously recentering the view on India, tracking its movements since Pannotia">
 							<source src="assets/land-tracking.mp4" type="video/mp4"/>
 						</video>
 						<figcaption>When viewed as a globe, only half of the Earth is visible at a time. To avoid the need to constantly rotate the globe, users can track a continent’s movements throughout time.</figcaption>
@@ -144,13 +144,13 @@
 
 				<figure class="gallery multi-caption" style="--ideal-figure-column-count-half: 4" data-stacks-below="600">
 					<figure>
-						<video poster="assets/google-globe-cursor-drift-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4">
+						<video poster="assets/google-globe-cursor-drift-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" aria-label="Touch indicator drifts away when rotating the globe in Google Maps">
 							<source src="assets/google-globe-cursor-drift.mp4" type="video/mp4"/>
 						</video>
 						<figcaption>In many implementations of interactive globes on the web, the point of contact drifts relative to the globe, especially near the poles.</figcaption>
 					</figure>
 					<figure>
-						<video poster="assets/tactile-globe-control-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4">
+						<video poster="assets/tactile-globe-control-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" aria-label="Touch indicator stays on same position on globe">
 							<source src="assets/tactile-globe-control.mp4" type="video/mp4"/>
 						</video>
 						<figcaption>This implementation emulates the physicality of rotating a globe in real life – with the cursor staying at the same point on the globe.</figcaption>
@@ -165,7 +165,7 @@
 				<p>Showing all of Earth’s history in one timeline proved to be a design challenge. Evidence of complex multicellular life only dates back to the most recent fifth of Earth’s history, while fossil evidence of prior life is significantly scarcer. To avoid crowding the history of all plants and animals in a small sliver of the timeline, many textbooks use a logarithmic scale that compresses timespans the further back in time you go. However, I wanted to show time on a linear scale, since it is much easier for humans to comprehend. I decided to use a magnified timeline for the most recent events before zooming out to clearly show its scale relative to the entire history of Earth.</p>
 
 				<figure style="--ideal-figure-column-count-half: 6" class="gallery caption-side">
-					<video poster="assets/map-type-transition-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 9">
+					<video poster="assets/map-type-transition-poster.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 9" aria-label="Transition from detailed maps to rough continent shapes">
 						<source src="assets/map-type-transition.mp4" type="video/mp4"/>
 					</video>
 					<figcaption>The timeline transitions to a different magnification level for pre-Cambrian events, to accommodate the lower density of information available while preserving the intuitiveness of a linear scale.</figcaption>
