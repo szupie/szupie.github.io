@@ -46,7 +46,7 @@
 
 				<p><a href="https://dinosaurpictures.org/ancient-earth">Ancient Earth</a> is a similar tool, but I wanted to show a more complete view of paleomaps and evolutionary history, as well as make it easy to move around different points in time. I also wanted to provide more context on the significance of each event</p>
 
-				<p>This was a personal project that combined my skills in interaction design, UI design, coding, and many hours of research and writing.</p>
+				<p>This was a personal project that combined my skills in interaction design, <abbr>UI</abbr> design, coding, and many hours of research and writing.</p>
 
 				<ul class="body-list">
 					<li>Explore <a href="https://szupie.github.io/supercontinents">Life & Supercontinents</a></li>
@@ -71,7 +71,7 @@
 				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
 					<img src="assets/sketch-mobile.jpg" alt="Sketch of UI in portrait format" class="key-figure" style="--ideal-span: 8"/>
 					<img src="assets/sketch-desktop.jpg" alt="Sketch of UI in landscape format with various inset charts" class="key-figure" style="--ideal-span: 4"/>
-					<figcaption>Early explorations of the UI’s information density at various screen sizes</figcaption>
+					<figcaption>Early explorations of the <abbr>UI</abbr>’s information density at various screen sizes</figcaption>
 				</figure>
 
 
@@ -105,18 +105,18 @@
 
 				<p>Products from the era often used a black and gold colour scheme. Black was a common base colour, which works well in this tool for representing the dark background of space. Gold was a popular accent colour, which I reserved for consistently indicating interactive elements. I also included brown in the colour palette, to be used only in association with geological elements. Gold is a difficult colour to emulate on screen, and works much better when used in contrast with the brown.</p>
 
-				<p>Given the complexity of the UI, it was helpful to have a large palette of colours to create visual separation as well as relationships between the different elements. To ensure sufficient contrast, I used <a href="https://huetone.ardov.me/">Huetone</a> to select a gamette of shades for each hue. The tool helps calculate contrast values between every swatch pairing. It supports the proposed ASPC specification, which is designed to fix some of the flaws in the current WCAG contrast algorithm.</p>
+				<p>Given the complexity of the <abbr>UI</abbr>, it was helpful to have a large palette of colours to create visual separation as well as relationships between the different elements. To ensure sufficient contrast, I used <a href="https://huetone.ardov.me/">Huetone</a> to select a gamette of shades for each hue. The tool helps calculate contrast values between every swatch pairing. It supports the proposed <abbr title="Accessible Perceptual Contrast Algorithm">APCA</abbr> specification, which is designed to fix some of the flaws in the current <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> contrast algorithm.</p>
 
 				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 6">
 					<img src="assets/huetone-screenshot.png" alt="Huetone interface showing a colour palette’s contrast values and how they map along the hue, chroma, and luminance dimensions" style="--ideal-span: 8"/>
 					<img src="assets/ui-colours.png" alt="Screenshot from Life & Supercontinents, with interactive elements in shades of gold overlapping elements in various shades of grey and brown" style="--ideal-span: 12"/>
-					<figcaption><a href="https://huetone.ardov.me/">Huetone</a> visualises contrasts within a colour palette, which was important in designing a UI with many adjacent and overlapping elements.</figcaption>
+					<figcaption><a href="https://huetone.ardov.me/">Huetone</a> visualises contrasts within a colour palette, which was important in designing a <abbr>UI</abbr> with many adjacent and overlapping elements.</figcaption>
 				</figure>
 
 
 				<h3 id="Map_design">Map design</h3>
 
-				<p>Books and research papers are usually limited to showing flat, static maps. Unfortunately, all 2D projections of the globe inherently suffer from distortions of sizes and distances, especially at the edges. For this interactive tool, I wanted to use a rotatable 3D globe, which is immensely more helpful for understanding unfamiliar landmasses.</p>
+				<p>Books and research papers are usually limited to showing flat, static maps. Unfortunately, all <abbr>2D</abbr> projections of the globe inherently suffer from distortions of sizes and distances, especially at the edges. For this interactive tool, I wanted to use a rotatable <abbr>3D</abbr> globe, which is immensely more helpful for understanding unfamiliar landmasses.</p>
 
 				<p>One main disadvantage of a globe is the limited view to one hemisphere at a time. With so many continental plates drifting around in different directions in the vast oceans, users could easily get lost trying to figure out where to turn the globe. I implemented two ways to orient users to land: auto-rotating to each supercontinent, or tracking the movements of specific continents.</p>
 
