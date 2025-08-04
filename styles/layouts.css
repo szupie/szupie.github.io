@@ -62,6 +62,16 @@ header p {
 		--angled-decoration-ideal-top: calc(var(--content-edge-intersect-offset) + 4 * var(--line-height-display));
 	}
 }
+/* gallery parallax */
+:root {
+	--parallax-distance: 300px;
+}
+.gallery img,
+.gallery video,
+.gallery figcaption {
+	--parallax-offset: calc((var(--scroll-progress, 0.5) - 0.5) * -1 * var(--parallax-distance, 0));
+	transform: translateY(var(--parallax-offset));
+}
 
 /* main page sections */
 main > section + section {

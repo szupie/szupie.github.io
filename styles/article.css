@@ -330,6 +330,7 @@ article .gallery::before {
 /* add background for figures only after first section break */
 	display: none;
 }
-article > h2 ~ .gallery::before {
+article > h2 ~ .gallery::before,
+article > h3 ~ .gallery::before {
 	display: block;
 }
