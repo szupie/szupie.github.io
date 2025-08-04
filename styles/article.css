@@ -334,3 +334,7 @@ article > h2 ~ .gallery::before,
 article > h3 ~ .gallery::before {
 	display: block;
 }
+/* avoid accent backgrounds too close together (skip every other) */
+:not(.gallery) + .gallery + .gallery::before {
+	display: none;
+}
