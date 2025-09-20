@@ -262,7 +262,7 @@ article figure blockquote::before {
 .multi-quote {	
 	display: initial;
 	grid-column: content-left / content-right;
-	margin-top: calc(5 * var(--line-height-section_title));
+	margin-top: calc(6 * var(--line-height-section_title));
 	--quote-column-span: min(6, var(--column-count));
 }
 .multi-quote figure {

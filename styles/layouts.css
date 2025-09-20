@@ -62,15 +62,23 @@ header p {
 		--angled-decoration-ideal-top: calc(var(--content-edge-intersect-offset) + 4 * var(--line-height-display));
 	}
 }
-/* gallery parallax */
+/* scroll parallax for galleries and quotes */
 :root {
 	--parallax-distance: 300px;
 }
 .gallery img,
 .gallery video,
-.gallery figcaption {
+.gallery figcaption,
+.multi-quote figure {
 	--parallax-offset: calc((var(--scroll-progress, 0.5) - 0.5) * -1 * var(--parallax-distance, 0));
 	transform: translateY(var(--parallax-offset));
+}
+
+.multi-quote figure {
+	--parallax-distance: 150px;
+	--min-opacity: 0.1;
+	--transition-rate: 5;
+	opacity: calc(var(--transition-rate) * var(--scroll-progress, 1) * var(--scroll-progress, 1) + var(--min-opacity));
 }
 
 /* main page sections */
