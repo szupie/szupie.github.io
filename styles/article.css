@@ -161,25 +161,62 @@ article h3 + .gallery {
 .gallery.multi-caption figure:not(:last-of-type) figcaption {
 	margin-bottom: calc(-1 * var(--column-gap));
 }
-.gallery.multi-caption figure:nth-last-of-type(3) figcaption::before {
-	content: 'Top';
+
+/* Swapping position label between expressive (wide) and stacked layouts */
+.gallery.multi-caption {
+	/* css space toggle trick */
+	--TRUE: ;
+	--FALSE: initial;
+	--is-expressive: var(--TRUE); /* not needed, but setting for clarity */
 }
-.gallery.multi-caption figure:nth-last-of-type(2) figcaption::before {
-	content: 'Left';
-}
-.gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
-	content: 'Right';
+.gallery.multi-caption figcaption::before {
+	/* if (--is-expressive) return --label-expressive; else, trigger fallback */
+	--label-if-expressive: var(--is-expressive) var(--label-expressive);
+
+	content: var(--label-if-expressive, var(--label-stacked));
 }
 @media (max-width: 600px) {
-	.gallery.multi-caption[data-stacks-below="600"] figure:nth-of-type(1) figcaption::before {
-		content: 'Top';
+	.gallery.multi-caption[data-stacks-below="600"] {
+		--is-expressive: var(--FALSE);
 	}
-	.gallery.multi-caption[data-stacks-below="600"] figure:nth-of-type(2):nth-last-of-type(2) figcaption::before {
-		content: 'Middle';
+}
+@media (max-width: 700px) {
+	.gallery.multi-caption[data-stacks-below="700"] {
+		--is-expressive: var(--FALSE);
 	}
-	.gallery.multi-caption[data-stacks-below="600"] figure:nth-last-of-type(1) figcaption::before {
-		content: 'Bottom';
+}
+@media (max-width: 850px) {
+	.gallery.multi-caption[data-stacks-below="850"] {
+		--is-expressive: var(--FALSE);
 	}
+}
+/* Multi-caption position label logic: 
+   At full size, 
+       the last item is on the right,
+       the item before is on the left,
+       if there is a 3rd item, it is on top;
+   When stacked,
+       the last item is at the bottom,
+       the first item is at the top,
+       if there is a middle item, it is in the middle
+*/
+.gallery.multi-caption figure:nth-last-of-type(3) figcaption::before {
+	--label-expressive: 'Top';
+}
+.gallery.multi-caption figure:nth-last-of-type(2) figcaption::before {
+	--label-expressive: 'Left';
+}
+.gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
+	--label-expressive: 'Right';
+}
+.gallery.multi-caption[data-stacks-below] figure:nth-of-type(1) figcaption::before {
+	--label-stacked: 'Top';
+}
+.gallery.multi-caption[data-stacks-below] figure:nth-of-type(2):nth-last-of-type(2) figcaption::before {
+	--label-stacked: 'Middle';
+}
+.gallery.multi-caption[data-stacks-below] figure:nth-last-of-type(1) figcaption::before {
+	--label-stacked: 'Bottom';
 }
 
 .gallery.figure-plaque-pair {
