@@ -89,6 +89,12 @@ p.detail {
 	color: var(--grey);
 }
 
+abbr {
+	font-variant: all-small-caps;
+	font-style: normal;
+	letter-spacing: 0.04em;
+}
+
 a {
 	color: inherit;
 }
