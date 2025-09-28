@@ -2,7 +2,9 @@ initScrollObserver();
 
 function initScrollObserver() {
 	const stickyElement = document.querySelector('.growing-cards');
-	const postPeekElement = stickyElement.querySelector('.peeker').nextElementSibling;
+	// growth percentage is tied to the onscreen percentage of growthControllerElement 
+	const growthControllerElement = stickyElement.querySelector('.peeker').nextElementSibling;
+	// stickyElement does not become sticky unless stickyInhibitorElement is offscreen
 	const stickyInhibitorElement = document.querySelector('.sticky-inhibitor');
 
 	function updateSize() {
@@ -10,12 +12,15 @@ function initScrollObserver() {
 	}
 
 	function updateScroll() {
-		const offscreenHeight = stickyElement.getBoundingClientRect().bottom - document.documentElement.clientHeight;
-		const offscreenPortion = offscreenHeight / -parseFloat(getComputedStyle(stickyElement).bottom);
+		const topEdge = growthControllerElement.getBoundingClientRect().top;
+		const bottomEdge = stickyElement.getBoundingClientRect().bottom;
+		const onscreenHeight = document.documentElement.clientHeight - topEdge;
+		const onscreenPortion = onscreenHeight / (bottomEdge - topEdge)
 		stickyElement.style.setProperty(
 			'--scroll-grow-percentage', 
-			clamp(0, 1 - offscreenPortion, 1)
+			clamp(0, onscreenPortion, 1)
 		);
+		stickyElement.classList.toggle('growing', onscreenPortion > 0);
 	}
 
 	function onIntersect(entries) {
@@ -23,8 +28,7 @@ function initScrollObserver() {
 			if (entry.target === stickyInhibitorElement) {
 				stickyElement.classList.toggle('peeking', !entry.isIntersecting);
 			}
-			if (entry.target === postPeekElement) {
-				stickyElement.classList.toggle('growing', entry.isIntersecting);
+			if (entry.target === growthControllerElement) {
 				updateScroll();
 				if (entry.isIntersecting) {
 					window.addEventListener('scroll', updateScroll);
@@ -39,9 +43,9 @@ function initScrollObserver() {
 	updateSize();
 	window.addEventListener('resize', updateSize);
 
-	const observer = new IntersectionObserver(onIntersect, { rootMargin: '-3px' });
+	const observer = new IntersectionObserver(onIntersect);
 	if (stickyInhibitorElement) observer.observe(stickyInhibitorElement);
-	observer.observe(postPeekElement);
+	observer.observe(growthControllerElement);
 	stickyElement.style.setProperty('--scroll-grow-percentage', 0);
 
 	stickyElement.classList.add('observing');
