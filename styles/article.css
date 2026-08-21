@@ -363,12 +363,12 @@ article .gallery::before {
 			var(--article-edge-intersect-offset)
 		)
 	);
-
-/* add background for figures only after first section break */
 	display: none;
 }
+/* add background for figures only after first section break or another figure */
 article > h2 ~ .gallery::before,
-article > h3 ~ .gallery::before {
+article > h3 ~ .gallery::before,
+article > .gallery ~ .gallery::before {
 	display: block;
 }
 /* avoid accent backgrounds too close together (skip every other) */
