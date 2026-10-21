@@ -161,25 +161,62 @@ article h3 + .gallery {
 .gallery.multi-caption figure:not(:last-of-type) figcaption {
 	margin-bottom: calc(-1 * var(--column-gap));
 }
-.gallery.multi-caption figure:nth-last-of-type(3) figcaption::before {
-	content: 'Top';
+
+/* Swapping position label between expressive (wide) and stacked layouts */
+.gallery.multi-caption {
+	/* css space toggle trick */
+	--TRUE: ;
+	--FALSE: initial;
+	--is-expressive: var(--TRUE); /* not needed, but setting for clarity */
 }
-.gallery.multi-caption figure:nth-last-of-type(2) figcaption::before {
-	content: 'Left';
-}
-.gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
-	content: 'Right';
+.gallery.multi-caption figcaption::before {
+	/* if (--is-expressive) return --label-expressive; else, trigger fallback */
+	--label-if-expressive: var(--is-expressive) var(--label-expressive);
+
+	content: var(--label-if-expressive, var(--label-stacked));
 }
 @media (max-width: 600px) {
-	.gallery.multi-caption[data-stacks-below="600"] figure:nth-of-type(1) figcaption::before {
-		content: 'Top';
+	.gallery.multi-caption[data-stacks-below="600"] {
+		--is-expressive: var(--FALSE);
 	}
-	.gallery.multi-caption[data-stacks-below="600"] figure:nth-of-type(2):nth-last-of-type(2) figcaption::before {
-		content: 'Middle';
+}
+@media (max-width: 700px) {
+	.gallery.multi-caption[data-stacks-below="700"] {
+		--is-expressive: var(--FALSE);
 	}
-	.gallery.multi-caption[data-stacks-below="600"] figure:nth-last-of-type(1) figcaption::before {
-		content: 'Bottom';
+}
+@media (max-width: 850px) {
+	.gallery.multi-caption[data-stacks-below="850"] {
+		--is-expressive: var(--FALSE);
 	}
+}
+/* Multi-caption position label logic: 
+   At full size, 
+       the last item is on the right,
+       the item before is on the left,
+       if there is a 3rd item, it is on top;
+   When stacked,
+       the last item is at the bottom,
+       the first item is at the top,
+       if there is a middle item, it is in the middle
+*/
+.gallery.multi-caption figure:nth-last-of-type(3) figcaption::before {
+	--label-expressive: 'Top';
+}
+.gallery.multi-caption figure:nth-last-of-type(2) figcaption::before {
+	--label-expressive: 'Left';
+}
+.gallery.multi-caption figure:nth-last-of-type(1) figcaption::before {
+	--label-expressive: 'Right';
+}
+.gallery.multi-caption[data-stacks-below] figure:nth-of-type(1) figcaption::before {
+	--label-stacked: 'Top';
+}
+.gallery.multi-caption[data-stacks-below] figure:nth-of-type(2):nth-last-of-type(2) figcaption::before {
+	--label-stacked: 'Middle';
+}
+.gallery.multi-caption[data-stacks-below] figure:nth-last-of-type(1) figcaption::before {
+	--label-stacked: 'Bottom';
 }
 
 .gallery.figure-plaque-pair {
@@ -259,10 +296,21 @@ article figure blockquote::before {
 	color: var(--red);
 }
 
-.multi-quote {	
+.multi-quote, .multi-metric {	
 	display: initial;
 	grid-column: content-left / content-right;
-	margin-top: calc(5 * var(--line-height-section_title));
+	margin-top: calc(6 * var(--line-height-section_title));
+}
+h2 + .multi-quote,
+h2 + .multi-metric {
+	margin-top: 0;
+}
+.multi-quote + p,
+.multi-metric + p {
+	margin-top: calc(6 * var(--line-height-section_title));
+}
+
+.multi-quote {
 	--quote-column-span: min(6, var(--column-count));
 }
 .multi-quote figure {
@@ -287,6 +335,42 @@ article figure blockquote::before {
 	/* when margin in minimal, do not hang quote mark */
 	article figure blockquote::before {
 		right: initial;
+	}
+}
+
+.multi-metric p {
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+	font-style: italic;
+	position: relative;
+	display: inline-block;
+	text-align: left;
+}
+.multi-metric p::before {
+	content: "»";
+	display: block;
+	font-size: 60px;
+	line-height: 1;
+	color: var(--red);
+}
+.multi-metric .number {
+	font-size: var(--font-size-display_list_title);
+	line-height: var(--line-height-display_list_title);
+	color: var(--red);
+	font-variant-numeric: lining-nums;
+}
+.multi-metric figure + figure {
+	margin-top: 50px;
+}
+@media (min-width: 601px) {
+	.multi-metric p::before {
+		position: absolute;
+		right: 100%;
+		margin-top: -18px;
+		padding-right: 14px;
+	}
+	.multi-metric figure + figure {
+		text-align: right; /* right align entire block */
 	}
 }
 
@@ -326,10 +410,15 @@ article .gallery::before {
 			var(--article-edge-intersect-offset)
 		)
 	);
-
-/* add background for figures only after first section break */
 	display: none;
 }
-article > h2 ~ .gallery::before {
+/* add background for figures only after first section break or another figure */
+article > h2 ~ .gallery::before,
+article > h3 ~ .gallery::before,
+article > .gallery ~ .gallery::before {
 	display: block;
+}
+/* avoid accent backgrounds too close together (skip every other) */
+:not(.gallery) + .gallery + .gallery::before {
+	display: none;
 }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Dice roller | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Dice roller</h1>
+					<video poster="assets/2d8+d4-wide.png" loop playsinline autoplay muted controls aria-label="Dice roller app rolling 2d8+d4, then rerolling the d4">
+						<source src="assets/2d8+d4-wide.mp4" type="video/mp4"/>
+					</video>
+					<p>A simple dice rolling web app built with <abbr>AI</abbr>-assisted coding</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Interaction Design</li>
+							<li>Coding</li>
+							<li>AI Prototyping</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p>Some tabletop games involve rolling and adding up a lot of dice. I wanted a dice rolling app that replicates the look and feel of physical dice rolls, but automates the totalling. I didn’t find one with the simplicity and flexibility I was looking for, so I created my own with the aid of <abbr>AI</abbr> prototyping.</p>
+
+				<figure class="gallery caption-side" style="--ideal-figure-column-count-half: 4">
+					<video poster="assets/8d6-mobile.png" class="key-figure" controls loop playsinline autoplay muted style="--ideal-span: 4" aria-label="Dice roller app rolling 8d6">
+						<source src="assets/8d6-mobile.mp4" type="video/mp4"/>
+					</video>
+					<figcaption style="--ideal-span: 3">Waiting for dice to settle can be a communal experience. This app emulates the top-down view of a dice tray, letting everyone at the table watch the dice as they roll.</figcaption>
+				</figure>
+				
+				<p>I wrote up design and functional specifications to feed into an <abbr>LLM</abbr>, which created an initial prototype. This was followed by rounds of additional prompts and manual code edits to refine the prototype. Once the functionality was complete, I refactored the code to make it more understandable and maintainable, and made final design adjustments by hand.</p>
+				
+				<p>This method allowed me to iterate quickly on different ways to improve the design. In early iterations the dice would all randomise instantly, without any rolling animation. Making the dice scramble through multiple numbers made the dice rolls feel more random and physical.</p>
+
+				<figure class="gallery uniform-grid" style="--ideal-figure-column-count-half: 4">
+					<video poster="assets/d20+7-mobile.png" class="key-figure float" controls loop playsinline autoplay muted style="--ideal-span: 4" aria-label="Dice roller app rolling d20+7">
+						<source src="assets/d20+7-mobile.mp4" type="video/mp4"/>
+					</video>
+					<video poster="assets/2d8+d6+d4+6-mobile.png" class="key-figure float" controls loop playsinline autoplay muted style="--ideal-span: 4" aria-label="Dice roller app rolling 2d8+d6+d4+6, then rerolling the d4">
+						<source src="assets/2d8+d6+d4+6-mobile.mp4" type="video/mp4"/>
+					</video>
+					<video poster="assets/2d8+d4-wide.png" class="key-figure float" controls loop playsinline autoplay muted style="--ideal-span: 8" aria-label="Dice roller app rolling 2d8+d4, then rerolling the d4">
+						<source src="assets/2d8+d4-wide.mp4" type="video/mp4"/>
+					</video>
+					<figcaption>The final product has the simplicity and flexibility of a physical dice set.</figcaption>
+				</figure>
+
+				<h3 id="Results">Results</h3>
+
+				<ul class="body-list">
+					<li>Try it out: <a href="https://szupie.github.io/dice-roller/">Dice roller</a></li>
+					<li><a href="https://github.com/szupie/dice-roller">Source code on GitHub</a></li>
+				</ul>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/devices.png" alt="Dice roller in desktop and mobile view" style="--ideal-span: 12"/>
+				</figure>
+
+			</article>
+			<section class="growing-cards">
+				<section>
+					<h2 class="peeker"><a href="/portfolio/">My portfolio</a></h2>
+					<p>Read about the process behind my personal and professional work.</p>
+				</section>
+				<section>
+					<h2 class="peeker"><a href="/about/">About me</a></h2>
+					<p>My expertise covers a wide variety of fields from design to sciences.</p>
+				</section>
+			</section>
+		</main>
+		<footer>
+			<h2>Get in touch</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="https://github.com/szupie/">Github</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/angus-lo/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="mailto:szupie@gmail.com">Email</a>
+					</li>
+					<li>
+						<a href="/about/">About</a>
+					</li>
+				</ul>
+				<small>This site was designed and hand coded by me. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+	<script src="/js/scroll-observer.js"></script>
+</html>
