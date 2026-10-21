@@ -296,10 +296,21 @@ article figure blockquote::before {
 	color: var(--red);
 }
 
-.multi-quote {	
+.multi-quote, .multi-metric {	
 	display: initial;
 	grid-column: content-left / content-right;
 	margin-top: calc(6 * var(--line-height-section_title));
+}
+h2 + .multi-quote,
+h2 + .multi-metric {
+	margin-top: 0;
+}
+.multi-quote + p,
+.multi-metric + p {
+	margin-top: calc(6 * var(--line-height-section_title));
+}
+
+.multi-quote {
 	--quote-column-span: min(6, var(--column-count));
 }
 .multi-quote figure {
@@ -324,6 +335,42 @@ article figure blockquote::before {
 	/* when margin in minimal, do not hang quote mark */
 	article figure blockquote::before {
 		right: initial;
+	}
+}
+
+.multi-metric p {
+	font-size: var(--font-size-section_title);
+	line-height: var(--line-height-section_title);
+	font-style: italic;
+	position: relative;
+	display: inline-block;
+	text-align: left;
+}
+.multi-metric p::before {
+	content: "»";
+	display: block;
+	font-size: 60px;
+	line-height: 1;
+	color: var(--red);
+}
+.multi-metric .number {
+	font-size: var(--font-size-display_list_title);
+	line-height: var(--line-height-display_list_title);
+	color: var(--red);
+	font-variant-numeric: lining-nums;
+}
+.multi-metric figure + figure {
+	margin-top: 50px;
+}
+@media (min-width: 601px) {
+	.multi-metric p::before {
+		position: absolute;
+		right: 100%;
+		margin-top: -18px;
+		padding-right: 14px;
+	}
+	.multi-metric figure + figure {
+		text-align: right; /* right align entire block */
 	}
 }
 

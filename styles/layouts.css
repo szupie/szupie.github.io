@@ -69,12 +69,14 @@ header p {
 .gallery img,
 .gallery video,
 .gallery figcaption,
-.multi-quote figure {
+.multi-quote figure,
+.multi-metric figure {
 	--parallax-offset: calc((var(--scroll-progress, 0.5) - 0.5) * -1 * var(--parallax-distance, 0));
 	transform: translateY(var(--parallax-offset));
 }
 
-.multi-quote figure {
+.multi-quote figure,
+.multi-metric figure {
 	--parallax-distance: 150px;
 	--min-opacity: 0.1;
 	--transition-rate: 5;

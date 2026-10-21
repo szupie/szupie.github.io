@@ -81,8 +81,8 @@ function initScrollObserver() {
 		handleParallaxIntersect, 
 		{ rootMargin: getComputedStyle(document.documentElement).getPropertyValue('--parallax-distance') }
 	);
-	if (document.querySelector('.gallery, .multi-quote figure')) {
-		document.querySelectorAll('.gallery, .multi-quote figure').forEach(
+	if (document.querySelector('.gallery, .multi-quote figure, .multi-metric figure')) {
+		document.querySelectorAll('.gallery, .multi-quote figure, .multi-metric figure').forEach(
 			node => parallaxObserver.observe(node)
 		);
 		// scroll listener is needed because additional IntersectionObserver thresholds do not trigger while item is fully in view
