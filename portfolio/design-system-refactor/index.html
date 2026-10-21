@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Design system refactor | Angus Lo</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/styles/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<ul id="nav-menu">
+				<li>
+					<a href="/" id="home-button">Angus Lo</a>
+				</li>
+				<li>
+					<a href="/tools/">Tools</a>
+				</li>
+				<li>
+					<a href="/portfolio/" aria-current="true">Portfolio</a>
+				</li>
+				<li>
+					<a href="/about/">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+			<article>
+				<header class="cover">
+					<h1>Design system refactor</h1>
+					<img src="assets/documentation-pages.png" alt=""/>
+					<p>Reorganising and documenting a design system to improve the publication workflow for authors</p>
+					<section id="roles">
+						<h4>Roles</h4>
+						<ul class="inline-list">
+							<li>Systems Design</li>
+							<li>Technical Writing</li>
+							<li>Figma Expert</li>
+						</ul>
+					</section>
+				</header>
+				
+				<p><i>This work is from my role as a product designer at an advertising agency</i></p>
+
+				<p>Our team has been working as design partners with a leading hospital system, redesigning their massive 10,000-page website one section at a time. As our library of modular, reusable component grew, it became a challenge to find documentation and specifications on components across different past project files.</p>
+
+				<p>We decided it was time to refactor our design system and create a centralised reference for all components. This helps create a shared understanding between authors, developers, and designers, and streamlines the authoring process for the hospital.</p>
+
+				<p>With my experience in systems design and technical writing, I led the reorganisation and documentation of the components. I also led the adoption of advanced Figma features that speed up and improve the design workflow.</p>
+
+
+				<h2 id="methods">Methods</h2>
+
+				<h3 id="Component_taxonomy">Component taxonomy</h3>
+
+				<p>Because the components had grown over separate projects, we had amassed some redundant components that served slightly different needs. The original categorisation was also becoming unbalanced, as new groupings of components started to emerge organically. I ran regular working sessions with designers and developers to align on the taxonomy, naming, and changes needed to merge components together.</p>
+
+				<p>I set the following goals for the component reorganisation:</p>
+				<ul class="body-list">
+					<li><em>Reduce component count</em>: Simplify the system by merging similar components into variants</li>
+					<li><em>Author-friendly organisation</em>: Help authors find components and understand the design system more easily by organising components based on usage</li>
+					<li><em>Simple naming structure</em>: Component names need to be specific enough to work as unique identifiers for developers, but simple enough that everyone would actually use them</li>
+				</ul>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 5">
+					<img src="assets/component-taxonomy.png" alt="Collection of all the components in the library, organised into groups"/>
+					<figcaption>I led the redesign for the new component taxonomy, which helps authors find components based on content type and usage context.</figcaption>
+				</figure>
+
+
+				<h3 id="Simplifying_components_with_variables">Simplifying components with variables</h3>
+
+				<p>With my background in coding, I led the charge in exploring Figma’s programmatic design features, looking for ways to make the components easier to build and maintain.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 4">
+					<img src="assets/spacer-variables.png" alt="Screenshot of variable collection for spacer sizes in Figma"/>
+					<figcaption>Setting up spacer sizes as variable modes to simplify comping for different screen sizes.</figcaption>
+				</figure>
+
+				<p>This required understanding the intricacies, strengths, and limitations of Figma variables in order to assess where they work best for our design system. Variables in Figma had their limitations, but for us they were the most useful for these workflow improvements:</p>
+
+				<ul class="body-list">
+					<li>Streamline component building and management by reducing duplicate frames needed for design variations</li>
+					<li>Reduce work when comping pages for different screen sizes by taking advantage of inherited variable modes</li>
+					<li>Improve consistency and reduce mistakes by referencing global values</li>
+				</ul>
+
+				<figure class="gallery spiral multi-caption" style="--ideal-focus-column: 4; --caption-count: 2" data-stacks-below="600">
+					<figure>
+						<img src="assets/component-variants-before.png" alt="Component with many variants for each combination of screen size, colour, and variant" class="key-figure" style="--ideal-span: 4" data-focus-quadrant="above left"/>
+						<figcaption data-focus-quadrant="right below">Original component with 16 variants to account for each combination of screen size and colour scheme variant</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/colour-variable-modes.gif" alt="Same component rebuilt with much fewer repetitive variants" class="key-figure" data-focus-quadrant="right"/>
+						<figcaption data-focus-quadrant="right below">Using variables modes, I reduced the number of comped variants needed exponentially to 4.</figcaption>
+					</figure>
+				</figure>
+
+
+				<h3>Documentation for authors</h3>
+
+				<p>Since existing documentation and specs for components were fragmented across different project files, authors often relied on us as design partners to provide guidance on component usage. To address this, the main deliverable for this project was a single component library reference for authors. The goal was to let authors build pages quickly from a modular set of reusable components, without needing to consult designers or developers.</p>
+
+				<figure class="gallery" style="--ideal-figure-column-count-half: 6">
+					<img src="assets/documentation-pages.png" alt="A collection of component reference pages, each with sections for anatomy and configurations"/>
+					<figcaption>Examples of component reference pages</figcaption>
+				</figure>
+
+				<p>What goes in a component’s documentation varies depending on whether it’s for designers, developers, or authors. Since the audience was authors, I focused on how they should use a component, what they can configure, and what they should know about its functionality. For each component, I structured the documentation around these areas:</p>
+
+				<ul>
+					<li><strong>Overview</strong>: Brief description of the component</li>
+					<li><strong>Usage</strong>: Do’s and don’ts on using the component</li>
+					<li><strong>Anatomy</strong>: Specs on a component’s building blocks</li>
+					<li><strong>Configurable options</strong>: Optional elements, colours, min/max constraints</li>
+					<li><strong>Functionality</strong>: Interactivity and states</li>
+				</ul>
+
+
+				<h3>AI agents and plugin creation</h3>
+
+				<p>Cleaning up a large component library is a lot of repetitive and time-consuming work, even with my mastery of keyboard shortcuts. It was more efficient to spend time developing <abbr>AI</abbr>-powered workflows that work at scale. Figma’s <abbr>AI</abbr> agent was useful for applying basic but specific operations across many components. I developed a few workflows and prompts to speed up different one-off tasks, like resetting style overrides on specific parts of all components.</p>
+
+				<p>The agent was intelligent enough to deal with messy, non-uniform inputs, but for more repetitive and well-defined tasks, it was faster to use plugins. While some plugins from the community did parts of what I needed, Figma’s generative plugin feature allowed me to quickly create bespoke plugins that sped up our specific workflows.</p>
+
+				<p>For this project, I created three plugins: </p>
+
+				<ul>
+					<li><em>Selection clipboard</em>: Helps with filtering and refining selections in Figma, useful for many different tasks</li>
+					<li><em>External component identifier</em>: Helps with the process of removing all old dependencies in migrating to a central library</li>
+					<li><em>Annotations to Markdown</em>: Helps with exporting designer-maintained documentation to the web</li>
+				</ul>
+
+				<!-- <figure class="gallery spiral">
+					<img src="assets/selection-clipboard-plugin.png" alt="Screenshot of plugin overlay, showing a filterable list of active selection in Figma" class="key-figure" style="--ideal-span: 8" data-focus-quadrant="center"/>
+					<img src="assets/external-components-plugin.png" alt="Screenshot of plugin overlay, showing a list of external components" class="key-figure" style="--ideal-span: 5" data-focus-quadrant="left"/>
+					<img src="assets/markdown-plugin.png" alt="Screenshot of plugin with equivalent Markdown output of a page in Figma" class="key-figure" style="--ideal-span: 7" data-focus-quadrant="right"/>
+					<figcaption>Wireframes of the different views to align on the general interaction pattern</figcaption>
+				</figure> -->
+
+				<figure class="gallery spiral multi-caption" style="--ideal-focus-column: 5; --caption-count: 3" data-stacks-below="600">
+					<figure>
+						<img src="assets/selection-clipboard-plugin.png" alt="Screenshot of plugin overlay, showing a filterable list of active selection in Figma" class="key-figure" style="--ideal-span: 8" data-focus-quadrant="above center"/>
+						<figcaption data-focus-quadrant="right bleed below">I created a plugin for filtering and refining selections, which helped in tasks that needed manual touches but still had to be done at scale.</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/external-components-plugin.png" alt="Screenshot of plugin overlay, showing a list of external components" class="key-figure" style="--ideal-span: 5" data-focus-quadrant="left below"/>
+						<figcaption data-focus-quadrant="right bleed below">Another plugin performs scoped and exhaustive searches for external components to help us with the migration process.</figcaption>
+					</figure>
+					<figure>
+						<img src="assets/markdown-plugin.png" alt="Screenshot of plugin with equivalent Markdown output of a page in Figma" class="key-figure" style="--ideal-span: 7" data-focus-quadrant="right  below"/>
+						<figcaption data-focus-quadrant="right bleed below">To export the many pages of documentation to the web, I created a plugin that transforms the content into Markdown format.</figcaption>
+					</figure>
+				</figure>
+
+
+				<h2>Results</h2>
+
+				<figure class="multi-metric">
+					<figure>
+						<p>From<br/>
+						<span class="number">300+</span><br/>
+						to<br/>
+						<span class="number">100</span> components</p>
+					</figure>
+					<figure>
+						<p>From<br/>
+						<span class="number">10+</span> Figma files and <span class="number">3</span>&nbsp;spreadsheets<br/>
+						to<br/>
+						<span class="number">1</span> source of truth for component specs</p>
+					</figure>
+				</figure>
+
+				<p>In the end, we merged more than 300 components into about 100. The documentation gave authors a better understanding of the components available, from their specs to how they should be used.</p>
+
+				<p>For me, this project was a lesson in working at scale in Figma. Building flexible components within a design system required an intimate understanding of advanced Figma features in order to make the right tradeoffs. My experience working with the <abbr>AI</abbr> agent gave me the skills to efficiently manage large design libraries.</p>
+
+			</article>
+			<section class="growing-cards">
+				<section>
+					<h2 class="peeker"><a href="/portfolio/">My portfolio</a></h2>
+					<p>Read about the process behind my personal and professional work.</p>
+				</section>
+				<section>
+					<h2 class="peeker"><a href="/about/">About me</a></h2>
+					<p>My expertise covers a wide variety of fields from design to sciences.</p>
+				</section>
+			</section>
+		</main>
+		<footer>
+			<h2>Get in touch</h2>
+			<section id="footer-links">
+				<ul id="contact-links">
+					<li>
+						<a href="https://github.com/szupie/">Github</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/angus-lo/">LinkedIn</a>
+					</li>
+					<li>
+						<a href="mailto:szupie@gmail.com">Email</a>
+					</li>
+					<li>
+						<a href="/about/">About</a>
+					</li>
+				</ul>
+				<small>This site was designed and hand coded by me. See the <a href="https://github.com/szupie/szupie.github.io">source code</a>.</small>
+			</section>
+		</footer>
+	</body>
+	<script src="/js/scroll-observer.js"></script>
+</html>
